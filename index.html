@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>MoleBio Toolkit — Interactive Molecular Biology Tools for Lecture & Lab</title>
+<meta name="description" content="MoleBio Toolkit is a course-tailored interactive companion for molecular biology lecture and lab — central dogma flow, codon translator, micropipette viewer, units &amp; molarity calculator, DNA Tm calculator, and protein MW/pI. Created by Dylan S. Blohm.">
+<meta name="author" content="Dylan S. Blohm">
+<meta name="keywords" content="molecular biology, biochemistry, MOL214, codon table, primer Tm, protein pI, micropipette, dilution, lab tools, Princeton">
+<meta property="og:title" content="MoleBio Toolkit — Interactive Tools for Molecular Biology">
+<meta property="og:description" content="Six interactive tools for molecular biology lecture and lab: central dogma flow, codon translator, micropipette viewer, units &amp; molarity, DNA Tm, and protein MW/pI.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MoleBio Toolkit">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MoleBio Toolkit — Interactive Tools for Molecular Biology">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="og-image.png">
+<meta name="twitter:title" content="MoleBio Toolkit">
+<meta name="twitter:description" content="Interactive molecular biology tools for lecture and lab.">
+<meta name="theme-color" content="#121212">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121212'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-size='38' font-weight='700'%3E%3Ctspan fill='%23ffffff'%3EM%3C/tspan%3E%3Ctspan fill='%23E77500'%3EB%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23121212'/%3E%3Ctext x='90' y='120' text-anchor='middle' font-family='Georgia,serif' font-size='100' font-weight='700'%3E%3Ctspan fill='%23ffffff'%3EM%3C/tspan%3E%3Ctspan fill='%23E77500'%3EB%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<meta name="robots" content="index,follow">
+<meta name="dcterms.creator" content="Dylan S. Blohm">
+<meta name="dcterms.rights" content="Copyright 2026 Dylan S. Blohm. All rights reserved.">
+<!-- Copyright (c) 2026 Dylan S. Blohm. All rights reserved. MoleBio Toolkit is the original work of Dylan S. Blohm. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" onerror="this.remove()"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/></noscript>
+<style>
+/* Offline font fallback — system fonts that approximate DM family */
+@font-face{font-family:'DM Sans';src:local('');font-display:swap;}
+@font-face{font-family:'DM Mono';src:local('');font-display:swap;}
+@font-face{font-family:'DM Serif Display';src:local('');font-display:swap;}
+</style>
+<style>
+:root{
+  /* Princeton-inspired palette: burnt orange + black/gray */
+  --bg:#fafaf7;            /* warm off-white page background */
+  --surface:#ffffff;       /* card/panel surfaces */
+  --surface2:#f3f1ec;      /* secondary panels, inputs */
+  --border:#e5e3dc;        /* subtle gray-warm borders */
+  --border-strong:#cdc9bf; /* hover/focus borders */
+  --accent:#E77500;        /* Princeton orange (PMS 158) */
+  --accent-dark:#b85d00;   /* hover/pressed orange */
+  --accent2:#5b3a1a;       /* deep brown-orange for secondary accents */
+  --text:#1a1a1a;          /* near-black primary text */
+  --text-dim:#404040;      /* secondary text */
+  --text-muted:#737373;    /* hints, labels */
+  --header-bg:#121212;     /* Princeton black header */
+  --header-text:#fafaf7;
+  --header-text-dim:#a3a3a3;
+  --plot-bg:243,241,236;   /* RGB triplet for canvas plot bg (used in mwpi charge plot) */
+  --plot-border:229,227,220;
+  --plot-text:#737373;
+  --plot-text-strong:#404040;
+}
+:root[data-theme="dark"]{
+  --bg:#0f1115;
+  --surface:#1a1d23;
+  --surface2:#22262e;
+  --border:#2e333c;
+  --border-strong:#404652;
+  --accent:#F08F1F;        /* slightly warmer orange for dark bg */
+  --accent-dark:#d97a0a;
+  --accent2:#c8946b;
+  --text:#e8e6e0;
+  --text-dim:#b8b4ab;
+  --text-muted:#7a766c;
+  --header-bg:#0a0c10;
+  --header-text:#fafaf7;
+  --header-text-dim:#a3a3a3;
+  --plot-bg:34,38,46;
+  --plot-border:46,51,60;
+  --plot-text:#a3a3a3;
+  --plot-text-strong:#cdc9bf;
+}
+:root.high-contrast{
+  --border:#888;
+  --border-strong:#555;
+  --text-muted:#444;
+  --text-dim:#111;
+}
+:root.high-contrast[data-theme="dark"]{
+  --border:#aaa;
+  --border-strong:#ccc;
+  --text-muted:#cdc9bf;
+  --text-dim:#fafaf7;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow:hidden;height:100vh;height:100dvh;-webkit-tap-highlight-color:rgba(231,117,0,.18);}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 15% 10%,rgba(231,117,0,.04) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(91,58,26,.03) 0%,transparent 60%);pointer-events:none;z-index:0;}
+header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 1.4rem;border-bottom:1px solid #2a2a2a;background:var(--header-bg);height:52px;color:var(--header-text);}
+.logo{display:flex;align-items:center;gap:.5rem;cursor:pointer;color:var(--header-text);}
+.logo-word{font-family:"DM Serif Display",serif;font-size:1.3rem;letter-spacing:-.02em;color:var(--header-text);line-height:1;}
+.logo-word span{color:var(--accent);}
+.logo-tag{font-family:"DM Mono",monospace;font-size:.55rem;color:var(--header-text-dim);letter-spacing:.1em;text-transform:uppercase;padding:.2em .5em;border:1px solid #2a2a2a;border-radius:3px;margin-top:.15em;}
+.tool-switcher-btn{display:flex;align-items:center;gap:.3rem;padding:.3em .6em;background:transparent;color:var(--header-text-dim);border:1px solid #2a2a2a;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:.68rem;cursor:pointer;transition:all .15s;min-height:24px;font-weight:500;}
+.tool-switcher-btn:hover{color:var(--accent);border-color:var(--accent);background:rgba(231,117,0,.1);}
+.tool-switcher-btn.tool-active{color:var(--header-text);border-color:#3a3a3a;}
+.tool-switcher-btn.tool-active:hover{color:var(--accent);border-color:var(--accent);}
+.tool-switcher-chevron{font-size:.55rem;color:var(--header-text-dim);transition:transform .15s;}
+.tool-switcher-btn:hover .tool-switcher-chevron{color:var(--accent);}
+.header-right{display:flex;align-items:center;gap:.5rem;}
+.header-right .vp-btn{background:transparent;color:var(--header-text-dim);border:1px solid #2a2a2a;border-radius:5px;font-family:'DM Sans',sans-serif;font-size:.78rem;padding:.3em .55em;min-height:24px;cursor:pointer;transition:all .15s;line-height:1;}
+.header-right .vp-btn:hover{color:var(--accent);border-color:var(--accent);background:rgba(231,117,0,.1);}
+.app{position:relative;z-index:auto;display:grid;grid-template-columns:240px 1fr;grid-template-rows:1fr;height:calc(100vh - 52px);height:calc(100dvh - 52px);}
+.sidebar{grid-column:1;grid-row:1;border-right:1px solid var(--border);background:var(--surface);overflow-y:auto;padding:.8rem 0 1rem;}
+.sidebar-search-wrap{position:relative;margin:.1rem .8rem .65rem;}
+.sidebar-search-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.45rem .55rem .45rem 1.7rem;font-family:'DM Sans',sans-serif;font-size:.78rem;color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s;}
+.sidebar-search-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(231,117,0,.18);}
+.sidebar-search-input::placeholder{color:var(--text-muted);}
+.sidebar-search-icon{position:absolute;left:.55rem;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;}
+.sidebar-search-input:focus + .sidebar-search-clear,.sidebar-search-input:not(:placeholder-shown) ~ .sidebar-search-clear{display:flex;}
+.sidebar-search-clear{display:none;position:absolute;right:.4rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:1rem;line-height:1;padding:.15rem .35rem;border-radius:3px;align-items:center;justify-content:center;}
+.sidebar-search-clear:hover{color:var(--accent);background:rgba(231,117,0,.1);}
+.sidebar-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:0 1rem;margin:.6rem 0 .35rem;}
+.tool-btn{display:flex;align-items:center;gap:.65rem;width:100%;padding:.65rem 1rem;background:none;border:none;cursor:pointer;text-align:left;transition:background .13s;position:relative;font-family:inherit;min-height:48px;color:var(--text);}
+.tool-btn:hover{background:rgba(231,117,0,.06);}
+.tool-btn.active{background:rgba(231,117,0,.1);}
+.tool-btn.active::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);}
+.tool-icon{width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.tool-name{font-size:.82rem;font-weight:500;color:var(--text);line-height:1.3;}
+.tool-btn.active .tool-name{color:var(--accent-dark);}
+.tool-sub{font-size:.65rem;color:var(--text-muted);margin-top:.1rem;}
+/* CONTENT PANEL — formerly viewer-panel, now the full content area */
+.content-panel{grid-column:2;grid-row:1;background:var(--surface);display:flex;flex-direction:column;overflow:hidden;min-height:0;}
+.content-panel .vp-header{padding:.95rem 1.4rem .7rem;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface2);}
+.content-panel .vp-title{font-family:"DM Serif Display",serif;font-size:1.4rem;color:var(--text);margin-bottom:.25rem;line-height:1.2;}
+.content-panel .vp-desc{font-size:.85rem;color:var(--text-muted);line-height:1.5;}
+.content-panel .vp-controls{display:flex;gap:.45rem;padding:.65rem 1.4rem;border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;align-items:center;background:var(--surface);}
+.content-panel .vp-btn{font-family:"DM Sans",sans-serif;font-size:.72rem;padding:.5em .85em;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer;transition:all .15s;min-height:32px;line-height:1.2;}
+.content-panel .vp-btn:hover{border-color:var(--accent);color:var(--accent-dark);background:rgba(231,117,0,.06);}
+.content-panel .vp-btn.active{background:rgba(231,117,0,.1);border-color:var(--accent);color:var(--accent-dark);font-weight:500;}
+.content-panel input[type="number"]::-webkit-inner-spin-button,.content-panel input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+.content-panel input[type="number"]{-moz-appearance:textfield;}
+.content-panel input[type="text"],.content-panel input[type="number"],.content-panel textarea,.content-panel select{background:var(--surface2)!important;border:1px solid var(--border)!important;color:var(--text)!important;}
+.content-panel input[type="text"]:focus,.content-panel input[type="number"]:focus,.content-panel textarea:focus,.content-panel select:focus{border-color:var(--accent)!important;outline:none;}
+/* Bump the inline padding on the existing tool subsections (which were designed for a 460px panel) so content reads at a comfortable line-length */
+.content-panel > div[style*="padding:.4rem .8rem"],
+.content-panel > div[style*="padding:.5rem .8rem"],
+.content-panel > div[style*="padding:.6rem .8rem"],
+.content-panel > div[style*="padding:.7rem .8rem"]{padding-left:1.4rem!important;padding-right:1.4rem!important;}
+::-webkit-scrollbar{width:8px;height:8px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}::-webkit-scrollbar-thumb:hover{background:var(--border-strong);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp .28s ease both;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px;}
+.skip-nav{position:absolute;top:-100px;left:0;background:var(--accent);color:#fff;padding:.5rem 1rem;z-index:100;font-size:.85rem;font-weight:500;font-family:'DM Sans',sans-serif;border-radius:0 0 6px 0;transition:top .15s;}
+.skip-nav:focus{top:0;}
+/* Hamburger and overlay (mobile sidebar) */
+.hamburger{display:none;background:none;border:none;color:var(--header-text-dim);cursor:pointer;font-size:1.2rem;padding:.4rem .6rem;border-radius:5px;margin-right:.4rem;min-width:40px;min-height:40px;}
+.hamburger:hover,.hamburger:active{color:var(--accent);background:rgba(231,117,0,.12);}
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:20;display:none;}
+.sidebar-overlay.show{display:block;}
+/* TABLET / SMALL LAPTOP — sidebar slides in, content fills full width */
+@media(max-width:900px){
+  .hamburger{display:block;}
+  .app{grid-template-columns:1fr !important;height:calc(100vh - 52px) !important;height:calc(100dvh - 52px) !important;}
+  .sidebar{position:fixed;left:-280px;top:52px;bottom:0;width:280px;z-index:21;transition:left .25s ease;background:var(--surface);border-right:1px solid var(--border);box-shadow:4px 0 24px rgba(0,0,0,.15);}
+  .sidebar.sidebar-open{left:0;}
+  .content-panel{grid-row:1;grid-column:1;border-left:none !important;}
+  header{padding:0 1rem;}
+  .logo-word{font-size:1.15rem;}
+  .tool-switcher-btn{font-size:.62rem;padding:.3em .5em;}
+  /* Larger tap targets on touch */
+  .content-panel .vp-btn{min-height:36px;font-size:.72rem;padding:.5em .85em;}
+  .tool-btn{padding:.75rem 1rem;min-height:54px;}
+  .tool-icon{width:36px;height:36px;}
+}
+/* PHONE — single column, larger text, no horizontal overflow */
+@media(max-width:600px){
+  body{overflow:auto;height:auto;}
+  header{height:48px;padding:0 .8rem;}
+  .header-right{gap:.35rem;}
+  .header-right .vp-btn{font-size:.7rem;padding:.4em .65em;min-height:32px;}
+  .tool-switcher-btn{display:none;}
+  .content-panel .vp-header{padding:.8rem 1rem .6rem;}
+  .content-panel .vp-title{font-size:1.15rem;}
+  .content-panel .vp-desc{font-size:.78rem;}
+  .content-panel .vp-controls{padding:.55rem 1rem;overflow-x:auto;flex-wrap:nowrap !important;-webkit-overflow-scrolling:touch;}
+  .content-panel .vp-controls::-webkit-scrollbar{height:0;}
+  .content-panel .vp-btn{font-size:.7rem;}
+  /* Tighten tool internal padding on phone */
+  .content-panel > div[style*="padding:.4rem .8rem"],
+  .content-panel > div[style*="padding:.5rem .8rem"],
+  .content-panel > div[style*="padding:.6rem .8rem"],
+  .content-panel > div[style*="padding:.7rem .8rem"]{padding-left:1rem!important;padding-right:1rem!important;}
+}
+/* SMALL PHONE — squeeze further */
+@media(max-width:380px){
+  header{padding:0 .6rem;}
+  .logo-word{font-size:1rem;}
+  .header-right{gap:.25rem;}
+  .header-right .vp-btn{font-size:.65rem;padding:.35em .55em;}
+  .content-panel .vp-header{padding:.65rem .85rem .5rem;}
+  .content-panel .vp-title{font-size:1.05rem;}
+  .content-panel > div[style*="padding"]{padding-left:.85rem!important;padding-right:.85rem!important;}
+}
+/* iOS Safari: prevent auto-zoom on input focus.
+   iOS zooms in when an input/textarea/select has font-size < 16px on focus.
+   We bump form-element font to 16px on touch devices only, so desktop UI is unchanged. */
+@media(hover:none) and (pointer:coarse){
+  input,textarea,select{font-size:16px !important;}
+}
+@media print{
+  body{overflow:auto;height:auto;background:#fff;color:#000;}
+  body::before,header,.sidebar,#mole-zone,#mole-bubble,#mole-idle-bubble,#mole-particles{display:none !important;}
+  .app{display:block;height:auto;}
+  .content-panel{padding:1rem;}
+}
+/* High contrast for accessibility */
+@media(prefers-contrast:more){
+  :root{--border:#999;--border-strong:#666;--text-muted:#555;--text-dim:#222;}
+  .vp-btn{border-width:2px;}
+}
+/* SETTINGS MENU rows */
+.settings-row{display:flex;align-items:center;gap:.7rem;width:100%;padding:.65rem .9rem;background:none;border:none;border-radius:6px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;color:var(--text);transition:background .12s;min-height:42px;}
+/* TOOL SWITCHER dropdown rows */
+.ts-row{display:flex;align-items:center;gap:.65rem;width:100%;padding:.55rem .65rem;background:none;border:none;border-radius:7px;cursor:pointer;text-align:left;font-family:'DM Sans',sans-serif;color:var(--text);transition:background .12s;min-height:48px;}
+.ts-row:hover,.ts-row:focus-visible{background:rgba(231,117,0,.08);outline:none;}
+.ts-row.active{background:rgba(231,117,0,.1);}
+.ts-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ts-label{flex:1;display:flex;flex-direction:column;gap:.05rem;min-width:0;}
+.ts-name{font-size:.82rem;font-weight:500;color:var(--text);line-height:1.25;}
+.ts-row.active .ts-name{color:var(--accent-dark);font-weight:600;}
+.ts-sub{font-size:.66rem;color:var(--text-muted);line-height:1.3;}
+.ts-active-dot{color:var(--accent);font-size:.55rem;flex-shrink:0;}
+.settings-row:hover,.settings-row:focus-visible{background:rgba(231,117,0,.08);}
+.settings-icon{font-size:.95rem;width:18px;display:inline-flex;justify-content:center;color:var(--text-dim);flex-shrink:0;}
+.settings-label{flex:1;font-size:.82rem;font-weight:500;}
+.settings-value{font-family:'DM Mono',monospace;font-size:.65rem;text-transform:lowercase;color:var(--text-muted);letter-spacing:.05em;}
+/* SVG sizing inside content panel — make them responsive */
+.content-panel svg{max-width:100%;height:auto;}
+/* On phone, collapse 1fr 1fr grids inside tools to single column to prevent crowding */
+@media(max-width:600px){
+  .content-panel div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr !important;}
+  .content-panel div[style*="grid-template-columns:1fr auto 1fr"]{grid-template-columns:1fr !important;}
+  .content-panel div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr) !important;}
+}
+</style>
+</head>
+<body>
+<script>
+  // Apply theme preferences before first paint to avoid flash
+  try{
+    var t=localStorage.getItem('mbtk-theme');
+    if(t==='dark')document.documentElement.setAttribute('data-theme','dark');
+    if(localStorage.getItem('mbtk-hc')==='1')document.documentElement.classList.add('high-contrast');
+  }catch(e){}
+</script>
+<a href="#right-panel" class="skip-nav">Skip to content</a>
+<noscript>
+  <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#fafaf7;color:#1a1a1a;font-family:system-ui,sans-serif;padding:2rem;text-align:center;">
+    <div>
+      <h1 style="font-size:2rem;margin-bottom:.5rem;">Mole<span style="color:#E77500;">Bio</span> Toolkit</h1>
+      <p style="color:#737373;max-width:400px;line-height:1.6;">The MoleBio Toolkit requires JavaScript to run its interactive calculators and viewers. Please enable JavaScript in your browser settings and reload this page.</p>
+    </div>
+  </div>
+</noscript>
+<header>
+  <div class="logo" onclick="showHomePage()" title="Return to home">
+    <span class="logo-word">Mole<span>Bio</span></span>
+    <span class="logo-tag">Toolkit</span>
+  </div>
+  <div id="mole-zone" style="flex:1;position:relative;height:52px;background:linear-gradient(180deg,transparent 0%,rgba(231,117,0,.04) 50%,rgba(255,255,255,.06) 85%,transparent 100%);"></div>
+  <div class="header-right">
+    <button class="tool-switcher-btn" id="tool-switcher-btn" onclick="showToolSwitcher()" aria-label="Select a tool" aria-haspopup="menu">
+      <span id="tool-switcher-label">Select a tool</span>
+      <span class="tool-switcher-chevron" aria-hidden="true">&#9662;</span>
+    </button>
+    <button class="vp-btn" id="settings-btn" onclick="showSettingsMenu()" title="Settings" aria-label="Open settings menu">&#9881;</button>
+  </div>
+</header>
+<div class="app" id="app">
+  <aside class="sidebar" id="sidebar" aria-label="Tool navigation">
+    <div class="sidebar-search-wrap">
+      <svg class="sidebar-search-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="5"/><line x1="10.6" y1="10.6" x2="14" y2="14"/></svg>
+      <input id="sidebar-search" type="text" class="sidebar-search-input" placeholder="Search tools..." aria-label="Search tools" oninput="filterSidebar(this.value)">
+      <button class="sidebar-search-clear" id="sidebar-search-clear" onclick="(function(){document.getElementById('sidebar-search').value='';filterSidebar('');document.getElementById('sidebar-search').focus();})()" aria-label="Clear search" tabindex="-1">&times;</button>
+    </div>
+    <div class="sidebar-label">Tools</div>
+    <!-- Tool buttons injected by JS so the active state can be wired cleanly -->
+    <div id="tool-list"></div>
+    <div class="sidebar-label" id="sidebar-about-label" style="margin-top:1rem;">About</div>
+    <button class="tool-btn" id="sidebar-home-btn" onclick="showHomePage()" style="font-family:inherit;">
+      <div class="tool-icon" style="background:rgba(100,116,139,.12);">&#127968;</div>
+      <div><div class="tool-name">Home / About</div><div class="tool-sub">Overview &amp; tips</div></div>
+    </button>
+    <div class="sidebar-empty" id="sidebar-empty" style="display:none;padding:1rem;font-size:.78rem;color:var(--text-muted);text-align:center;line-height:1.5;">No tools match.</div>
+  </aside>
+  <main class="content-panel" id="right-panel" tabindex="-1" aria-live="polite" aria-atomic="false"></main>
+</div>
+<script>
+// ============================================================
+// MoleBio Toolkit — IIFE wrapper
+// Adapted from MoleBio (molebiolab.github.io/MoleBio) by Dylan S. Blohm
+// ============================================================
+(function(){
+'use strict';
+
+// ============================================================
+// STORAGE ABSTRACTION — uses window.storage if available,
+// falls back to localStorage for standalone deployment
+// ============================================================
+const _store=(function(){
+  if(window.storage&&typeof window.storage.get==='function')return window.storage;
+  return {
+    async get(k){try{const v=localStorage.getItem(k);return v!==null?{key:k,value:v}:null;}catch(e){return null;}},
+    async set(k,v){try{localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v));return{key:k,value:v};}catch(e){return null;}},
+    async delete(k){try{localStorage.removeItem(k);return{key:k,deleted:true};}catch(e){return null;}}
+  };
+})();
+
+// ============================================================
+// TOOLS REGISTRY — single source of truth
+// Each tool has: key, label, icon, color, sub, intro card data,
+// the renderer function (set later), and a sidebar entry.
+// ============================================================
+const TOOLS={
+  dogma:{
+    label:'Central Dogma Flow',
+    icon:'\u269B',
+    iconBg:'rgba(231,117,0,.12)',
+    color:'#E77500',
+    sub:'DNA \u2192 RNA \u2192 protein',
+    eyebrow:'Transcription & Translation',
+    render:()=>renderDogmaPanel()
+  },
+  codon:{
+    label:'Codon Table & Translator',
+    icon:'\u{1F9EC}',
+    iconBg:'rgba(122,74,28,.10)',
+    color:'#7a4a1c',
+    sub:'mRNA \u2192 protein',
+    eyebrow:'Peptide Synthesis',
+    render:()=>renderCodonPanel()
+  },
+  pipette:{
+    label:'Micropipette Viewer',
+    icon:'\u{1F50D}',
+    iconBg:'rgba(91,58,26,.10)',
+    color:'#5b3a1a',
+    sub:'P2 / P20 / P200 / P1000',
+    eyebrow:'Lab Techniques',
+    render:()=>renderPipettePanel()
+  },
+  units:{
+    label:'Units & Molarity',
+    icon:'\u2697',
+    iconBg:'rgba(168,88,15,.10)',
+    color:'#a8580f',
+    sub:'Mass, moles, dilutions, and conversions',
+    eyebrow:'Lab Math',
+    render:()=>renderUnitConvPanel()
+  },
+  tm:{
+    label:'DNA Tm Calculator',
+    icon:'\u{1F525}',
+    iconBg:'rgba(154,58,58,.10)',
+    color:'#9a3a3a',
+    sub:'Primer melting temperature',
+    eyebrow:'Primer Design',
+    render:()=>renderTmPanel()
+  },
+  mwpi:{
+    label:'Protein MW & pI',
+    icon:'\u{1F9EA}',
+    iconBg:'rgba(61,74,94,.10)',
+    color:'#3d4a5e',
+    sub:'Molecular weight, charge, extinction coefficient',
+    eyebrow:'Protein Biochemistry',
+    render:()=>renderMwPiPanel()
+  }
+};
+
+const TOOL_KEYS=Object.keys(TOOLS);
+
+function trackEvent(name,data){
+  if(window.gtag) gtag('event', name, data||{});
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+let currentTool=null;
+
+function buildSidebar(){
+  const list=document.getElementById('tool-list');
+  if(!list)return;
+  list.innerHTML=TOOL_KEYS.map(key=>{
+    const t=TOOLS[key];
+    return `<button class="tool-btn" data-tool-btn="${key}" data-search="${(t.label+' '+t.sub+' '+t.eyebrow).toLowerCase()}" onclick="selectTool('${key}')">
+      <div class="tool-icon" style="background:${t.iconBg};">${t.icon}</div>
+      <div><div class="tool-name">${t.label}</div><div class="tool-sub">${t.sub}</div></div>
+    </button>`;
+  }).join('');
+}
+
+function filterSidebar(query){
+  const q=(query||'').trim().toLowerCase();
+  const btns=document.querySelectorAll('#tool-list [data-tool-btn]');
+  let matches=0;
+  btns.forEach(b=>{
+    const hay=b.getAttribute('data-search')||'';
+    const show=!q||hay.indexOf(q)>=0;
+    b.style.display=show?'':'none';
+    if(show)matches++;
+  });
+  // Hide the About section + Home button when actively searching to keep focus on tools
+  const aboutLabel=document.getElementById('sidebar-about-label');
+  const homeBtn=document.getElementById('sidebar-home-btn');
+  const empty=document.getElementById('sidebar-empty');
+  if(q){
+    if(aboutLabel)aboutLabel.style.display='none';
+    if(homeBtn)homeBtn.style.display='none';
+    if(empty)empty.style.display=matches===0?'':'none';
+  } else {
+    if(aboutLabel)aboutLabel.style.display='';
+    if(homeBtn)homeBtn.style.display='';
+    if(empty)empty.style.display='none';
+  }
+}
+
+function selectTool(key){
+  if(!TOOLS[key])return;
+  currentTool=key;
+  // Update active state
+  document.querySelectorAll('[data-tool-btn]').forEach(b=>b.classList.remove('active'));
+  const btn=document.querySelector(`[data-tool-btn="${key}"]`);
+  if(btn)btn.classList.add('active');
+  // Make sure layout is in default state (in case we were on home)
+  const sb=document.getElementById('sidebar');
+  const rp=document.getElementById('right-panel');
+  if(sb)sb.style.display='';
+  if(rp){rp.style.display='';rp.style.gridColumn='';rp.style.gridRow='';}
+  document.querySelector('.app').style.gridTemplateColumns='';
+  document.querySelector('.app').style.gridTemplateRows='';
+  // Close mobile sidebar if open
+  document.getElementById('sidebar')?.classList.remove('sidebar-open');
+  document.querySelector('.sidebar-overlay')?.classList.remove('show');
+  // Clear sidebar search filter
+  const ss=document.getElementById('sidebar-search');
+  if(ss&&ss.value){ss.value='';filterSidebar('');}
+  // Update URL hash
+  try{history.replaceState(null,null,'#'+key);}catch(e){}
+  // Render
+  TOOLS[key].render();
+  updateToolSwitcherLabel();
+  trackEvent('tool_open',{tool:key});
+  if(typeof moleReact==='function')moleReact('tool');
+}
+
+function showHomePage(){
+  currentTool=null;
+  document.querySelectorAll('[data-tool-btn]').forEach(b=>b.classList.remove('active'));
+  updateToolSwitcherLabel();
+  try{history.replaceState(null,null,window.location.pathname);}catch(e){}
+  // Close mobile sidebar
+  document.getElementById('sidebar')?.classList.remove('sidebar-open');
+  document.querySelector('.sidebar-overlay')?.classList.remove('show');
+  // Clear sidebar search filter
+  const ss=document.getElementById('sidebar-search');
+  if(ss&&ss.value){ss.value='';filterSidebar('');}
+  // Reset any inline grid overrides
+  const appEl=document.querySelector('.app');
+  if(appEl){appEl.style.gridTemplateColumns='';appEl.style.gridTemplateRows='';}
+  // Render the home grid into the content panel
+  const rp=document.getElementById('right-panel');
+  if(!rp)return;
+  rp.style.display='';
+  rp.style.overflowY='auto';
+  rp.innerHTML=`
+    <div style="max-width:980px;margin:0 auto;padding:2rem 1.5rem 3rem;width:100%;" class="fade-in">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <div style="font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--text);letter-spacing:-.02em;">Mole<span style="color:var(--accent);">Bio</span> Toolkit</div>
+        <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-muted);margin-top:.3rem;letter-spacing:.1em;text-transform:uppercase;">Interactive Tools for Molecular Biology Lecture & Lab</div>
+        <div style="font-size:.85rem;color:var(--text-dim);margin-top:.7rem;line-height:1.6;max-width:880px;margin-left:auto;margin-right:auto;">A focused set of interactive tools for molecular biology students. Use them during lecture or lab to set up a pipette, design a primer, calculate a dilution, or step through translation in real time.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.85rem;" id="home-grid">
+        ${TOOL_KEYS.map(k=>{
+          const t=TOOLS[k];
+          return `<button onclick="selectTool('${k}')" style="background:${t.iconBg};border:1.5px solid ${t.color}55;border-radius:10px;padding:1.1rem 1.2rem;cursor:pointer;text-align:left;transition:all .18s;display:flex;flex-direction:column;gap:.45rem;font-family:'DM Sans',sans-serif;min-height:110px;" onmouseenter="this.style.borderColor='${t.color}';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px ${t.color}25'" onmouseleave="this.style.borderColor='${t.color}55';this.style.transform='none';this.style.boxShadow='none'">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:1.6rem;line-height:1;">${t.icon}</span>
+              <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:${t.color};text-transform:uppercase;letter-spacing:.08em;font-weight:600;">${t.eyebrow}</span>
+            </div>
+            <div style="font-size:1rem;font-weight:600;color:var(--text);line-height:1.25;">${t.label}</div>
+            <div style="font-size:.76rem;color:var(--text-muted);line-height:1.5;">${t.sub}</div>
+          </button>`;
+        }).join('')}
+      </div>
+      <div style="margin-top:1.8rem;padding:1.1rem 1.3rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;">
+        <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:600;">About</div>
+        <div style="font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:.7rem;text-align:center;">The MoleBio Toolkit is focused on the calculators and viewers most useful in real lecture and lab contexts. It is designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
+        <div style="font-size:.75rem;color:var(--text-muted);line-height:1.65;text-align:center;">Built by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;" target="_blank" rel="noopener">Dylan S. Blohm</a>. Press <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:.1em .4em;font-size:.7rem;color:var(--accent);font-family:inherit;">/</kbd> to search the tools.</div>
+      </div>
+    </div>`;
+  rp.scrollTop=0;
+}
+
+function showToolSwitcher(){
+  document.getElementById('tool-switcher-modal')?.remove();
+  const modal=document.createElement('div');
+  modal.id='tool-switcher-modal';
+  modal.style.cssText='position:fixed;inset:0;z-index:50;display:flex;align-items:flex-start;justify-content:flex-start;background:rgba(0,0,0,.25);';
+  modal.onclick=e=>{if(e.target===modal)modal.remove();};
+  // Position the dropdown beneath the trigger button — right-anchor since the button lives near the right edge
+  const btn=document.getElementById('tool-switcher-btn');
+  const rect=btn?btn.getBoundingClientRect():null;
+  const vw=window.innerWidth;
+  // Compute right offset (distance from right edge of viewport to right edge of button)
+  const rightOffset=rect?Math.max(8,vw-rect.right):8;
+  const topOffset=rect?rect.bottom+6:58;
+  const tools=TOOL_KEYS.map(k=>{
+    const t=TOOLS[k];
+    const isActive=k===currentTool;
+    return `<button class="ts-row${isActive?' active':''}" onclick="(function(){document.getElementById('tool-switcher-modal').remove();selectTool('${k}');})()">
+      <span class="ts-icon" style="background:${t.iconBg};color:${t.color};">${t.icon}</span>
+      <span class="ts-label">
+        <span class="ts-name">${t.label}</span>
+        <span class="ts-sub">${t.sub}</span>
+      </span>
+      ${isActive?'<span class="ts-active-dot" aria-label="Current tool">&#9679;</span>':''}
+    </button>`;
+  }).join('');
+  modal.innerHTML=`<div style="position:absolute;right:${rightOffset}px;top:${topOffset}px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.5rem .35rem;width:280px;max-width:calc(100vw - 16px);box-shadow:0 12px 36px rgba(0,0,0,.22);max-height:calc(100dvh - 80px);overflow-y:auto;">
+    <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:.3rem .85rem .55rem;">Switch tool</div>
+    ${tools}
+    <div style="height:1px;background:var(--border);margin:.4rem .5rem;"></div>
+    <button class="ts-row" onclick="(function(){document.getElementById('tool-switcher-modal').remove();showHomePage();})()">
+      <span class="ts-icon" style="background:rgba(100,116,139,.12);color:var(--text-dim);">&#127968;</span>
+      <span class="ts-label">
+        <span class="ts-name">Home</span>
+        <span class="ts-sub">Tile grid &amp; about</span>
+      </span>
+    </button>
+  </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();modal.remove();}});
+  modal.querySelector('button.active')?.focus()||modal.querySelector('button')?.focus();
+}
+
+function updateToolSwitcherLabel(){
+  const lbl=document.getElementById('tool-switcher-label');
+  const btn=document.getElementById('tool-switcher-btn');
+  if(!lbl||!btn)return;
+  if(currentTool&&TOOLS[currentTool]){
+    lbl.textContent=TOOLS[currentTool].label;
+    btn.classList.add('tool-active');
+  } else {
+    lbl.textContent='Select a tool';
+    btn.classList.remove('tool-active');
+  }
+}
+
+function showSettingsMenu(){
+  document.getElementById('settings-modal')?.remove();
+  const modal=document.createElement('div');
+  modal.id='settings-modal';
+  modal.style.cssText='position:fixed;inset:0;z-index:50;display:flex;align-items:flex-start;justify-content:flex-end;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);';
+  modal.onclick=e=>{if(e.target===modal)modal.remove();};
+  const isDark=document.documentElement.getAttribute('data-theme')==='dark';
+  const isHC=document.documentElement.classList.contains('high-contrast');
+  modal.innerHTML=`<div style="background:var(--surface);border:1px solid var(--border);border-left:1px solid var(--border);border-radius:0 0 0 12px;padding:.7rem .35rem 1rem;width:230px;max-width:92%;margin-top:52px;box-shadow:-8px 8px 32px rgba(0,0,0,.18);">
+    <div style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:.3rem .85rem .55rem;">Settings</div>
+    <button class="settings-row" onclick="toggleDarkMode()">
+      <span class="settings-icon">&#9728;</span>
+      <span class="settings-label">${isDark?'Light mode':'Dark mode'}</span>
+      <span class="settings-value">${isDark?'on':'off'}</span>
+    </button>
+    <button class="settings-row" onclick="toggleHighContrast()">
+      <span class="settings-icon">&#9681;</span>
+      <span class="settings-label">High contrast</span>
+      <span class="settings-value">${isHC?'on':'off'}</span>
+    </button>
+    <button class="settings-row" onclick="sendMoleHome()">
+      <span class="settings-icon" style="font-size:.95rem;">&#128062;</span>
+      <span class="settings-label">${(typeof moleHidden!=='undefined'&&moleHidden)?'Bring mole back':'Send mole home'}</span>
+      <span class="settings-value" style="color:var(--accent);">${(typeof moleHidden!=='undefined'&&moleHidden)?'hidden':'visible'}</span>
+    </button>
+    <div style="height:1px;background:var(--border);margin:.5rem .5rem;"></div>
+    <button class="settings-row" onclick="document.getElementById('settings-modal').remove();showAboutModal()">
+      <span class="settings-icon"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><line x1="8" y1="7.2" x2="8" y2="11.5"/><circle cx="8" cy="4.8" r="0.5" fill="currentColor"/></svg></span>
+      <span class="settings-label">About MoleBio Toolkit</span>
+    </button>
+  </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();modal.remove();}});
+  // close on click outside
+  modal.querySelector('button')?.focus();
+}
+
+function showAboutModal(){
+  document.getElementById('about-modal')?.remove();
+  const modal=document.createElement('div');
+  modal.id='about-modal';
+  modal.style.cssText='position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);';
+  modal.onclick=e=>{if(e.target===modal)modal.remove();};
+  const shortcuts=[
+    ['/',  'Search tools (mole bubble)'],
+    ['?',  'Open settings menu'],
+    ['1\u20136','Jump to a specific tool'],
+    ['n',  'Next tool'],
+    ['p',  'Previous tool'],
+    ['h',  'Home page'],
+    ['Esc','Close menus / modals'],
+  ];
+  modal.innerHTML=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem 1.6rem 1.3rem;max-width:440px;width:92%;box-shadow:0 16px 48px rgba(0,0,0,.35);position:relative;max-height:85vh;overflow-y:auto;">
+    <button onclick="document.getElementById('about-modal').remove()" style="position:absolute;top:10px;right:14px;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;line-height:1;" aria-label="Close">&times;</button>
+    <div style="text-align:center;font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text);margin-bottom:.7rem;">About Mole<span style="color:var(--accent);">Bio</span> Toolkit</div>
+    <div style="text-align:center;font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:1rem;">A focused set of interactive tools for molecular biology students. Use them during lecture or lab to set up a pipette, design a primer, calculate a dilution, or step through translation in real time.</div>
+    <div style="text-align:center;font-size:.78rem;color:var(--text-dim);line-height:1.65;margin-bottom:1rem;">Built by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);" target="_blank" rel="noopener">Dylan S. Blohm</a>. Designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1rem 0 .55rem;">Keyboard shortcuts</div>
+    ${shortcuts.map(([k,d])=>`<div style="display:flex;align-items:center;gap:.7rem;padding:.35rem 0;border-bottom:1px solid var(--border);">
+      <kbd style="font-family:'DM Mono',monospace;font-size:.72rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.18rem .45rem;color:var(--accent);min-width:36px;text-align:center;">${k}</kbd>
+      <span style="font-size:.78rem;color:var(--text-dim);">${d}</span>
+    </div>`).join('')}
+    <div style="text-align:center;font-size:.65rem;color:var(--text-muted);margin-top:1rem;">Shortcuts disable while typing in input fields.</div>
+  </div>`;
+  document.body.appendChild(modal);
+  modal.querySelector('button')?.focus();
+  modal.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();modal.remove();}});
+}
+
+function toggleDarkMode(){
+  const cur=document.documentElement.getAttribute('data-theme');
+  const next=cur==='dark'?null:'dark';
+  if(next)document.documentElement.setAttribute('data-theme',next);
+  else document.documentElement.removeAttribute('data-theme');
+  try{localStorage.setItem('mbtk-theme',next||'light');}catch(e){}
+  // Update meta theme-color so iOS/Android URL bars match
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',next==='dark'?'#0a0c10':'#121212');
+  // Re-render any tool that uses canvas/SVG so theme is picked up
+  if(currentTool&&TOOLS[currentTool])TOOLS[currentTool].render();
+  // Refresh settings menu
+  document.getElementById('settings-modal')?.remove();
+  showSettingsMenu();
+}
+
+function toggleHighContrast(){
+  const root=document.documentElement;
+  root.classList.toggle('high-contrast');
+  try{localStorage.setItem('mbtk-hc',root.classList.contains('high-contrast')?'1':'0');}catch(e){}
+  document.getElementById('settings-modal')?.remove();
+  showSettingsMenu();
+}
+
+function sendMoleHome(){
+  // Toggle the mole's hidden state — sends it home if visible, brings it back if not
+  if(typeof toggleMoleHidden==='function')toggleMoleHidden();
+  // Re-render the settings menu so the row label and value reflect the new state
+  document.getElementById('settings-modal')?.remove();
+  showSettingsMenu();
+}
+
+function loadThemePreferences(){
+  try{
+    if(localStorage.getItem('mbtk-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');
+    if(localStorage.getItem('mbtk-hc')==='1')document.documentElement.classList.add('high-contrast');
+  }catch(e){}
+}
+
+
+// ============================================================
+// MOBILE HAMBURGER + OVERLAY
+// ============================================================
+function initMobileUI(){
+  const header=document.querySelector('header');
+  if(!header)return;
+  const logo=header.querySelector('.logo');
+  const hamburger=document.createElement('button');
+  hamburger.className='hamburger';
+  hamburger.setAttribute('aria-label','Toggle navigation');
+  hamburger.innerHTML='&#9776;';
+  hamburger.onclick=()=>{
+    const sb=document.getElementById('sidebar');
+    const overlay=document.querySelector('.sidebar-overlay');
+    const wasClosed=!sb?.classList.contains('sidebar-open');
+    sb?.classList.toggle('sidebar-open');
+    overlay?.classList.toggle('show');
+    // Focus search when opening
+    if(wasClosed)setTimeout(()=>document.getElementById('sidebar-search')?.focus(),250);
+  };
+  header.insertBefore(hamburger,logo);
+  const overlay=document.createElement('div');
+  overlay.className='sidebar-overlay';
+  overlay.onclick=()=>{
+    document.getElementById('sidebar')?.classList.remove('sidebar-open');
+    overlay.classList.remove('show');
+  };
+  document.body.appendChild(overlay);
+}
+
+// ============================================================
+// KEYBOARD SHORTCUTS
+// ============================================================
+function initKeyboardShortcuts(){
+  document.addEventListener('keydown',e=>{
+    const tag=document.activeElement?.tagName;
+    if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    if(e.key==='/'){e.preventDefault();toggleMoleSearch();}
+    else if(e.key==='?'){e.preventDefault();showSettingsMenu();}
+    else if(e.key==='h'){e.preventDefault();showHomePage();}
+    else if(e.key==='n'){
+      e.preventDefault();
+      const idx=currentTool?TOOL_KEYS.indexOf(currentTool):-1;
+      if(idx<TOOL_KEYS.length-1)selectTool(TOOL_KEYS[idx+1]);
+    }
+    else if(e.key==='p'){
+      e.preventDefault();
+      const idx=currentTool?TOOL_KEYS.indexOf(currentTool):0;
+      if(idx>0)selectTool(TOOL_KEYS[idx-1]);
+    }
+    else if(/^[1-6]$/.test(e.key)){
+      const idx=parseInt(e.key,10)-1;
+      if(idx<TOOL_KEYS.length){e.preventDefault();selectTool(TOOL_KEYS[idx]);}
+    }
+    else if(e.key==='Escape'){
+      document.getElementById('help-modal')?.remove();
+      document.getElementById('settings-modal')?.remove();
+      document.getElementById('about-modal')?.remove();
+      document.getElementById('tool-switcher-modal')?.remove();
+      if(moleSearchOpen)toggleMoleSearch();
+      document.getElementById('sidebar')?.classList.remove('sidebar-open');
+      document.querySelector('.sidebar-overlay')?.classList.remove('show');
+    }
+  });
+}
+
+// ============================================================
+// ============================================================
+// TOOL IMPLEMENTATIONS
+// Adapted from MoleBio (the broader educational platform).
+// Each tool is a self-contained block: constants, state, renderer.
+// ============================================================
+// ============================================================
+
+// ============================================================
+// CODON TABLE & TRANSLATION SIMULATOR
+// ============================================================
+const CODON_TABLE={
+UUU:'Phe',UUC:'Phe',UUA:'Leu',UUG:'Leu',CUU:'Leu',CUC:'Leu',CUA:'Leu',CUG:'Leu',
+AUU:'Ile',AUC:'Ile',AUA:'Ile',AUG:'Met',GUU:'Val',GUC:'Val',GUA:'Val',GUG:'Val',
+UCU:'Ser',UCC:'Ser',UCA:'Ser',UCG:'Ser',CCU:'Pro',CCC:'Pro',CCA:'Pro',CCG:'Pro',
+ACU:'Thr',ACC:'Thr',ACA:'Thr',ACG:'Thr',GCU:'Ala',GCC:'Ala',GCA:'Ala',GCG:'Ala',
+UAU:'Tyr',UAC:'Tyr',UAA:'Stop',UAG:'Stop',CAU:'His',CAC:'His',CAA:'Gln',CAG:'Gln',
+AAU:'Asn',AAC:'Asn',AAA:'Lys',AAG:'Lys',GAU:'Asp',GAC:'Asp',GAA:'Glu',GAG:'Glu',
+UGU:'Cys',UGC:'Cys',UGA:'Stop',UGG:'Trp',CGU:'Arg',CGC:'Arg',CGA:'Arg',CGG:'Arg',
+AGU:'Ser',AGC:'Ser',AGA:'Arg',AGG:'Arg',GGU:'Gly',GGC:'Gly',GGA:'Gly',GGG:'Gly'
+};
+const AA3TO1={Phe:'F',Leu:'L',Ile:'I',Met:'M',Val:'V',Ser:'S',Pro:'P',Thr:'T',Ala:'A',Tyr:'Y',His:'H',Gln:'Q',Asn:'N',Lys:'K',Asp:'D',Glu:'E',Cys:'C',Trp:'W',Arg:'R',Gly:'G',Stop:'*'};
+const AA_COLORS={F:'#4a90d9',L:'#4a90d9',I:'#4a90d9',M:'#4a90d9',V:'#4a90d9',A:'#4a90d9',W:'#8b5cf6',P:'#f59e0b',G:'#94a3b8',S:'#10b981',T:'#10b981',C:'#e8c840',Y:'#10b981',N:'#10b981',Q:'#10b981',D:'#ef4444',E:'#ef4444',K:'#3b82f6',R:'#3b82f6',H:'#3b82f6','*':'#64748b'};
+const AA_MW={G:57.05,A:71.08,V:99.13,L:113.16,I:113.16,P:97.12,F:147.18,W:186.21,M:131.20,S:87.08,T:101.10,C:103.14,Y:163.18,N:114.10,Q:128.13,D:115.09,E:129.12,K:128.17,R:156.19,H:137.14};
+
+let codonSeq='AUGGCUAACGAUUUCCAGUGGAAAUAG', codonPos=-1, codonPlaying=false, codonTimer=null, codonHighlight=null;
+const PRESET_SEQS={
+  'Hemoglobin (HBB) start':{seq:'AUGGUGCACCUGACUCCUGAGGAGAAGUCUGCC',desc:'First 11 codons of human HBB (β-globin): M-V-H-L-T-P-E-E-K-S-A.'},
+  'GFP start':{seq:'AUGAGCAAAGGCGAAGAACUGUUCACCGGCUAA',desc:'First 10 codons of GFP plus an artificial UAA stop: M-S-K-G-E-E-L-F-T-G-Stop.'},
+  'Demo peptide':{seq:'AUGGCUAACGAUUUCCAGUGGAAAUAG',desc:'Synthetic 8-aa demo peptide ending in a UAG stop: M-A-N-D-F-Q-W-K-Stop.'}
+};
+
+function renderCodonPanel(){
+  codonPos=-1;codonPlaying=false;
+  if(codonTimer)clearInterval(codonTimer);
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">Codon Table & Translator</div><div class="vp-desc">Enter mRNA sequence or use a preset, then step through translation</div></div>
+<div style="padding:.4rem .8rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <div style="display:flex;gap:.3rem;margin-bottom:.35rem;flex-wrap:wrap;">
+    ${Object.entries(PRESET_SEQS).map(([k,o])=>`<button class="vp-btn" title="${o.desc}" onclick="document.getElementById('codon-input').value='${o.seq}';codonSeq='${o.seq}';codonPos=-1;updateCodonDisplay();const f=document.getElementById('codon-preset-note');if(f)f.textContent='${o.desc.replace(/'/g,"\\'")}'">${k}</button>`).join('')}
+    <button class="vp-btn" onclick="(function(){const t=document.getElementById('codon-input');t.value='';codonSeq='';codonPos=-1;updateCodonDisplay();t.focus();const f=document.getElementById('codon-preset-note');if(f)f.textContent='';})()">Clear</button>
+  </div>
+  <div id="codon-preset-note" style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);margin-bottom:.35rem;line-height:1.4;min-height:.9rem;"></div>
+  <div style="display:flex;gap:.3rem;align-items:center;">
+    <input id="codon-input" type="text" value="${codonSeq}" placeholder="Enter mRNA (e.g. AUGGCU...)" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.3rem .5rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text);outline:none;" oninput="codonSeq=this.value.toUpperCase().replace(/[^AUGC]/g,'');this.value=codonSeq;codonPos=-1;updateCodonDisplay()">
+    <button class="vp-btn" onclick="codonPos=-1;updateCodonDisplay()">Reset</button>
+  </div>
+</div>
+<div class="vp-controls" style="gap:.3rem;">
+  <button class="vp-btn" id="codon-step-btn" onclick="codonStep()">Step ▶</button>
+  <button class="vp-btn" id="codon-play-btn" onclick="toggleCodonPlay()" aria-label="Play codon translation">▶ Play</button>
+  <button class="vp-btn" onclick="translateAll()">Translate All</button>
+  <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted)" id="codon-counter"></span>
+</div>
+<div style="flex:1;overflow-y:auto;padding:.4rem .8rem;display:flex;flex-direction:column;gap:.5rem;min-height:0;">
+  <div id="codon-mrna-display" style="font-family:'DM Mono',monospace;font-size:.72rem;line-height:2;word-break:break-all;color:var(--text-muted);min-height:36px;"></div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;min-height:32px;" id="codon-protein-display"></div>
+  <div style="display:flex;align-items:center;justify-content:center;min-height:320px;padding:.5rem;"><svg id="codon-wheel-svg" style="max-width:100%;max-height:100%;display:block;"></svg></div>
+</div>
+<div id="codon-info" style="padding:.4rem .8rem;border-top:1px solid var(--border);flex-shrink:0;font-size:.66rem;line-height:1.55;color:var(--text-muted);"></div>`;
+  buildCodonTableGrid();
+  updateCodonDisplay();
+}
+
+function buildCodonTableGrid(){
+  const svg=document.getElementById('codon-wheel-svg');if(!svg)return;
+  svg.innerHTML='';
+  const size=380, cx=size/2, cy=size/2;
+  // Scale up the rendered output (viewBox stays at 380, but element renders at 540px) — bigger and more readable
+  const renderSize=540;
+  svg.setAttribute('viewBox',`0 0 ${size} ${size}`);
+  svg.setAttribute('width',renderSize);svg.setAttribute('height',renderSize);
+  const NS2='http://www.w3.org/2000/svg';
+  function el(tag,attrs,parent){const n=document.createElementNS(NS2,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));(parent||svg).appendChild(n);return n;}
+
+  const bases=['U','C','A','G'];
+  // Base colors for the rings (matching reference image style)
+  const baseCol={U:'#f0c674',C:'#81c784',A:'#64b5f6',G:'#e57373'};
+  const baseColBg={U:'#f9e4a0',C:'#a8dda8',A:'#90caf9',G:'#ef9a9a'};
+
+  // Drop-shadow glow filter for highlighted slices
+  const defs=el('defs',{});
+  const filt=el('filter',{id:'cw-glow',x:'-25%',y:'-25%',width:'150%',height:'150%'},defs);
+  el('feGaussianBlur',{in:'SourceAlpha',stdDeviation:'2.5',result:'blur'},filt);
+  el('feFlood',{'flood-color':'#E77500','flood-opacity':'0.85',result:'flood'},filt);
+  el('feComposite',{in:'flood',in2:'blur',operator:'in',result:'shadow'},filt);
+  const merge=el('feMerge',{},filt);
+  el('feMergeNode',{in:'shadow'},merge);
+  el('feMergeNode',{in:'SourceGraphic'},merge);
+
+  // Ring radii: inner(1st base) → middle(2nd) → outer(3rd) → amino acid label ring
+  const r0=28, r1=62, r2=104, r3=142, r4=174;
+
+  // ── Center label: 5' ──
+  el('circle',{cx,cy,r:r0-2,fill:'rgba(139,92,246,.15)',stroke:'#8b5cf6','stroke-width':1.5});
+  const ct=el('text',{x:cx,y:cy+5,'text-anchor':'middle','font-size':14,fill:'#a78bfa','font-family':'DM Mono,monospace','font-weight':'700'});ct.textContent="5'";
+
+  // Helper: arc path for a wedge (annular sector)
+  function arcPath(cx,cy,rInner,rOuter,startAngle,endAngle){
+    const s1=startAngle*Math.PI/180, e1=endAngle*Math.PI/180;
+    const x1=cx+rOuter*Math.cos(s1), y1=cy+rOuter*Math.sin(s1);
+    const x2=cx+rOuter*Math.cos(e1), y2=cy+rOuter*Math.sin(e1);
+    const x3=cx+rInner*Math.cos(e1), y3=cy+rInner*Math.sin(e1);
+    const x4=cx+rInner*Math.cos(s1), y4=cy+rInner*Math.sin(s1);
+    const large=(endAngle-startAngle)>180?1:0;
+    return `M${x1},${y1} A${rOuter},${rOuter} 0 ${large},1 ${x2},${y2} L${x3},${y3} A${rInner},${rInner} 0 ${large},0 ${x4},${y4} Z`;
+  }
+
+  // Helper: text along arc (place at midpoint of arc, rotated)
+  function arcText(cx,cy,r,startAngle,endAngle,text,fontSize,fill,fw){
+    const midA=((startAngle+endAngle)/2)*Math.PI/180;
+    const tx=cx+r*Math.cos(midA), ty=cy+r*Math.sin(midA);
+    let rot=(startAngle+endAngle)/2+90;
+    // Flip text if it would be upside down
+    if(rot>180&&rot<360)rot-=180;
+    if(rot>180)rot-=180;
+    const t=el('text',{x:tx,y:ty,'text-anchor':'middle','dominant-baseline':'central','font-size':fontSize||10,fill:fill||'#1a1a2e','font-family':'DM Mono,monospace','font-weight':fw||'700',transform:`rotate(${rot},${tx},${ty})`});
+    t.textContent=text;
+    return t;
+  }
+
+  // ── Ring 1: First base (inner, 4 sectors of 90°) ──
+  // Layout: starting from top (-90°), going clockwise: U, C, A, G
+  const startOffset=-90;
+  bases.forEach((b,i)=>{
+    const a0=startOffset+i*90, a1=a0+90;
+    const p=el('path',{d:arcPath(cx,cy,r0,r1,a0,a1),fill:baseColBg[b],stroke:'#1a1a2e','stroke-width':1.2,opacity:1});
+    p.id='cw1-'+b;
+    p.setAttribute('data-base',b);
+    const t=arcText(cx,cy,(r0+r1)/2,a0,a1,b,18,'#1a1a2e','800');
+    t.id='cw1t-'+b;
+    t.setAttribute('data-default-size','18');
+    t.setAttribute('data-default-weight','800');
+  });
+
+  // ── Ring 2: Second base (16 sectors of 22.5°) ──
+  bases.forEach((b1,i)=>{
+    bases.forEach((b2,j)=>{
+      const a0=startOffset+i*90+j*22.5, a1=a0+22.5;
+      const p=el('path',{d:arcPath(cx,cy,r1,r2,a0,a1),fill:baseColBg[b2],stroke:'#1a1a2e','stroke-width':0.8,opacity:1});
+      p.id='cw2-'+b1+b2;
+      p.setAttribute('data-base',b2);
+      const t=arcText(cx,cy,(r1+r2)/2,a0,a1,b2,11,'#1a1a2e','700');
+      t.id='cw2t-'+b1+b2;
+      t.setAttribute('data-default-size','11');
+      t.setAttribute('data-default-weight','700');
+    });
+  });
+
+  // ── Ring 3: Third base (64 sectors of 5.625°) — each is one codon ──
+  bases.forEach((b1,i)=>{
+    bases.forEach((b2,j)=>{
+      bases.forEach((b3,k)=>{
+        const idx=i*16+j*4+k;
+        const a0=startOffset+idx*5.625, a1=a0+5.625;
+        const codon=b1+b2+b3;
+        const path=el('path',{d:arcPath(cx,cy,r2,r3,a0,a1),fill:baseColBg[b3],stroke:'#1a1a2e','stroke-width':0.5,opacity:1,cursor:'pointer'});
+        path.id='cw-'+codon;
+        path.setAttribute('data-base',b3);
+        path.onclick=()=>highlightCodon(codon);
+        // Third base letter
+        const t=arcText(cx,cy,(r2+r3)/2,a0,a1,b3,7,'#1a1a2e','600');
+        t.id='cwt-'+codon;
+        t.setAttribute('data-default-size','7');
+        t.setAttribute('data-default-weight','600');
+      });
+    });
+  });
+
+  // ── Ring 4: Amino acid labels (outermost) ──
+  // Group consecutive codons that map to the same AA
+  const aaGroups=[];
+  let cur=null;
+  for(let i=0;i<64;i++){
+    const b1i=Math.floor(i/16),b2i=Math.floor((i%16)/4),b3i=i%4;
+    const codon=bases[b1i]+bases[b2i]+bases[b3i];
+    const aa=CODON_TABLE[codon];
+    const c1=AA3TO1[aa];
+    if(!cur||cur.aa!==aa||cur.b1i!==b1i||(cur.b2i!==b2i)){
+      cur={aa,c1,start:i,count:1,b1i,b2i};aaGroups.push(cur);
+    } else {
+      cur.count++;
+    }
+  }
+
+  const aaWedgeColors={
+    Phe:'#e8d44d',Leu:'#a8d8a8',Ile:'#a8d8a8',Met:'#a8d8a8',Val:'#a8d8a8',
+    Ser:'#f9c784',Pro:'#f9c784',Thr:'#f9c784',Ala:'#f9c784',
+    Tyr:'#aed6f1',His:'#aed6f1',Gln:'#aed6f1',Asn:'#aed6f1',Lys:'#aed6f1',Asp:'#f1a9a9',Glu:'#f1a9a9',
+    Cys:'#e8d44d',Trp:'#e8d44d',Arg:'#c5b3e6',Gly:'#e8d44d',
+    Stop:'#666'
+  };
+
+  aaGroups.forEach(g=>{
+    const a0=startOffset+g.start*5.625, a1=a0+g.count*5.625;
+    const col=aaWedgeColors[g.aa]||'#ccc';
+    // Compute every codon belonging to this wedge so we can highlight by codon match
+    const wedgeCodons=[];
+    for(let k=0;k<g.count;k++){
+      const idx=g.start+k;
+      const b1i=Math.floor(idx/16),b2i=Math.floor((idx%16)/4),b3i=idx%4;
+      wedgeCodons.push(bases[b1i]+bases[b2i]+bases[b3i]);
+    }
+    const wedge=el('path',{d:arcPath(cx,cy,r3+1,r4,a0,a1),fill:col,stroke:'#1a1a2e','stroke-width':0.8,opacity:1,cursor:'pointer'});
+    wedge.setAttribute('data-aa-wedge','1');
+    wedge.setAttribute('data-codons',wedgeCodons.join(','));
+    wedge.setAttribute('data-aa',g.aa);
+    // AA label
+    if(g.count>=2||g.aa==='Trp'||g.aa==='Met'){
+      const label=g.aa==='Stop'?'■':g.c1;
+      const sz=g.count>=3?10:8;
+      const t=arcText(cx,cy,(r3+r4)/2+2,a0,a1,label,sz,'#1a1a2e','800');
+      t.setAttribute('data-aa-label',wedgeCodons.join(','));
+      t.setAttribute('data-default-size',sz);
+      t.setAttribute('data-default-weight','800');
+    }
+  });
+
+  // ── Outer AA name labels (outside the wheel) ──
+  // Place full names for multi-codon AAs
+  const labelR=r4+14;
+  aaGroups.forEach(g=>{
+    if(g.count<2&&g.aa!=='Trp'&&g.aa!=='Met')return;
+    const midIdx=g.start+g.count/2;
+    const midA=(startOffset+midIdx*5.625)*Math.PI/180;
+    const lx=cx+labelR*Math.cos(midA), ly=cy+labelR*Math.sin(midA);
+    let rot=(startOffset+midIdx*5.625)+90;
+    if(rot>180&&rot<360)rot-=180;if(rot>180)rot-=180;
+    const name=g.aa==='Stop'?'Stop':`${g.aa} (${g.c1})`;
+    const labelColor=document.documentElement.getAttribute('data-theme')==='dark'?'#cdc9bf':'#404040';
+    const t=el('text',{x:lx,y:ly,'text-anchor':'middle','dominant-baseline':'central','font-size':7,fill:labelColor,'font-family':'DM Sans,sans-serif','font-weight':'600',transform:`rotate(${rot},${lx},${ly})`});
+    t.textContent=name;
+  });
+
+  // ── 3' labels at cardinal points ──
+  [[cx,8],[cx,size-8]].forEach(([x,y])=>{
+    const t=el('text',{x,y,'text-anchor':'middle','dominant-baseline':'central','font-size':10,fill:'#ef4444','font-family':'DM Mono,monospace','font-weight':'700'});t.textContent="3'";
+  });
+
+  // Ring divider circles (cleaner look)
+  [r0,r1,r2,r3,r4].forEach(r=>{
+    el('circle',{cx,cy,r,fill:'none',stroke:'#1a1a2e','stroke-width':r===r3?1.5:0.8});
+  });
+}
+
+function highlightCodon(codon){
+  // Color tables — keep in sync with renderCodonWheel
+  const baseCol={U:'#f0c674',C:'#81c784',A:'#64b5f6',G:'#e57373'};
+  const baseColBg={U:'#f9e4a0',C:'#a8dda8',A:'#90caf9',G:'#ef9a9a'};
+  // Reset all paths — full opacity, default stroke, pastel fill
+  document.querySelectorAll('[id^="cw-"],[id^="cw1-"],[id^="cw2-"]').forEach(el=>{
+    el.removeAttribute('filter');
+    el.setAttribute('stroke-width',el.id.startsWith('cw1-')?'1.2':el.id.startsWith('cw2-')?'0.8':'0.5');
+    el.setAttribute('stroke','#1a1a2e');
+    el.style.opacity='1';
+    const baseLetter=el.getAttribute('data-base');
+    if(baseLetter&&baseColBg[baseLetter])el.setAttribute('fill',baseColBg[baseLetter]);
+  });
+  // Reset AA wedges
+  document.querySelectorAll('[data-aa-wedge]').forEach(el=>{
+    el.removeAttribute('filter');
+    el.setAttribute('stroke','#1a1a2e');
+    el.setAttribute('stroke-width','0.8');
+    el.style.opacity='1';
+  });
+  // Reset all text labels to their default size and weight
+  document.querySelectorAll('[data-default-size]').forEach(t=>{
+    t.setAttribute('font-size',t.getAttribute('data-default-size'));
+    t.setAttribute('font-weight',t.getAttribute('data-default-weight'));
+    t.setAttribute('fill','#1a1a2e');
+  });
+  if(!codon||codon.length!==3)return;
+  const b1=codon[0],b2=codon[1],b3=codon[2];
+  // Helper: bolden a text element by ~25% size + max weight + accent color
+  const boldenText=(textEl)=>{
+    if(!textEl)return;
+    const baseSize=parseFloat(textEl.getAttribute('data-default-size'))||10;
+    textEl.setAttribute('font-size',(baseSize*1.25).toFixed(1));
+    textEl.setAttribute('font-weight','900');
+    textEl.setAttribute('fill','#000000');
+  };
+  // Highlighted slices: saturated fill, thick orange stroke, soft glow
+  // Ring 1
+  const r1el=document.getElementById('cw1-'+b1);
+  if(r1el){
+    r1el.setAttribute('fill',baseCol[b1]);
+    r1el.setAttribute('stroke','#E77500');
+    r1el.setAttribute('stroke-width','4');
+    r1el.setAttribute('filter','url(#cw-glow)');
+  }
+  boldenText(document.getElementById('cw1t-'+b1));
+  // Ring 2
+  const r2el=document.getElementById('cw2-'+b1+b2);
+  if(r2el){
+    r2el.setAttribute('fill',baseCol[b2]);
+    r2el.setAttribute('stroke','#E77500');
+    r2el.setAttribute('stroke-width','3.5');
+    r2el.setAttribute('filter','url(#cw-glow)');
+  }
+  boldenText(document.getElementById('cw2t-'+b1+b2));
+  // Ring 3 (specific codon)
+  const r3el=document.getElementById('cw-'+codon);
+  if(r3el){
+    r3el.setAttribute('fill',baseCol[b3]);
+    r3el.setAttribute('stroke','#E77500');
+    r3el.setAttribute('stroke-width','3');
+    r3el.setAttribute('filter','url(#cw-glow)');
+  }
+  boldenText(document.getElementById('cwt-'+codon));
+  // Ring 4 (AA wedge)
+  document.querySelectorAll('[data-aa-wedge]').forEach(el=>{
+    const codons=(el.getAttribute('data-codons')||'').split(',');
+    if(codons.indexOf(codon)>=0){
+      el.setAttribute('stroke','#E77500');
+      el.setAttribute('stroke-width','3');
+      el.setAttribute('filter','url(#cw-glow)');
+    }
+  });
+  // Bolden the AA wedge label that contains this codon
+  document.querySelectorAll('[data-aa-label]').forEach(t=>{
+    const codons=(t.getAttribute('data-aa-label')||'').split(',');
+    if(codons.indexOf(codon)>=0)boldenText(t);
+  });
+  const aa=CODON_TABLE[codon]||'?';
+  const info=document.getElementById('codon-info');
+  if(info)info.innerHTML=`<b style="color:var(--accent)">${codon}</b> → <b style="color:${AA_COLORS[AA3TO1[aa]]||'#94a3b8'}">${aa}</b> (${AA3TO1[aa]}) ${aa==='Stop'?'— Release factor binds, translation terminates':'— '+getAADesc(aa)}`;
+}
+
+function getAADesc(aa){
+  const descs={Phe:'Aromatic, hydrophobic',Leu:'Aliphatic, hydrophobic',Ile:'Branched-chain, hydrophobic',Met:'Start codon / sulfur-containing',Val:'Branched-chain, hydrophobic',Ser:'Polar, hydroxyl',Pro:'Cyclic imino acid, helix breaker',Thr:'Polar, hydroxyl, branched',Ala:'Small, hydrophobic, helix-favoring',Tyr:'Aromatic, polar hydroxyl',His:'Imidazole, pKa ~6.0, acid-base catalysis',Gln:'Polar amide',Asn:'Polar amide',Lys:'Positive charge at pH 7',Asp:'Negative charge at pH 7',Glu:'Negative charge at pH 7',Cys:'Thiol, disulfide bonds',Trp:'Largest AA, aromatic, only 1 codon',Arg:'Positive charge, guanidinium',Gly:'Smallest AA, side chain is H, very flexible'};
+  return descs[aa]||'';
+}
+
+function updateCodonDisplay(){
+  const mrnaEl=document.getElementById('codon-mrna-display');
+  const protEl=document.getElementById('codon-protein-display');
+  const counterEl=document.getElementById('codon-counter');
+  const infoEl=document.getElementById('codon-info');
+  if(!mrnaEl||!protEl)return;
+
+  const seq=codonSeq.replace(/[^AUGC]/g,'');
+  // Find first AUG
+  let startIdx=-1;
+  for(let i=0;i<=seq.length-3;i++){if(seq.substring(i,i+3)==='AUG'){startIdx=i;break;}}
+
+  // Build codon-colored mRNA display
+  let html='';
+  const codons=[];
+  if(startIdx>=0){
+    // 5' UTR
+    if(startIdx>0)html+=`<span style="color:#475569">${seq.substring(0,startIdx)}</span>`;
+    // Reading frame codons
+    for(let i=startIdx;i<=seq.length-3;i+=3){
+      const codon=seq.substring(i,i+3);
+      const aa=CODON_TABLE[codon]||'?';
+      const c1=AA3TO1[aa]||'?';
+      const col=AA_COLORS[c1]||'#94a3b8';
+      const idx=codons.length;
+      const isCurrent=(idx===codonPos);
+      const isPast=(idx<codonPos);
+      const isFuture=(idx>codonPos);
+      codons.push({codon,aa,c1,col});
+      if(isCurrent){
+        html+=`<span style="background:${col}33;color:${col};border-radius:3px;padding:0 2px;font-weight:700;outline:2px solid ${col};outline-offset:1px">${codon}</span>`;
+      } else if(isPast&&codonPos>=0){
+        html+=`<span style="color:${col};font-weight:600">${codon}</span>`;
+      } else {
+        html+=`<span style="color:#64748b">${codon}</span>`;
+      }
+      html+=' ';
+      if(aa==='Stop')break;
+    }
+  } else {
+    html=`<span style="color:#475569">${seq}</span>`;
+    if(seq.length>0)html+=`<br><span style="color:#f87171;font-size:.65rem">No AUG start codon found</span>`;
+  }
+  mrnaEl.innerHTML=html;
+
+  // Build protein display
+  protEl.innerHTML='';
+  const translatedAAs=[];
+  const limit=codonPos>=0?codonPos+1:0;
+  codons.forEach((c,i)=>{
+    if(c.aa==='Stop'&&i<limit){
+      const el=document.createElement('span');
+      el.style.cssText=`font-family:'DM Mono',monospace;font-size:.7rem;color:#f87171;padding:2px 4px;background:rgba(248,113,113,.1);border-radius:3px;border:1px solid rgba(248,113,113,.3);`;
+      el.textContent='STOP';
+      protEl.appendChild(el);
+      return;
+    }
+    if(c.aa==='Stop')return;
+    if(i<limit){
+      translatedAAs.push(c);
+      const el=document.createElement('span');
+      el.style.cssText=`display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:${c.col}22;border:1.5px solid ${c.col};font-family:'DM Mono',monospace;font-size:.65rem;color:${c.col};font-weight:700;`;
+      el.textContent=c.c1;
+      el.title=`${c.aa} (${c.c1}) — codon: ${c.codon}`;
+      protEl.appendChild(el);
+    }
+  });
+
+  // Counter
+  if(counterEl){
+    const totalCodons=codons.filter(c=>c.aa!=='Stop').length;
+    if(codonPos>=0){
+      counterEl.textContent=`Codon ${codonPos+1}/${codons.length} · ${translatedAAs.length} AA`;
+    } else {
+      counterEl.textContent=codons.length>0?`${codons.length} codons · ready`:'Enter sequence';
+    }
+  }
+
+  // Info
+  if(infoEl&&translatedAAs.length>0){
+    const seq1=translatedAAs.map(c=>c.c1).join('');
+    const seq3=translatedAAs.map(c=>c.aa).join('-');
+    const mw=translatedAAs.reduce((s,c)=>s+(AA_MW[c.c1]||110),18.02);// +H2O for termini
+    // Rough charge at pH 7: side chains + termini (N-term ≈ +0.5, C-term ≈ −1 at pH 7)
+    let charge=translatedAAs.reduce((s,c)=>{if(c.c1==='K'||c.c1==='R')return s+1;if(c.c1==='H')return s+0.1;if(c.c1==='D'||c.c1==='E')return s-1;return s;},0);
+    charge+=0.5;// N-terminus
+    charge-=1;// C-terminus
+    infoEl.innerHTML=`<b>1-letter:</b> ${seq1}<br><b>3-letter:</b> ${seq3}<br><b>MW:</b> ~${mw.toFixed(0)} Da · <b>Charge (pH 7):</b> ${charge>=0?'+':''}${charge.toFixed(1)} · <b>Length:</b> ${translatedAAs.length} aa`;
+  } else if(infoEl){
+    infoEl.innerHTML='Click <b>Step</b> or <b>Play</b> to translate codon-by-codon, or <b>Translate All</b> for the full protein.';
+  }
+}
+
+function codonStep(){
+  const seq=codonSeq.replace(/[^AUGC]/g,'');
+  let startIdx=-1;
+  for(let i=0;i<=seq.length-3;i++){if(seq.substring(i,i+3)==='AUG'){startIdx=i;break;}}
+  if(startIdx<0)return;
+  const maxCodons=Math.floor((seq.length-startIdx)/3);
+  if(codonPos<maxCodons-1){
+    codonPos++;
+    // Check if we hit a stop codon
+    const codon=seq.substring(startIdx+codonPos*3,startIdx+codonPos*3+3);
+    if(CODON_TABLE[codon]==='Stop'){
+      // Stay at stop, don't advance further
+      updateCodonDisplay();
+      highlightCodon(codon);
+      return;
+    }
+    updateCodonDisplay();
+    highlightCodon(codon);
+  }
+}
+
+function translateAll(){
+  const seq=codonSeq.replace(/[^AUGC]/g,'');
+  let startIdx=-1;
+  for(let i=0;i<=seq.length-3;i++){if(seq.substring(i,i+3)==='AUG'){startIdx=i;break;}}
+  if(startIdx<0)return;
+  const maxCodons=Math.floor((seq.length-startIdx)/3);
+  // Set codonPos to last codon or stop
+  for(let i=0;i<maxCodons;i++){
+    const codon=seq.substring(startIdx+i*3,startIdx+i*3+3);
+    codonPos=i;
+    if(CODON_TABLE[codon]==='Stop')break;
+  }
+  updateCodonDisplay();
+}
+
+function toggleCodonPlay(){
+  if(codonPlaying){
+    clearInterval(codonTimer);codonPlaying=false;
+    const b=document.getElementById('codon-play-btn');if(b)b.textContent='▶ Play';
+  } else {
+    codonPlaying=true;
+    const b=document.getElementById('codon-play-btn');if(b)b.textContent='⏸ Pause';
+    // Respect prefers-reduced-motion: slow auto-advance to 1.5 s/codon (vs 600 ms default)
+    const playInterval=(typeof prefersReducedMotion!=='undefined'&&prefersReducedMotion)?1500:600;
+    codonTimer=setInterval(()=>{
+      const seq=codonSeq.replace(/[^AUGC]/g,'');
+      let startIdx=-1;
+      for(let i=0;i<=seq.length-3;i++){if(seq.substring(i,i+3)==='AUG'){startIdx=i;break;}}
+      if(startIdx<0){clearInterval(codonTimer);codonPlaying=false;return;}
+      const maxCodons=Math.floor((seq.length-startIdx)/3);
+      if(codonPos<maxCodons-1){
+        codonPos++;
+        const codon=seq.substring(startIdx+codonPos*3,startIdx+codonPos*3+3);
+        updateCodonDisplay();
+        highlightCodon(codon);
+        if(CODON_TABLE[codon]==='Stop'){
+          clearInterval(codonTimer);codonPlaying=false;
+          const b2=document.getElementById('codon-play-btn');if(b2)b2.textContent='▶ Play';
+        }
+      } else {
+        clearInterval(codonTimer);codonPlaying=false;
+        const b2=document.getElementById('codon-play-btn');if(b2)b2.textContent='▶ Play';
+      }
+    },playInterval);
+  }
+}
+
+// ============================================================
+// CENTRAL DOGMA FLOW — DNA → mRNA → Protein with live mutation tracking
+// ============================================================
+const DOGMA_CODON=CODON_TABLE;// reuse existing codon table
+const DOGMA_3TO1=AA3TO1;
+const DOGMA_COLORS={A:'#3b82f6',T:'#10b981',G:'#8b5cf6',C:'#f59e0b',U:'#ef4444'};
+const DOGMA_AA_COL=AA_COLORS;
+
+let dogmaSeq='ATGGTGCACCTGACTCCTGAGGAGAAGTCTGCCGTTACTGCCCTGTGGGGCAAGGTG';// HBB start
+let dogmaOrigSeq='';
+let dogmaMutPos=-1;
+let dogmaInputMode='dna';// 'dna' or 'rna' — affects what user is typing
+
+function renderDogmaPanel(){
+  dogmaOrigSeq=dogmaSeq;
+  dogmaMutPos=-1;
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">Central Dogma Flow</div><div class="vp-desc">Edit DNA or RNA to see transcription and translation propagate forward</div></div>
+<div style="padding:.5rem .8rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <div style="display:flex;gap:.3rem;margin-bottom:.5rem;flex-wrap:wrap;align-items:center;">
+    <button class="vp-btn" onclick="setDogmaSeq('ATGGTGCACCTGACTCCTGAGGAGAAGTCTGCCGTTACTGCCCTGTGGGGCAAGGTG')">HBB (normal)</button>
+    <button class="vp-btn" onclick="setDogmaSeq('ATGGTGCACCTGACTCCTGTGGAGAAGTCTGCCGTTACTGCCCTGTGGGGCAAGGTG')">HBB (sickle cell)</button>
+    <button class="vp-btn" onclick="setDogmaSeq('ATGGCTAGCGATTTTCAGTGGAAATAG')">Short demo</button>
+    <span style="flex:1;"></span>
+    <span style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;">Input:</span>
+    <button class="vp-btn${dogmaInputMode==='dna'?' active':''}" data-dim onclick="setDogmaInputMode('dna')">DNA</button>
+    <button class="vp-btn${dogmaInputMode==='rna'?' active':''}" data-dim onclick="setDogmaInputMode('rna')">RNA</button>
+  </div>
+  <label for="dogma-input" style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);display:block;margin-bottom:.25rem;letter-spacing:.05em;"><span id="dogma-input-label">${dogmaInputMode==='rna'?"mRNA (5'→3')":"DNA coding strand (5'→3')"}</span> — type to edit, or click any base below to cycle</label>
+  <textarea id="dogma-input" rows="2" spellcheck="false" autocapitalize="characters" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.4rem .55rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;resize:vertical;line-height:1.5;letter-spacing:.05em;" oninput="onDogmaInputChange(this)">${dogmaInputMode==='rna'?dogmaSeq.replace(/T/g,'U'):dogmaSeq}</textarea>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.25rem;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);gap:.5rem;flex-wrap:wrap;">
+    <span><span id="dogma-input-meta">${dogmaSeq.length} nt</span> &middot; GC <span id="dogma-gc">${dogmaGC(dogmaSeq)}%</span></span>
+    <span style="color:var(--text-muted);"><span id="dogma-allowed">${dogmaInputMode==='rna'?'A U G C':'A T G C'}</span> only &middot; others ignored</span>
+  </div>
+</div>
+<div style="flex:1;overflow-y:auto;padding:.5rem .8rem;" id="dogma-display"></div>`;
+  renderDogmaFlow();
+}
+
+function dogmaGC(seq){
+  if(!seq)return '0';
+  const s=seq.toUpperCase().replace(/[^ATGCU]/g,'');
+  if(!s.length)return '0';
+  let gc=0;for(const c of s)if(c==='G'||c==='C')gc++;
+  return ((gc/s.length)*100).toFixed(1);
+}
+
+function setDogmaInputMode(mode){
+  if(mode!=='dna'&&mode!=='rna')return;
+  dogmaInputMode=mode;
+  // Re-render the panel to update toggle states + textarea contents
+  renderDogmaPanel();
+}
+
+function onDogmaInputChange(ta){
+  // In DNA mode allow A/T/G/C; in RNA mode allow A/U/G/C and convert U→T internally
+  const raw=ta.value;
+  const allowed=dogmaInputMode==='rna'?/[^AUGC]/g:/[^ATGC]/g;
+  const cleaned=raw.toUpperCase().replace(allowed,'');
+  if(cleaned!==raw){
+    const start=ta.selectionStart;
+    const before=raw.substring(0,start).toUpperCase().replace(allowed,'').length;
+    ta.value=cleaned;
+    try{ta.setSelectionRange(before,before);}catch(e){}
+  }
+  // Store internally as DNA (T not U) for downstream code
+  dogmaSeq=dogmaInputMode==='rna'?cleaned.replace(/U/g,'T'):cleaned;
+  dogmaMutPos=-1;
+  renderDogmaFlow();
+  const meta=document.getElementById('dogma-input-meta');
+  if(meta)meta.textContent=cleaned.length+' nt';
+  const gc=document.getElementById('dogma-gc');
+  if(gc)gc.textContent=dogmaGC(cleaned)+'%';
+}
+
+function setDogmaSeq(seq){
+  dogmaSeq=seq;dogmaOrigSeq=seq;dogmaMutPos=-1;
+  // Sync the textarea input if present (display U for RNA mode)
+  const ta=document.getElementById('dogma-input');
+  if(ta){ta.value=dogmaInputMode==='rna'?seq.replace(/T/g,'U'):seq;}
+  const meta=document.getElementById('dogma-input-meta');
+  if(meta)meta.textContent=seq.length+' nt';
+  const gc=document.getElementById('dogma-gc');
+  if(gc)gc.textContent=dogmaGC(seq)+'%';
+  renderDogmaFlow();
+}
+
+function renderDogmaFlow(){
+  const el=document.getElementById('dogma-display');if(!el)return;
+  const dna=dogmaSeq.toUpperCase().replace(/[^ATGC]/g,'');
+  // Transcribe: coding strand T→U
+  const mrna=dna.replace(/T/g,'U');
+  // Template strand (complement, shown 3'→5')
+  const template=dna.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).join('');
+  // Translate from first AUG
+  let startIdx=-1;
+  for(let i=0;i<=mrna.length-3;i++){if(mrna.substring(i,i+3)==='AUG'){startIdx=i;break;}}
+
+  const codons=[];
+  if(startIdx>=0){
+    for(let i=startIdx;i<=mrna.length-3;i+=3){
+      const codon=mrna.substring(i,i+3);
+      const aa=DOGMA_CODON[codon]||'?';
+      codons.push({codon,aa,c1:DOGMA_3TO1[aa]||'?',dnaIdx:i});
+      if(aa==='Stop')break;
+    }
+  }
+
+  // Compare with original to find mutations
+  const origMrna=dogmaOrigSeq.toUpperCase().replace(/[^ATGC]/g,'').replace(/T/g,'U');
+  const origCodons=[];
+  if(startIdx>=0){
+    for(let i=startIdx;i<=origMrna.length-3;i+=3){
+      const codon=origMrna.substring(i,i+3);
+      const aa=DOGMA_CODON[codon]||'?';
+      origCodons.push({codon,aa,c1:DOGMA_3TO1[aa]||'?'});
+      if(aa==='Stop')break;
+    }
+  }
+
+  let html='';
+
+  // ── 1. DNA CODING STRAND ──
+  html+=`<div style="margin-bottom:.6rem;">
+    <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.3rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:#3b82f6;font-weight:700;">DNA</span>
+      <span style="font-size:.55rem;color:var(--text-muted);">coding strand 5'→3'</span>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:.8rem;line-height:2;word-break:break-all;">`;
+  for(let i=0;i<dna.length;i++){
+    const b=dna[i];
+    const origB=dogmaOrigSeq[i]||'';
+    const isMut=(b!==origB&&dogmaOrigSeq.length>0&&i<dogmaOrigSeq.length);
+    const col=DOGMA_COLORS[b]||'#94a3b8';
+    const bg=isMut?'rgba(239,68,68,.2)':'transparent';
+    const outline=isMut?'outline:2px solid #ef4444;outline-offset:1px;':'';
+    html+=`<span onclick="mutateDogmaBase(${i})" style="cursor:pointer;color:${col};padding:0 1px;border-radius:2px;background:${bg};${outline}transition:all .1s;" title="Position ${i+1}: ${b}${isMut?' (mutated from '+origB+')':''}">${b}</span>`;
+    // Codon spacing
+    if(startIdx>=0&&i>=startIdx&&(i-startIdx)%3===2)html+='<span style="color:var(--border)"> </span>';
+  }
+  html+=`</div></div>`;
+
+  // ── 2. TEMPLATE STRAND ──
+  html+=`<div style="margin-bottom:.6rem;">
+    <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.3rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:#ef4444;font-weight:700;">Template</span>
+      <span style="font-size:.55rem;color:var(--text-muted);">3'→5'</span>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-muted);word-break:break-all;">`;
+  for(let i=0;i<template.length;i++){
+    html+=template[i];
+    if(startIdx>=0&&i>=startIdx&&(i-startIdx)%3===2)html+=' ';
+  }
+  html+=`</div></div>`;
+
+  // ── Arrow: Transcription ──
+  html+=`<div style="display:flex;align-items:center;gap:.4rem;margin:.3rem 0;padding:.3rem .5rem;background:rgba(139,92,246,.06);border-radius:4px;border-left:3px solid #8b5cf6;">
+    <span style="font-size:.9rem;">↓</span>
+    <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:#a78bfa;font-weight:600;">TRANSCRIPTION</span>
+    <span style="font-size:.55rem;color:var(--text-muted);">RNA Polymerase · T→U</span>
+  </div>`;
+
+  // ── 3. mRNA ──
+  html+=`<div style="margin-bottom:.6rem;">
+    <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.3rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:#f59e0b;font-weight:700;">mRNA</span>
+      <span style="font-size:.55rem;color:var(--text-muted);">5'→3'</span>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:.8rem;line-height:2;word-break:break-all;">`;
+  for(let i=0;i<mrna.length;i++){
+    const b=mrna[i];
+    const origB=origMrna[i]||'';
+    const isMut=(b!==origB&&origMrna.length>0&&i<origMrna.length);
+    const col=DOGMA_COLORS[b]||'#94a3b8';
+    const bg=isMut?'rgba(239,68,68,.2)':'transparent';
+    html+=`<span style="color:${col};background:${bg};padding:0 1px;border-radius:2px;">${b}</span>`;
+    if(startIdx>=0&&i>=startIdx&&(i-startIdx)%3===2)html+='<span style="color:var(--border)"> </span>';
+  }
+  html+=`</div></div>`;
+
+  // ── Arrow: Translation ──
+  html+=`<div style="display:flex;align-items:center;gap:.4rem;margin:.3rem 0;padding:.3rem .5rem;background:rgba(16,185,129,.06);border-radius:4px;border-left:3px solid #10b981;">
+    <span style="font-size:.9rem;">↓</span>
+    <span style="font-family:'DM Mono',monospace;font-size:.65rem;color:#34d399;font-weight:600;">TRANSLATION</span>
+    <span style="font-size:.55rem;color:var(--text-muted);">Ribosome · Codons → Amino Acids</span>
+  </div>`;
+
+  // ── 4. CODONS → AMINO ACIDS ──
+  html+=`<div style="margin-bottom:.6rem;">
+    <div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.3rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:#10b981;font-weight:700;">Protein</span>
+    </div>
+    <div style="display:flex;gap:3px;flex-wrap:wrap;">`;
+  codons.forEach((c,i)=>{
+    const orig=origCodons[i];
+    const isMut=orig&&(c.codon!==orig.codon);
+    const aaMut=orig&&(c.c1!==orig.c1);
+    const col=DOGMA_AA_COL[c.c1]||'#94a3b8';
+
+    let mutType='';
+    if(isMut&&!aaMut)mutType='silent';
+    else if(isMut&&c.aa==='Stop'&&orig.aa!=='Stop')mutType='nonsense';
+    else if(aaMut)mutType='missense';
+
+    const borderCol=mutType==='nonsense'?'#ef4444':mutType==='missense'?'#f59e0b':mutType==='silent'?'#10b981':col;
+    const bg=mutType?borderCol+'22':'transparent';
+
+    html+=`<div style="display:flex;flex-direction:column;align-items:center;padding:2px 4px;border-radius:4px;border:1px solid ${mutType?borderCol:col+'33'};background:${bg};min-width:32px;" title="${c.codon} → ${c.aa} (${c.c1})${mutType?' — '+mutType+' mutation':''}">
+      <span style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);">${c.codon}</span>
+      <span style="font-size:.85rem;font-weight:700;color:${col};">${c.aa==='Stop'?'■':c.c1}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:.5rem;color:var(--text-muted);">${c.aa}</span>
+      ${mutType?`<span style="font-family:'DM Mono',monospace;font-size:.45rem;color:${borderCol};font-weight:700;">${mutType}</span>`:''}
+    </div>`;
+  });
+  if(startIdx<0)html+=`<span style="font-size:.7rem;color:#f87171;">No AUG start codon found</span>`;
+  html+=`</div></div>`;
+
+  // ── Mutation summary ──
+  const mutations=[];
+  for(let i=0;i<Math.max(dna.length,dogmaOrigSeq.length);i++){
+    if(dna[i]!==dogmaOrigSeq[i]&&dogmaOrigSeq[i])mutations.push({pos:i+1,from:dogmaOrigSeq[i],to:dna[i]||'del'});
+  }
+  if(mutations.length>0){
+    html+=`<div style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:6px;padding:.5rem .7rem;margin-top:.3rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:#f87171;margin-bottom:.2rem;">MUTATIONS (${mutations.length})</div>`;
+    mutations.forEach(m=>{
+      html+=`<div style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-dim);">pos ${m.pos}: ${m.from}→${m.to}</div>`;
+    });
+    // Count mutation types in protein
+    let silent=0,missense=0,nonsense=0;
+    codons.forEach((c,i)=>{
+      const orig=origCodons[i];
+      if(!orig||c.codon===orig.codon)return;
+      if(c.c1===orig.c1)silent++;
+      else if(c.aa==='Stop'&&orig.aa!=='Stop')nonsense++;
+      else missense++;
+    });
+    html+=`<div style="font-size:.6rem;color:var(--text-muted);margin-top:.2rem;">Effect: ${silent} silent · ${missense} missense · ${nonsense} nonsense</div>`;
+    html+=`</div>`;
+    html+=`<button class="vp-btn" style="margin-top:.3rem;" onclick="setDogmaSeq(dogmaOrigSeq)">Reset to original</button>`;
+  }
+
+  // ── Copy / FASTA section ──
+  const proteinStr=codons.map(c=>c.aa==='Stop'?'*':c.c1).join('');
+  const NL='\n';
+  const fastaWrap=s=>{const out=[];for(let i=0;i<s.length;i+=60)out.push(s.substring(i,i+60));return out.join(NL);};
+  const fastaDNA='>DNA_coding_strand_5to3'+NL+fastaWrap(dna);
+  const fastaRNA='>mRNA_5to3'+NL+fastaWrap(mrna);
+  const fastaProtein='>Protein_N_to_C'+NL+fastaWrap(proteinStr);
+  // Stash on window for the copy buttons
+  window.__dogmaCopyTargets={dna:fastaDNA,rna:fastaRNA,protein:fastaProtein};
+  if(dna.length>0){
+    html+=`<div style="margin-top:.6rem;padding:.5rem .7rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem;flex-wrap:wrap;gap:.4rem;">
+        <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;">Copy sequence</span>
+        <span style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);">FASTA format</span>
+      </div>
+      <div style="display:flex;gap:.3rem;flex-wrap:wrap;">
+        <button class="vp-btn" onclick="copyDogmaSeq('dna')">DNA <span style="color:var(--text-muted);">${dna.length} nt</span></button>
+        <button class="vp-btn" onclick="copyDogmaSeq('rna')">mRNA <span style="color:var(--text-muted);">${mrna.length} nt</span></button>
+        ${proteinStr.length>0?`<button class="vp-btn" onclick="copyDogmaSeq('protein')">Protein <span style="color:var(--text-muted);">${proteinStr.replace(/\\*/g,'').length} aa</span></button>`:''}
+      </div>
+    </div>`;
+  }
+
+  el.innerHTML=html;
+}
+
+function copyDogmaSeq(which){
+  const t=window.__dogmaCopyTargets;if(!t)return;
+  const text=t[which];if(!text)return;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>flashCopyBtn(which));
+  } else {
+    // Fallback for older browsers
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');}catch(e){}
+    document.body.removeChild(ta);
+    flashCopyBtn(which);
+  }
+}
+
+function flashCopyBtn(which){
+  // Find the button and momentarily show feedback
+  const btns=document.querySelectorAll('.content-panel button.vp-btn');
+  btns.forEach(b=>{
+    const txt=b.textContent.toLowerCase();
+    if((which==='dna'&&txt.startsWith('dna'))||(which==='rna'&&txt.startsWith('mrna'))||(which==='protein'&&txt.startsWith('protein'))){
+      const orig=b.innerHTML;
+      b.innerHTML='Copied ✓';
+      b.style.color='var(--accent)';
+      setTimeout(()=>{b.innerHTML=orig;b.style.color='';},1400);
+    }
+  });
+}
+
+function mutateDogmaBase(idx){
+  const bases=['A','T','G','C'];
+  const current=dogmaSeq[idx];
+  const options=bases.filter(b=>b!==current);
+  // Cycle to next base
+  const next=options[0];
+  dogmaSeq=dogmaSeq.substring(0,idx)+next+dogmaSeq.substring(idx+1);
+  dogmaMutPos=idx;
+  // Keep textarea in sync (display U if RNA mode)
+  const ta=document.getElementById('dogma-input');
+  if(ta)ta.value=dogmaInputMode==='rna'?dogmaSeq.replace(/T/g,'U'):dogmaSeq;
+  const meta=document.getElementById('dogma-input-meta');
+  if(meta)meta.textContent=dogmaSeq.length+' nt';
+  const gc=document.getElementById('dogma-gc');
+  if(gc)gc.textContent=dogmaGC(dogmaSeq)+'%';
+  renderDogmaFlow();
+}
+
+// ============================================================
+// UNIT & MOLARITY CONVERTER
+// ============================================================
+function renderUnitConvPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">Unit & Molarity Converter</div><div class="vp-desc">Convert between mass, moles, concentration, and volume</div></div>
+<div style="flex:1;overflow-y:auto;padding:.9rem 1.1rem;">
+
+<div style="font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">Molecular Weight</div>
+<div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.7rem;">
+  <input id="uc-mw" type="number" value="66500" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.5rem .6rem;font-family:'DM Mono',monospace;font-size:.92rem;color:var(--text);outline:none;" oninput="calcUnits()">
+  <span style="font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text-muted);">Da (g/mol)</span>
+</div>
+<div style="display:flex;gap:.4rem;margin-bottom:.9rem;flex-wrap:wrap;">
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=58.44;calcUnits()" style="font-size:.7rem;">NaCl</button>
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=180.16;calcUnits()" style="font-size:.7rem;">Glucose</button>
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=507.0;calcUnits()" style="font-size:.7rem;">ATP</button>
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=66500;calcUnits()" style="font-size:.7rem;">BSA (66.5 kDa)</button>
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=150000;calcUnits()" style="font-size:.7rem;">IgG (150 kDa)</button>
+  <button class="vp-btn" onclick="document.getElementById('uc-mw').value=26900;calcUnits()" style="font-size:.7rem;">GFP (27 kDa)</button>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.9rem;">
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.7rem;color:#3b82f6;margin-bottom:.3rem;letter-spacing:.05em;">MASS → MOLES</div>
+    <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;">
+      <input id="uc-mass" type="number" value="1" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcFromMass()">
+      <select id="uc-mass-unit" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .35rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="calcFromMass()">
+        <option value="g">g</option><option value="mg" selected>mg</option><option value="ug">µg</option><option value="ng">ng</option>
+      </select>
+    </div>
+    <div id="uc-mass-result" style="font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text-dim);line-height:1.7;"></div>
+  </div>
+  <div>
+    <div style="font-family:'DM Mono',monospace;font-size:.7rem;color:#8b5cf6;margin-bottom:.3rem;letter-spacing:.05em;">MOLES → MASS</div>
+    <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;">
+      <input id="uc-moles" type="number" value="1" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcFromMoles()">
+      <select id="uc-moles-unit" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .35rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="calcFromMoles()">
+        <option value="mol">mol</option><option value="mmol">mmol</option><option value="umol" selected>µmol</option><option value="nmol">nmol</option><option value="pmol">pmol</option>
+      </select>
+    </div>
+    <div id="uc-moles-result" style="font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text-dim);line-height:1.7;"></div>
+  </div>
+</div>
+
+<div style="height:1px;background:var(--border);margin:.6rem 0;"></div>
+
+<div style="font-family:'DM Mono',monospace;font-size:.72rem;color:#10b981;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">CONCENTRATION CONVERTER</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:.7rem;">
+  <div>
+    <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:.3rem;">mg/mL → Molar</div>
+    <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.3rem;">
+      <input id="uc-mgml" type="number" value="1" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcMgMl()">
+      <span style="font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text-muted);">mg/mL</span>
+    </div>
+    <div id="uc-mgml-result" style="font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text-dim);line-height:1.7;"></div>
+  </div>
+  <div>
+    <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:.3rem;">Molar → mg/mL</div>
+    <div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.3rem;">
+      <input id="uc-molar" type="number" value="10" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcMolar()">
+      <select id="uc-molar-unit" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .35rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="calcMolar()">
+        <option value="M">M</option><option value="mM">mM</option><option value="uM" selected>µM</option><option value="nM">nM</option>
+      </select>
+    </div>
+    <div id="uc-molar-result" style="font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text-dim);line-height:1.7;"></div>
+  </div>
+</div>
+
+<div style="height:1px;background:var(--border);margin:.6rem 0;"></div>
+
+<div style="font-family:'DM Mono',monospace;font-size:.72rem;color:#f59e0b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">DILUTION CALCULATOR (C₁V₁ = C₂V₂)</div>
+<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:end;margin-bottom:.5rem;">
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">C₁ (stock)</div>
+    <div style="display:flex;gap:.3rem;">
+      <input id="uc-c1" type="number" value="1000" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcDilution()">
+      <select id="uc-c1u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcDilution()">
+        <option value="M">M</option><option value="mM" selected>mM</option><option value="uM">µM</option></select>
+    </div>
+  </div>
+  <div style="font-size:1rem;color:var(--text-muted);padding-bottom:.4rem;">×</div>
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">V₁ (to pipette)</div>
+    <div id="uc-v1-result" style="background:var(--surface2);border:1px solid var(--accent);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.92rem;color:var(--accent);min-height:1.6em;font-weight:500;">—</div>
+  </div>
+</div>
+<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:end;margin-bottom:.5rem;">
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">C₂ (final)</div>
+    <div style="display:flex;gap:.3rem;">
+      <input id="uc-c2" type="number" value="10" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcDilution()">
+      <select id="uc-c2u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcDilution()">
+        <option value="M">M</option><option value="mM">mM</option><option value="uM" selected>µM</option></select>
+    </div>
+  </div>
+  <div style="font-size:1rem;color:var(--text-muted);padding-bottom:.4rem;">=</div>
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">V₂ (final volume)</div>
+    <div style="display:flex;gap:.3rem;">
+      <input id="uc-v2" type="number" value="1000" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcDilution()">
+      <select id="uc-v2u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcDilution()">
+        <option value="L">L</option><option value="mL">mL</option><option value="uL" selected>µL</option></select>
+    </div>
+  </div>
+</div>
+
+<div style="height:1px;background:var(--border);margin:.7rem 0;"></div>
+
+<div style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">QUICK REFERENCE</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;font-family:'DM Mono',monospace;font-size:.78rem;">
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 Da</span> = <span style="color:var(--text);">1 g/mol</span></div>
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 kDa</span> = <span style="color:var(--text);">1000 g/mol</span></div>
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 M</span> = <span style="color:var(--text);">10³ mM = 10⁶ µM</span></div>
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 mg/mL</span> = <span style="color:var(--text);">1 µg/µL</span></div>
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 OD₂₈₀</span> ≈ <span style="color:var(--text);">1 mg/mL (IgG)</span></div>
+  <div style="background:var(--surface2);padding:.45rem .6rem;border-radius:5px;"><span style="color:var(--text-muted);">1 mol</span> = <span style="color:var(--text);">6.022×10²³</span></div>
+</div>
+
+</div>`;
+  calcUnits();
+}
+
+function getMW(){return parseFloat(document.getElementById('uc-mw')?.value)||0;}
+
+const MASS_FACTORS={g:1,mg:1e-3,ug:1e-6,ng:1e-9};
+const MOLE_FACTORS={mol:1,mmol:1e-3,umol:1e-6,nmol:1e-9,pmol:1e-12};
+const CONC_FACTORS={M:1,mM:1e-3,uM:1e-6,nM:1e-9};
+const VOL_FACTORS={L:1,mL:1e-3,uL:1e-6,nL:1e-9};
+
+function fmtNum(n){
+  if(n===0)return '0';
+  if(Math.abs(n)>=1e6)return n.toExponential(2);
+  if(Math.abs(n)>=1000)return n.toLocaleString(undefined,{maximumFractionDigits:1});
+  if(Math.abs(n)>=1)return n.toFixed(3);
+  if(Math.abs(n)>=0.001)return n.toFixed(4);
+  return n.toExponential(2);
+}
+
+function bestUnit(valInBase,factors,units){
+  // Find the unit that gives a value between 0.1 and 9999
+  for(const u of units){
+    const v=valInBase/factors[u];
+    if(v>=0.1&&v<10000)return {val:v,unit:u};
+  }
+  return {val:valInBase/factors[units[0]],unit:units[0]};
+}
+
+function calcFromMass(){
+  const mw=getMW();if(mw<=0)return;
+  const mass=Math.max(0,parseFloat(document.getElementById('uc-mass')?.value)||0);
+  const unit=document.getElementById('uc-mass-unit')?.value||'mg';
+  const massG=mass*MASS_FACTORS[unit];
+  const moles=massG/mw;// in mol
+  const r=document.getElementById('uc-mass-result');if(!r)return;
+  const b1=bestUnit(moles,MOLE_FACTORS,['mol','mmol','umol','nmol','pmol']);
+  r.innerHTML=`= <span style="color:var(--accent)">${fmtNum(b1.val)} ${b1.unit}</span>`;
+}
+
+function calcFromMoles(){
+  const mw=getMW();if(mw<=0)return;
+  const moles=Math.max(0,parseFloat(document.getElementById('uc-moles')?.value)||0);
+  const unit=document.getElementById('uc-moles-unit')?.value||'umol';
+  const molesBase=moles*MOLE_FACTORS[unit];
+  const massG=molesBase*mw;
+  const r=document.getElementById('uc-moles-result');if(!r)return;
+  const b1=bestUnit(massG,MASS_FACTORS,['g','mg','ug','ng']);
+  r.innerHTML=`= <span style="color:var(--accent)">${fmtNum(b1.val)} ${b1.unit}</span>`;
+}
+
+function calcMgMl(){
+  const mw=getMW();if(mw<=0)return;
+  const mgml=Math.max(0,parseFloat(document.getElementById('uc-mgml')?.value)||0);
+  // mg/mL ÷ MW(g/mol) ÷ 1000 mL/L = mol/L (M)
+  const molarM=mgml/(mw*1e-3);
+  const r=document.getElementById('uc-mgml-result');if(!r)return;
+  const b=bestUnit(molarM,CONC_FACTORS,['M','mM','uM','nM']);
+  r.innerHTML=`= <span style="color:var(--accent)">${fmtNum(b.val)} ${b.unit}</span>`;
+}
+
+function calcMolar(){
+  const mw=getMW();if(mw<=0)return;
+  const conc=Math.max(0,parseFloat(document.getElementById('uc-molar')?.value)||0);
+  const unit=document.getElementById('uc-molar-unit')?.value||'uM';
+  const concM=conc*CONC_FACTORS[unit];
+  // M × MW(g/mol) = g/L = mg/mL
+  const mgml=concM*mw/1000;
+  const r=document.getElementById('uc-molar-result');if(!r)return;
+  if(mgml>=0.001){
+    r.innerHTML=`= <span style="color:var(--accent)">${fmtNum(mgml)} mg/mL</span> <span style="color:var(--text-muted);">= ${fmtNum(mgml)} µg/µL</span>`;
+  } else {
+    r.innerHTML=`= <span style="color:var(--accent)">${fmtNum(mgml*1000)} µg/mL</span>`;
+  }
+}
+
+function calcDilution(){
+  const c1=parseFloat(document.getElementById('uc-c1')?.value)||0;
+  const c1u=document.getElementById('uc-c1u')?.value||'mM';
+  const c2=parseFloat(document.getElementById('uc-c2')?.value)||0;
+  const c2u=document.getElementById('uc-c2u')?.value||'uM';
+  const v2=parseFloat(document.getElementById('uc-v2')?.value)||0;
+  const v2u=document.getElementById('uc-v2u')?.value||'uL';
+  const c1M=c1*CONC_FACTORS[c1u];
+  const c2M=c2*CONC_FACTORS[c2u];
+  const v2L=v2*VOL_FACTORS[v2u];
+  const r=document.getElementById('uc-v1-result');if(!r)return;
+  if(c1M<=0||c2M<=0||v2L<=0||c2M>c1M){
+    r.textContent=c2M>c1M?'C₂ must be < C₁':'—';return;
+  }
+  const v1L=c2M*v2L/c1M;
+  const b=bestUnit(v1L,VOL_FACTORS,['L','mL','uL','nL']);
+  r.innerHTML=`<span style="color:var(--accent);font-weight:600;">${fmtNum(b.val)} ${b.unit}</span>`;
+}
+
+function calcUnits(){calcFromMass();calcFromMoles();calcMgMl();calcMolar();calcDilution();}
+
+
+// ============================================================
+// DNA Tm CALCULATOR
+// ============================================================
+function renderTmPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">DNA Tm Calculator</div><div class="vp-desc">Enter a DNA sequence to calculate melting temperature</div></div>
+<div style="padding:.6rem .8rem;display:flex;flex-direction:column;gap:.5rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <div>
+    <label style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);display:block;margin-bottom:.2rem;">DNA Sequence (5'→3')</label>
+    <textarea id="tm-seq" rows="2" placeholder="e.g. ATGCGATCGATCG" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.35rem .5rem;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text);outline:none;resize:vertical;" oninput="calcTm()">${'ATGCGTACGTAGCTAGC'}</textarea>
+  </div>
+  <div style="display:flex;gap:.5rem;align-items:center;">
+    <label style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);width:50px;flex-shrink:0">[Na⁺] mM</label>
+    <input type="range" id="tm-salt" min="10" max="1000" value="500" style="flex:1;accent-color:#E77500;height:4px" oninput="document.getElementById('tm-salt-v').value=this.value;calcTm()">
+    <input type="number" id="tm-salt-v" min="10" max="1000" value="500" style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.15rem .3rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text);text-align:right;outline:none;" oninput="const v=Math.max(10,Math.min(1000,+this.value||10));document.getElementById('tm-salt').value=v;calcTm()">
+  </div>
+</div>
+<div style="flex:1;overflow-y:auto;padding:.6rem .8rem;">
+  <div id="tm-results" style="display:flex;flex-direction:column;gap:.6rem;"></div>
+</div>`;
+  calcTm();
+}
+
+function calcTm(){
+  const raw=document.getElementById('tm-seq')?.value||'';
+  const seq=raw.toUpperCase().replace(/[^ATGC]/g,'');
+  const salt=(+document.getElementById('tm-salt-v')?.value||500)/1000;// convert mM to M
+  const res=document.getElementById('tm-results');if(!res)return;
+
+  if(seq.length<2){res.innerHTML='<div style="font-size:.75rem;color:var(--text-muted)">Enter at least 2 bases...</div>';return;}
+
+  const A=seq.split('').filter(c=>c==='A').length;
+  const T=seq.split('').filter(c=>c==='T').length;
+  const G=seq.split('').filter(c=>c==='G').length;
+  const C=seq.split('').filter(c=>c==='C').length;
+  const N=seq.length;
+  const gc=(G+C)/N*100;
+
+  // Wallace rule (short oligos)
+  const tmWallace=2*(A+T)+4*(G+C);
+  // Basic salt-adjusted (Marmur-Schildkraut-Doty form)
+  const tmBasic=81.5+16.6*Math.log10(salt)+41*(G+C)/N-675/N;
+
+  // SantaLucia nearest-neighbor (1998 unified parameters)
+  // ΔH and ΔS in cal/mol and cal/mol·K for each dinucleotide pair
+  const NN_H={AA:-7900,AT:-7200,TA:-7200,CA:-8500,GT:-8400,CT:-7800,GA:-8200,CG:-10600,GC:-9800,GG:-8000,
+              TT:-7900,AC:-8400,TG:-8500,AG:-7800,TC:-8200,CC:-8000
+              };
+  const NN_S={AA:-22.2,AT:-20.4,TA:-21.3,CA:-22.7,GT:-22.4,CT:-21.0,GA:-22.2,CG:-27.2,GC:-24.4,GG:-19.9,
+              TT:-22.2,AC:-22.4,TG:-22.7,AG:-21.0,TC:-22.2,CC:-19.9,
+              };
+  // Initiation parameters
+  let dH=0, dS=0;
+  // Initiation: +0.1 kcal/mol (100 cal) for GC init, +2.3 kcal for AT init
+  const first=seq[0], last=seq[N-1];
+  if(first==='G'||first==='C'){dH+=100;dS-=2.8;}else{dH+=2300;dS+=4.1;}
+  if(last==='G'||last==='C'){dH+=100;dS-=2.8;}else{dH+=2300;dS+=4.1;}
+
+  let nnValid=true;
+  for(let i=0;i<N-1;i++){
+    const pair=seq[i]+seq[i+1];
+    if(NN_H[pair]!==undefined&&NN_S[pair]!==undefined){
+      dH+=NN_H[pair]; dS+=NN_S[pair];
+    } else {
+      nnValid=false;break;
+    }
+  }
+  // Salt correction for NN: ΔS = ΔS + 0.368 × (N-1) × ln[Na+]
+  // Self-complementarity check: a palindromic primer hybridizes to itself
+  // (revcomp == seq). SantaLucia symmetry correction: ΔS += -1.4 cal/mol·K, Ct/1 (not /4).
+  const revcomp=seq.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).reverse().join('');
+  const isPalindrome=(seq===revcomp);
+  const dS_sym=isPalindrome?dS-1.4:dS;
+  const dS_salt=dS_sym+0.368*(N-1)*Math.log(salt);
+  // Tm = ΔH / (ΔS + R·ln(Ct/x)) - 273.15, where Ct = total strand concentration
+  // x = 1 for self-complementary (palindrome), 4 otherwise. Assume 250 nM oligo (typical PCR primer)
+  const Ct=250e-9;// 250 nM
+  const R=1.987;// cal/mol·K
+  const ctDivisor=isPalindrome?1:4;
+  const tmNN=nnValid? dH/(dS_salt+R*Math.log(Ct/ctDivisor))-273.15 : null;
+
+  // Owczarzy 2004 salt correction (Biochemistry 43, 3537–3554, Eq 22)
+  // 1/Tm(salt) = 1/Tm(1M) + (4.29·fGC − 3.95)·1e-5·ln[Na⁺] + 9.4e-6·(ln[Na⁺])²
+  // Tm in Kelvin throughout. We start from the NN Tm at [Na⁺]=1M (no linear salt term).
+  let tmOwczarzy=null;
+  if(nnValid){
+    const Tm1M_K=dH/(dS_sym+R*Math.log(Ct/ctDivisor));// Kelvin, no salt correction (1M reference)
+    const fGC=(G+C)/N;
+    const lnNa=Math.log(salt);
+    const invTm=1/Tm1M_K+(4.29*fGC-3.95)*1e-5*lnNa+9.4e-6*lnNa*lnNa;
+    tmOwczarzy=1/invTm-273.15;
+  }
+
+  function card(title,value,unit,formula,note,col){
+    return `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;border-left:3px solid ${col};">
+      <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:${col};text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">${title}</div>
+      <div style="font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:.2rem;">${value}<span style="font-size:.7rem;color:var(--text-muted);margin-left:.2rem;">${unit}</span></div>
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);margin-bottom:.15rem;">${formula}</div>
+      <div style="font-size:.62rem;color:var(--text-dim);">${note}</div>
+    </div>`;
+  }
+
+  let html=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.5rem;">
+    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">Length</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${N} nt</div></div>
+    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">GC Content</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${gc.toFixed(1)}%</div></div>
+    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">A : T</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${A} : ${T}</div></div>
+    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">G : C</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${G} : ${C}</div></div>
+  </div>`;
+
+  // Nearest-neighbor first (most accurate for primers)
+  if(tmNN!==null&&N>=8&&N<=60){
+    const palindromeNote=isPalindrome?' Self-complementary detected: ΔS −1.4 symmetry correction, Ct/1.':'';
+    html+=card('SantaLucia Nearest-Neighbor (recommended)',''+tmNN.toFixed(1),'°C','Tm = ΔH / (ΔS + R·ln(Ct/'+ctDivisor+')) − 273.15','SantaLucia 1998 unified params. [Na⁺]='+(salt*1000).toFixed(0)+'mM, [oligo]=250nM. ΔH='+((dH/1000).toFixed(1))+'kcal, ΔS='+(dS_salt.toFixed(1))+'cal/K.'+palindromeNote,'#ec4899');
+  }
+
+  if(N<=14){
+    html+=card('Wallace Rule (short oligos)',''+tmWallace,'°C','Tm = 2(A+T) + 4(G+C)','Best for oligos ≤14 nt. Simple but approximate.','#10b981');
+  }
+  html+=card('Basic Salt-adjusted',''+tmBasic.toFixed(1),'°C','Tm = 81.5 + 16.6·log[Na⁺] + 41·(G+C)/N - 675/N','Marmur-Schildkraut-Doty form. [Na⁺] = '+salt.toFixed(3)+' M','#3b82f6');
+  if(tmOwczarzy!==null){
+    html+=card('Owczarzy 2004 (NN + reciprocal-Tm salt correction)',''+tmOwczarzy.toFixed(1),'°C','1/Tm(salt) = 1/Tm(1M) + (4.29·fGC − 3.95)·10⁻⁵·ln[Na⁺] + 9.4·10⁻⁶·(ln[Na⁺])²','Most accurate over 10 mM–1 M Na⁺; recommended for primers far from 50 mM.','#8b5cf6');
+  }
+
+  // PCR primer assessment (use NN if available, else basic)
+  const tmForPrimer=tmNN!==null?tmNN:tmBasic;
+  if(N>=15&&N<=30){
+    const ok=tmForPrimer>=55&&tmForPrimer<=65&&gc>=40&&gc<=60;
+    html+=`<div style="background:${ok?'rgba(16,185,129,.08)':'rgba(245,158,11,.08)'};border:1px solid ${ok?'#10b981':'#f59e0b'};border-radius:6px;padding:.5rem .7rem;margin-top:.3rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:${ok?'#10b981':'#f59e0b'};margin-bottom:.2rem;">${ok?'✓ GOOD PCR PRIMER':'⚠ PCR PRIMER CHECK'}</div>
+      <div style="font-size:.62rem;color:var(--text-dim);">
+        Length: ${N} nt ${N>=18&&N<=25?'✓':'⚠ (ideal 18-25)'} · 
+        GC: ${gc.toFixed(0)}% ${gc>=40&&gc<=60?'✓':'⚠ (ideal 40-60%)'} · 
+        Tm: ${tmForPrimer.toFixed(1)}°C ${tmForPrimer>=55&&tmForPrimer<=65?'✓':'⚠ (ideal 55-65°C)'}
+      </div>
+    </div>`;
+  }
+
+  // Complement — use a small grid so the 5'/3' labels stay aligned even if the sequence wraps
+  const comp=seq.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).join('');
+  html+=`<div style="margin-top:.4rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);display:grid;grid-template-columns:auto 1fr auto;gap:.4rem;align-items:start;">
+    <span>5'</span><span style="word-break:break-all;color:var(--text-dim);">${seq}</span><span>3'</span>
+    <span>3'</span><span style="word-break:break-all;">${comp}</span><span>5'</span>
+  </div>`;
+
+  res.innerHTML=html;
+}
+
+// ============================================================
+// PROTEIN MW & pI CALCULATOR
+// ============================================================
+const AA_PKA={
+  Nterm:9.69, Cterm:2.34,
+  D:{pKa:3.65,charge:-1}, E:{pKa:4.25,charge:-1}, C:{pKa:8.18,charge:-1}, Y:{pKa:10.07,charge:-1},
+  H:{pKa:6.00,charge:1}, K:{pKa:10.53,charge:1}, R:{pKa:12.48,charge:1}
+};
+const AA_MW_FULL={G:57.05,A:71.08,V:99.13,L:113.16,I:113.16,P:97.12,F:147.18,W:186.21,M:131.20,S:87.08,T:101.10,C:103.14,Y:163.18,N:114.10,Q:128.13,D:115.09,E:129.12,K:128.17,R:156.19,H:137.14};
+const AA_EXT={W:5500,Y:1490};// molar extinction coefficients at 280nm
+
+function renderMwPiPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">Protein MW & pI Calculator</div><div class="vp-desc">Enter amino acid sequence (1-letter code)</div></div>
+<div style="padding:.6rem .8rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <div style="display:flex;gap:.3rem;margin-bottom:.3rem;flex-wrap:wrap;">
+    <button class="vp-btn" onclick="document.getElementById('mwpi-seq').value='MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH';calcMwPi()">Hemoglobin β</button>
+    <button class="vp-btn" onclick="document.getElementById('mwpi-seq').value='MSKGEELFTGVVPILVELDGDVNGHKFSVSGEGEGDATYGKLTLKFICTTGKLPVPWPTLVTTLTYGVQCFSRYPDHMKQHDFFKSAMPEGYVQERTIFFKDDGNYKTRAEVKFEGDTLVNRIELKGIDFKEDGNILGHKLEYNYNSHNVYIMADKQKNGIKVNFKIRHNIEDGSVQLADHYQQNTPIGDGPVLLPDNHYLSTQSALSKDPNEKRDHMVLLEFVTAAGITLGMDELYK';calcMwPi()">GFP</button>
+    <button class="vp-btn" onclick="(function(){const t=document.getElementById('mwpi-seq');t.value='';calcMwPi();t.focus();})()">Custom</button>
+  </div>
+  <textarea id="mwpi-seq" rows="3" placeholder="e.g. MVHLTPEEKSAVTALWGK..." style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.35rem .5rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text);outline:none;resize:vertical;" oninput="calcMwPi()">MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQR</textarea>
+</div>
+<div style="flex:1;overflow-y:auto;padding:.6rem .8rem;">
+  <div id="mwpi-results" style="display:flex;flex-direction:column;gap:.5rem;"></div>
+</div>`;
+  calcMwPi();
+}
+
+function calcMwPi(){
+  const raw=document.getElementById('mwpi-seq')?.value||'';
+  const seq=raw.toUpperCase().replace(/[^ACDEFGHIKLMNPQRSTVWY]/g,'');
+  const res=document.getElementById('mwpi-results');if(!res)return;
+  if(seq.length<1){res.innerHTML='<div style="font-size:.75rem;color:var(--text-muted)">Enter amino acid sequence...</div>';return;}
+
+  // Count residues
+  const counts={};
+  for(const c of seq){counts[c]=(counts[c]||0)+1;}
+  const N=seq.length;
+
+  // MW calculation
+  let mw=18.02;// water
+  for(const [aa,cnt] of Object.entries(counts)){mw+=(AA_MW_FULL[aa]||110)*cnt;}
+
+  // pI calculation (bisection method)
+  function netCharge(pH){
+    let charge=0;
+    // N-terminus
+    charge+=1/(1+Math.pow(10,pH-AA_PKA.Nterm));
+    // C-terminus
+    charge-=1/(1+Math.pow(10,AA_PKA.Cterm-pH));
+    // Side chains
+    for(const [aa,props] of Object.entries(AA_PKA)){
+      if(aa==='Nterm'||aa==='Cterm')continue;
+      const cnt=counts[aa]||0;
+      if(cnt===0)continue;
+      if(props.charge>0){charge+=cnt/(1+Math.pow(10,pH-props.pKa));}
+      else{charge-=cnt/(1+Math.pow(10,props.pKa-pH));}
+    }
+    return charge;
+  }
+  let lo=0,hi=14;
+  for(let i=0;i<100;i++){
+    const mid=(lo+hi)/2;
+    if(netCharge(mid)>0)lo=mid;else hi=mid;
+  }
+  const pI=(lo+hi)/2;
+
+  // Extinction coefficient at 280nm (Pace et al. 1995 method)
+  const nW=counts['W']||0, nY=counts['Y']||0, nC=counts['C']||0;
+  const nCystine=Math.floor(nC/2);// max possible disulfide bonds
+  const ext280_ox=nW*5500+nY*1490+nCystine*125;// all Cys paired
+  const ext280_red=nW*5500+nY*1490;// no disulfides (reduced)
+  const abs01_ox=ext280_ox>0?(ext280_ox/mw).toFixed(3):'N/A';
+  const abs01_red=ext280_red>0?(ext280_red/mw).toFixed(3):'N/A';
+
+  // Charge at pH 7
+  const chargeAt7=netCharge(7);
+
+  // Amino acid composition
+  const groups={
+    nonpolar:['G','A','V','L','I','P','F','W','M'],
+    polar:['S','T','C','Y','N','Q'],
+    positive:['K','R','H'],
+    negative:['D','E']
+  };
+
+  function card(title,value,unit,note,col){
+    return `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.5rem .7rem;border-left:3px solid ${col};">
+      <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:${col};text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">${title}</div>
+      <div style="font-size:1.2rem;font-weight:600;color:var(--text);">${value}<span style="font-size:.65rem;color:var(--text-muted);margin-left:.25rem;">${unit}</span></div>
+      <div style="font-size:.6rem;color:var(--text-dim);">${note}</div>
+    </div>`;
+  }
+
+  let html=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;">
+    ${card('Molecular Weight',mw>=10000?(mw/1000).toFixed(2)+'k':''+mw.toFixed(1),'Da',''+N+' residues · Avg MW/residue: '+(mw/N).toFixed(1)+' Da','#3b82f6')}
+    ${card('Isoelectric Point (pI)',pI.toFixed(2),'','Net charge at pH 7: '+(chargeAt7>=0?'+':'')+chargeAt7.toFixed(1),'#8b5cf6')}
+  </div>`;
+
+  // Extinction coefficient detail section
+  html+=`<div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.5rem .7rem;margin-top:.4rem;border-left:3px solid #f59e0b;">
+    <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:#f59e0b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;">Extinction Coefficient (ε₂₈₀)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.3rem;">
+      <div>
+        <div style="font-size:.55rem;color:var(--text-muted);margin-bottom:.1rem;">Oxidized (all Cys paired)</div>
+        <div style="font-size:1rem;font-weight:600;color:var(--text);">${ext280_ox>0?ext280_ox:'—'}<span style="font-size:.6rem;color:var(--text-muted);margin-left:.2rem;">M⁻¹cm⁻¹</span></div>
+        <div style="font-size:.55rem;color:var(--text-dim);">Abs 0.1% = ${abs01_ox}</div>
+      </div>
+      <div>
+        <div style="font-size:.55rem;color:var(--text-muted);margin-bottom:.1rem;">Reduced (no disulfides)</div>
+        <div style="font-size:1rem;font-weight:600;color:var(--text);">${ext280_red>0?ext280_red:'—'}<span style="font-size:.6rem;color:var(--text-muted);margin-left:.2rem;">M⁻¹cm⁻¹</span></div>
+        <div style="font-size:.55rem;color:var(--text-dim);">Abs 0.1% = ${abs01_red}</div>
+      </div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);line-height:1.6;">
+      Trp(W) × ${nW} = ${nW*5500} · Tyr(Y) × ${nY} = ${nY*1490} · Cystine × ${nCystine} = ${nCystine*125}<br>
+      Pace et al. (1995). Abs 0.1% = ε / MW (for 1 mg/mL in 1 cm path)
+    </div>
+  </div>`;
+
+  html+=`<div style="display:grid;grid-template-columns:1fr;gap:.4rem;margin-top:.4rem;">
+    ${card('Length',''+N,'aa','~'+(N*0.11).toFixed(1)+' kDa estimated','#10b981')}
+  </div>`;
+
+  // Charge vs pH plot (canvas)
+  html+=`<div style="margin-top:.5rem;"><canvas id="charge-plot" style="width:100%;height:120px;border-radius:6px;"></canvas></div>`;
+
+  // Composition bars
+  html+=`<div style="margin-top:.5rem;">
+    <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);margin-bottom:.3rem;">COMPOSITION</div>`;
+  const compCols={nonpolar:'#3b82f6',polar:'#10b981',positive:'#8b5cf6',negative:'#ef4444'};
+  for(const [group,aas] of Object.entries(groups)){
+    const cnt=aas.reduce((s,a)=>s+(counts[a]||0),0);
+    const pct=(cnt/N*100).toFixed(1);
+    html+=`<div style="display:flex;align-items:center;gap:.4rem;margin-bottom:.2rem;">
+      <span style="font-size:.6rem;color:var(--text-muted);width:58px;">${group}</span>
+      <div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:${compCols[group]};border-radius:3px;"></div></div>
+      <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text);width:40px;text-align:right;">${pct}%</span>
+    </div>`;
+  }
+  html+=`</div>`;
+
+  res.innerHTML=html;
+
+  // Draw charge vs pH plot
+  setTimeout(()=>{
+    const canvas=document.getElementById('charge-plot');if(!canvas)return;
+    const dpr=window.devicePixelRatio||1;
+    const w=canvas.clientWidth,h=canvas.clientHeight;
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+    const cssVars=getComputedStyle(document.documentElement);
+    const plotBg=cssVars.getPropertyValue('--plot-bg').trim()||'243,241,236';
+    const plotBorder=cssVars.getPropertyValue('--plot-border').trim()||'229,227,220';
+    const plotText=cssVars.getPropertyValue('--plot-text').trim()||'#737373';
+    const plotTextStrong=cssVars.getPropertyValue('--plot-text-strong').trim()||'#404040';
+    ctx.fillStyle=`rgba(${plotBg},1)`;
+    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(0,0,w,h,4);ctx.fill();}
+    else{ctx.fillRect(0,0,w,h);}// fallback for iOS Safari < 16
+    ctx.strokeStyle=`rgba(${plotBorder},1)`;ctx.lineWidth=1;ctx.strokeRect(0,0,w,h);
+    const ml=36,mr=10,mt=12,mb=20;
+    const pw=w-ml-mr,ph=h-mt-mb;
+    // Grid
+    ctx.strokeStyle='rgba(115,115,115,.18)';ctx.lineWidth=1;
+    for(let i=0;i<=14;i+=2){const x=ml+i/14*pw;ctx.beginPath();ctx.moveTo(x,mt);ctx.lineTo(x,mt+ph);ctx.stroke();}
+    // Zero line
+    const charges=[];for(let pH=0;pH<=14;pH+=0.1)charges.push(netCharge(pH));
+    const maxC=Math.max(...charges.map(Math.abs),1);
+    const zeroY=mt+ph/2;
+    ctx.strokeStyle='rgba(64,64,64,.4)';ctx.beginPath();ctx.moveTo(ml,zeroY);ctx.lineTo(ml+pw,zeroY);ctx.stroke();
+    // Curve — use theme-adaptive curve color
+    const curveColor=document.documentElement.getAttribute('data-theme')==='dark'?'#9aafd0':'#3d4a5e';
+    ctx.strokeStyle=curveColor;ctx.lineWidth=2.5;ctx.beginPath();
+    for(let i=0;i<=140;i++){
+      const pH=i/10;const c=netCharge(pH);
+      const x=ml+pH/14*pw,y=zeroY-c/maxC*(ph/2);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+    // pI marker
+    const pIx=ml+pI/14*pw;
+    ctx.strokeStyle='#E77500';ctx.lineWidth=1.5;ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.moveTo(pIx,mt);ctx.lineTo(pIx,mt+ph);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#E77500';ctx.font='bold 8px DM Mono,monospace';ctx.textAlign='center';
+    ctx.fillText('pI='+pI.toFixed(1),pIx,mt+ph+14);
+    // Axis labels
+    ctx.fillStyle=plotText;ctx.font='8px DM Mono,monospace';ctx.textAlign='center';
+    for(let i=0;i<=14;i+=2)ctx.fillText(''+i,ml+i/14*pw,mt+ph+14);
+    ctx.textAlign='right';ctx.fillStyle=plotTextStrong;ctx.fillText('+',ml-4,mt+8);ctx.fillText('0',ml-4,zeroY+3);ctx.fillText('−',ml-4,mt+ph-2);
+    ctx.save();ctx.translate(8,mt+ph/2);ctx.rotate(-Math.PI/2);ctx.textAlign='center';ctx.fillStyle=plotText;ctx.fillText('Charge',0,0);ctx.restore();
+  },50);
+}
+
+// ============================================================
+// MICROPIPETTES
+// ============================================================
+let pipVol=1000,pipType='P1000';
+const PIP_MAX={P2:2,P20:20,P200:200,P1000:1000};
+function renderPipettePanel(){
+  // Default to P1000 at its max
+  pipVol=PIP_MAX.P1000;pipType='P1000';
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`<div class="vp-header"><div class="vp-title">Micropipette Viewer</div><div class="vp-desc">Set a volume and see the pipette window</div></div>
+<div class="vp-controls">
+  <button class="vp-btn" id="pip-p2" onclick="setPipType('P2')">P2</button>
+  <button class="vp-btn" id="pip-p20" onclick="setPipType('P20')">P20</button>
+  <button class="vp-btn" id="pip-p200" onclick="setPipType('P200')">P200</button>
+  <button class="vp-btn active" id="pip-p1000" onclick="setPipType('P1000')">P1000</button>
+</div>
+<div style="padding:.5rem .8rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <label style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-muted);">Volume (µL):</label>
+  <input type="number" id="pip-vol" value="${pipVol}" min="0" step="0.1" style="width:70px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.2rem .4rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text);outline:none;" oninput="pipVol=Math.max(0,+this.value||0);drawPipette()">
+  <span id="pip-range" style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);"></span>
+</div>
+<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:.5rem;min-height:0;overflow:hidden;" id="pip-area"></div>
+<div id="pip-info" style="padding:.4rem .8rem;border-top:1px solid var(--border);flex-shrink:0;font-size:.66rem;line-height:1.55;color:var(--text-muted);"></div>`;
+  drawPipette();
+}
+function setPipType(t){
+  pipType=t;
+  // Always set the volume to the max of the new pipette type — that lands within its range
+  pipVol=PIP_MAX[t]||0;
+  const inp=document.getElementById('pip-vol');
+  if(inp)inp.value=pipVol;
+  document.querySelectorAll('[id^=pip-p]').forEach(function(b){b.classList.remove('active');});
+  const btn=document.getElementById('pip-'+t.toLowerCase());
+  if(btn)btn.classList.add('active');
+  drawPipette();
+}
+function drawPipette(){
+  var area=document.getElementById('pip-area');if(!area)return;area.innerHTML='';
+  var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 260 430');s.style.cssText='max-width:100%;max-height:100%;display:block;';area.appendChild(s);
+  var NS2='http://www.w3.org/2000/svg';
+  function el(tag,a){var n=document.createElementNS(NS2,tag);if(a)Object.entries(a).forEach(function(e){n.setAttribute(e[0],String(e[1]));});s.appendChild(n);return n;}
+  function txt(x,y,str,c,fs,fw){var t=el('text',{x:x,y:y,'text-anchor':'middle','font-size':fs||9,fill:c||'#94a3b8','font-family':'DM Mono,monospace','font-weight':fw||'600'});t.textContent=str;}
+  var ranges={P2:{min:0.2,max:2},P20:{min:2,max:20},P200:{min:20,max:200},P1000:{min:100,max:1000}};
+  var r=ranges[pipType],vol=Math.max(0,Math.min(r.max,pipVol)),outOfRange=pipVol<r.min||pipVol>r.max;
+  var rangeEl=document.getElementById('pip-range');if(rangeEl)rangeEl.textContent='Range: '+r.min+'–'+r.max+' µL';
+  var d1,d2,d3,dialFrac;
+  if(pipType==='P2'){d1=Math.floor(vol);d2=Math.floor((vol*10)%10);d3=Math.floor((vol*100)%10);dialFrac=(vol*1000)%10/10;}
+  else if(pipType==='P20'){d1=Math.floor(vol/10);d2=Math.floor(vol%10);d3=Math.floor((vol*10)%10);dialFrac=(vol*100)%10/10;}
+  else if(pipType==='P200'){d1=Math.floor(vol/100);d2=Math.floor((vol%100)/10);d3=Math.floor(vol%10);dialFrac=(vol*10)%10/10;}
+  else{d1=Math.floor(vol/1000);d2=Math.floor((vol%1000)/100);d3=Math.floor((vol%100)/10);dialFrac=(vol%10)/10;}
+  var cx=130,bw=64;
+  // Plunger button
+  el('rect',{x:cx-16,y:8,width:32,height:42,rx:7,fill:'#334155',stroke:'#475569','stroke-width':1.5});
+  // Shaft
+  el('rect',{x:cx-12,y:50,width:24,height:75,rx:4,fill:'#1e293b',stroke:'#334155','stroke-width':1.5});
+  // Body
+  el('rect',{x:cx-bw/2,y:125,width:bw,height:175,rx:10,fill:'#1e293b',stroke:outOfRange?'#ef4444':'#475569','stroke-width':2});
+  txt(cx,143,pipType,'#94a3b8',11,'700');
+  // Tip ejector button
+  el('rect',{x:cx+bw/2-2,y:178,width:14,height:6,rx:2,fill:'#475569'});
+
+  // ── VOLUME WINDOW (3 digits) ──
+  var wy=152,ww=50,wh=95;
+  el('rect',{x:cx-ww/2,y:wy,width:ww,height:wh,rx:5,fill:'#f8fafc',stroke:'#cbd5e1','stroke-width':1.5});
+  [[d1,wy+20],[d2,wy+46],[d3,wy+72]].forEach(function(pair,idx){
+    el('rect',{x:cx-20,y:pair[1]-15,width:40,height:22,rx:3,fill:idx===2?'#fee2e2':'#f1f5f9',stroke:'#e2e8f0','stroke-width':0.5});
+    txt(cx,pair[1]+2,String(pair[0]),'#1e293b',20,'700');
+  });
+  var d3prev=(d3+9)%10,d3next=(d3+1)%10;
+  if(pipType==='P2'){el('circle',{cx:cx+18,cy:wy+14,r:2,fill:'#ef4444'});}
+  else if(pipType==='P20'){el('circle',{cx:cx+18,cy:wy+60,r:2,fill:'#ef4444'});}
+
+  // ── HORIZONTAL TICK DIAL (below window, centered ±half scale) ──
+  var dialY=wy+wh+14,dialW=56,dialH=22;
+  el('rect',{x:cx-dialW/2-3,y:dialY-3,width:dialW+6,height:dialH+6,rx:4,fill:'#0f172a',stroke:'#475569','stroke-width':1});
+  el('rect',{x:cx-dialW/2,y:dialY,width:dialW,height:dialH,rx:2,fill:'#1e293b'});
+  // The dial has 10 divisions: 5 left of center, 5 right.
+  // Layout: 4 short ticks, 1 long (labeled), center long (0), 1 long (labeled), 4 short ticks
+  // Total 11 tick positions (indices 0–10), center at 5
+  var halfLabels={P2:'0.005',P20:'0.05',P200:'0.5',P1000:'5'};
+  var halfLabel=halfLabels[pipType];
+  // dialFrac is 0–1 representing position within the sub-digit (0.0 = exactly on digit, 0.5 = halfway)
+  // Map dialFrac to position: frac 0 → center, frac 0.5 → right edge, frac ~1.0 → approaches center from left
+  // Actually dialFrac maps linearly 0–9 across 10 ticks. Remap: dial value 0 = center, 5 = right edge, wrapping
+  var dialDigit=Math.round(dialFrac*10)%10;
+  // Pointer position: dialFrac 0→center, 0.5→right end, 1.0→center (wraps). Convert to -5..+5 range
+  var rawDial=dialFrac*10; // 0 to ~10
+  var dialOffset=rawDial<=5?rawDial:rawDial-10; // -5 to +5, 0=center
+  for(var t=0;t<=10;t++){
+    var tx=cx-dialW/2+3+((t)/10)*(dialW-6);
+    var isCenter=(t===5);
+    var isHalf=(t===0||t===10);
+    var isMajor=isCenter||isHalf;
+    var tickLen=isMajor?14:8;
+    var tickCol=isCenter?'#94a3b8':isMajor?'#94a3b8':'#586e85';
+    el('line',{x1:tx,y1:dialY+2,x2:tx,y2:dialY+2+tickLen,stroke:tickCol,'stroke-width':isMajor?1:0.7});
+  }
+  // Labels: left half-label, center 0, right half-label
+  var txLeft=cx-dialW/2+3;
+  var txCenter=cx-dialW/2+3+(5/10)*(dialW-6);
+  var txRight=cx-dialW/2+3+(10/10)*(dialW-6);
+  txt(txLeft,dialY+dialH+11,halfLabel,'#64748b',6,'500');
+  txt(txRight,dialY+dialH+11,halfLabel,'#64748b',6,'500');
+  // Red pointer triangle — position mapped from dialOffset (-5 to +5) → tick positions 0–10
+  var pointerPos=(dialOffset+5)/10; // 0 to 1
+  var pointerX=cx-dialW/2+3+pointerPos*(dialW-6);
+  el('polygon',{points:(pointerX-3)+','+(dialY+dialH+1)+' '+(pointerX+3)+','+(dialY+dialH+1)+' '+pointerX+','+(dialY+dialH-4),fill:'#ef4444'});
+
+  // Digit meaning labels
+  var meanings={P2:['µL','0.1 µL','0.01 µL'],P20:['10 µL','1 µL','0.1 µL'],P200:['100 µL','10 µL','1 µL'],P1000:['1000 µL','100 µL','10 µL']};
+  var m=meanings[pipType];
+  [[wy+22,m[0]],[wy+48,m[1]],[wy+74,m[2]]].forEach(function(pair){txt(cx-43,pair[0],pair[1],'#64748b',6);});
+
+  // Nose cone
+  el('rect',{x:cx-10,y:300,width:20,height:55,rx:4,fill:'#334155',stroke:'#475569','stroke-width':1});
+  // Tip
+  el('path',{d:'M'+(cx-8)+',355 L'+(cx+8)+',355 L'+(cx+3)+',420 L'+(cx-3)+',420 Z',fill:'#e2e8f0',stroke:'#94a3b8','stroke-width':1});
+
+  if(outOfRange){el('rect',{x:cx-55,y:360,width:110,height:20,rx:4,fill:'rgba(239,68,68,.12)',stroke:'#ef4444','stroke-width':1});txt(cx,373,'⚠ Out of range!','#ef4444',9,'700');}
+
+  var info=document.getElementById('pip-info');
+  if(info){
+    var readout=d1+''+d2+(pipType==='P2'||pipType==='P20'?'.':'')+d3;
+    var dialUnits={P2:'0.001',P20:'0.01',P200:'0.1',P1000:'1'};
+    var dialShow=dialOffset>0?'+'+dialOffset:dialOffset<0?String(dialOffset):'0';
+    if(outOfRange)info.innerHTML='<b style="color:#ef4444">⚠ '+pipVol+' µL is outside the '+pipType+' range ('+r.min+'–'+r.max+' µL).</b> Use a different pipette.';
+    else info.innerHTML='<b style="color:var(--accent2)">'+pipType+' set to '+pipVol+' µL</b> — Window: <b>'+readout+'</b>, dial: <b>'+dialShow+'</b> (each tick = '+dialUnits[pipType]+' µL)';
+  }
+}
+
+// ============================================================
+// ============================================================
+// MOLE MASCOT
+// State machine, animations, search, particles.
+// Adapted from MoleBio. Search adapter is rewritten to query
+// the TOOLS registry instead of lessons.
+// ============================================================
+// ============================================================
+
+let moleX=60,moleDir=1,moleState='idle',moleFrame=0,moleTick=0,moleSearchOpen=false,moleHidden=false;
+// Expanded animator state
+let moleEmote='',moleEmoteTick=0,moleEyeState='open',moleBreathPhase=0;
+let moleDigFrame=0,moleSniffFrame=0,moleCelebFrame=0,moleYawnFrame=0,molePeekFrame=0,moleSleepZ=0;
+let moleParticles=[],moleTrailParticles=[];
+let moleStateTimer=0,moleIdleSince=0,moleActionQueue=[];
+let moleAnimInterval=null,moleTipInterval=null;
+const MOLE_STATES=['idle','walk','dig','sniff','celebrate','yawn','sleep','peek','wave','nod'];
+const MOLE_EMOTES=['!','?','♥','★','💡','🧬','⚗','🎯','✓','💤'];
+
+// Reduced motion preference
+let prefersReducedMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(window.matchMedia){
+  window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',e=>{
+    prefersReducedMotion=e.matches;
+    if(prefersReducedMotion){
+      // Stop animations, clear particles, freeze mole
+      moleState='idle';moleParticles=[];moleFrame=0;
+      if(moleAnimInterval){clearInterval(moleAnimInterval);moleAnimInterval=null;}
+      if(moleTipInterval){clearInterval(moleTipInterval);moleTipInterval=null;}
+      drawMole();// draw static frame
+      const pc=document.getElementById('mole-particles');if(pc){const ctx2=pc.getContext('2d');ctx2.clearRect(0,0,pc.width,pc.height);}
+    } else {
+      // Restart animation
+      if(!moleAnimInterval)moleAnimInterval=setInterval(updateMole,80);
+      if(!moleTipInterval)moleTipInterval=setInterval(showMoleIdleTip,20000);
+    }
+  });
+}
+
+// Particle system for mole effects
+function spawnMoleParticle(type,x,y,count){
+  if(prefersReducedMotion)return;// respect reduced motion
+  for(let i=0;i<(count||3);i++){
+    const p={type,x:x||moleX+16,y:y||28,vx:(Math.random()-.5)*2,vy:-Math.random()*2-1,life:1,maxLife:30+Math.random()*20};
+    if(type==='dirt'){p.vy=Math.random()*-3-1;p.vx=(Math.random()-.5)*4;p.color='#8b7355';p.size=2+Math.random()*2;}
+    else if(type==='sparkle'){p.vy=-Math.random()*1.5;p.vx=(Math.random()-.5)*3;p.color=['#fbbf24','#f59e0b','#10b981','#3b82f6'][Math.floor(Math.random()*4)];p.size=2+Math.random()*2;}
+    else if(type==='zzz'){p.vy=-0.5-Math.random()*.5;p.vx=0.3+Math.random()*.3;p.color='#94a3b8';p.size=6+Math.random()*4;p.char='z';}
+    else if(type==='heart'){p.vy=-1-Math.random();p.vx=(Math.random()-.5)*1.5;p.color='#E8A0A0';p.size=6;p.char='♥';}
+    else if(type==='note'){p.vy=-1.2;p.vx=(Math.random()-.5)*2;p.color='#10b981';p.size=7;p.char=['♪','♫'][Math.floor(Math.random()*2)];}
+    else if(type==='sniff'){p.vy=0;p.vx=moleDir*2;p.color='rgba(148,163,184,.4)';p.size=3;p.maxLife=15;p.life=1;}
+    else if(type==='trail'){p.vx=0;p.vy=0;p.color='rgba(74,78,84,.15)';p.size=2;p.maxLife=20;p.life=1;p.y=30;}
+    moleParticles.push(p);
+  }
+}
+
+function updateMoleParticles(){
+  for(let i=moleParticles.length-1;i>=0;i--){
+    const p=moleParticles[i];
+    p.x+=p.vx;p.y+=p.vy;
+    p.life-=1/p.maxLife;
+    if(p.type==='dirt')p.vy+=0.15; // gravity
+    if(p.life<=0)moleParticles.splice(i,1);
+  }
+}
+
+function drawMoleParticles(){
+  const zone=document.getElementById('mole-zone');if(!zone)return;
+  let canvas=document.getElementById('mole-particles');
+  if(!canvas){
+    canvas=document.createElement('canvas');canvas.id='mole-particles';
+    canvas.width=zone.offsetWidth;canvas.height=50;
+    canvas.style.cssText='position:absolute;bottom:0;left:0;width:100%;height:50px;pointer-events:none;z-index:4;';
+    zone.appendChild(canvas);
+  }
+  if(canvas.width!==zone.offsetWidth)canvas.width=zone.offsetWidth;
+  const ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  moleParticles.forEach(p=>{
+    ctx.globalAlpha=Math.max(0,p.life);
+    if(p.char){
+      ctx.font=`${p.size}px "DM Sans",sans-serif`;ctx.fillStyle=p.color;
+      ctx.fillText(p.char,p.x,p.y);
+    } else {
+      ctx.fillStyle=p.color;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();
+    }
+  });
+  ctx.globalAlpha=1;
+}
+
+// Mole reacts to user actions
+function moleReact(action){
+  if(moleHidden)return;
+  // In reduced motion: show emote only, no animation state changes
+  if(prefersReducedMotion){
+    const emoteMap={correct:'✓',wrong:'!',navigate:'🧬',complete:'★',search:'?',tool:'💡'};
+    if(emoteMap[action]){moleEmote=emoteMap[action];moleEmoteTick=50;drawMole();}
+    return;
+  }
+  if(action==='correct'){
+    moleActionQueue.push({state:'celebrate',duration:80,emote:'✓'});
+  } else if(action==='wrong'){
+    moleActionQueue.push({state:'nod',duration:40,emote:'!'});
+  } else if(action==='navigate'){
+    moleActionQueue.push({state:'sniff',duration:50,emote:'🧬'});
+  } else if(action==='complete'){
+    moleActionQueue.push({state:'celebrate',duration:100,emote:'★'});
+    setTimeout(()=>spawnMoleParticle('sparkle',moleX+16,20,8),200);
+  } else if(action==='search'){
+    moleActionQueue.push({state:'peek',duration:40,emote:'?'});
+  } else if(action==='tool'){
+    moleActionQueue.push({state:'wave',duration:50,emote:'💡'});
+  }
+}
+
+function processActionQueue(){
+  if(moleActionQueue.length===0||moleSearchOpen)return false;
+  if(moleState!=='idle'&&moleState!=='walk')return false;
+  const action=moleActionQueue.shift();
+  moleState=action.state;moleStateTimer=action.duration;
+  if(action.emote){moleEmote=action.emote;moleEmoteTick=50;}
+  moleFrame=0;
+  return true;
+}
+
+// Toolkit-specific tips
+const MOLE_TIPS=[
+  'Click me to search the tools!',
+  'Try setting a P200 to 25 \u00B5L',
+  'Press 1\u20136 to jump to a tool',
+  'Stuck on Tm? Try nearest-neighbor',
+  'Mutate a base in the dogma viewer',
+  'Tap me, type "GFP" to find it',
+  'I love molecular biology!',
+  'Check the dilution calculator',
+  'pI = pH where charge is zero'
+];
+
+function applyMoleVisibility(){
+  const moleEl=document.getElementById('mole-char');
+  const bubble=document.getElementById('mole-bubble');
+  const idleBub=document.getElementById('mole-idle-bubble');
+  if(moleEl)moleEl.style.display=moleHidden?'none':'';
+  if(moleHidden){
+    if(bubble)bubble.style.display='none';
+    if(idleBub)idleBub.style.display='none';
+    moleSearchOpen=false;
+  }
+}
+
+function toggleMoleHidden(){
+  moleHidden=!moleHidden;
+  applyMoleVisibility();
+  // Clear/restart intervals to save CPU when mole is hidden
+  if(moleHidden){
+    if(moleAnimInterval){clearInterval(moleAnimInterval);moleAnimInterval=null;}
+    if(moleTipInterval){clearInterval(moleTipInterval);moleTipInterval=null;}
+    moleParticles=[];
+    const pc=document.getElementById('mole-particles');if(pc){const ctx2=pc.getContext('2d');ctx2.clearRect(0,0,pc.width,pc.height);}
+  } else if(!prefersReducedMotion){
+    if(!moleAnimInterval)moleAnimInterval=setInterval(updateMole,80);
+    if(!moleTipInterval)moleTipInterval=setInterval(showMoleIdleTip,20000);
+    drawMole();
+  }
+  try{_store.set('molebio-mole-hidden',moleHidden?'true':'false');}catch(e){}
+  
+}
+let moleTipIdx=0;
+
+// Position a bubble (search or idle) so it stays inside the mole-zone and never
+// extends past the viewport. By default the bubble's left edge sits 10px to the
+// left of moleX, but if that would push the right edge past the zone, we clamp.
+function positionMoleBubble(bubbleEl){
+  if(!bubbleEl)return;
+  const zone=document.getElementById('mole-zone');
+  if(!zone)return;
+  const zoneW=zone.offsetWidth;
+  // Need to know bubble width. If hidden (display:none), temporarily measure.
+  const wasHidden=bubbleEl.style.display==='none'||getComputedStyle(bubbleEl).display==='none';
+  if(wasHidden){bubbleEl.style.visibility='hidden';bubbleEl.style.display='block';}
+  const bubbleW=bubbleEl.offsetWidth;
+  if(wasHidden){bubbleEl.style.display='none';bubbleEl.style.visibility='';}
+  // Preferred position: 10px left of mole
+  let left=moleX-10;
+  // Clamp: don't let bubble extend past the right edge of the zone
+  const maxLeft=zoneW-bubbleW-4;// 4px gutter
+  if(left>maxLeft)left=maxLeft;
+  // Don't let bubble go past the left edge of the zone
+  if(left<4)left=4;
+  bubbleEl.style.left=left+'px';
+}
+
+function showMoleIdleTip(){
+  if(moleSearchOpen||moleHidden||moleState==='sleep')return;
+  const b=document.getElementById('mole-idle-bubble');if(!b)return;
+  b.textContent=MOLE_TIPS[moleTipIdx%MOLE_TIPS.length];
+  moleTipIdx++;
+  // Position near mole, clamped to stay in zone
+  b.style.display='block';
+  positionMoleBubble(b);
+  b.style.opacity='1';
+  setTimeout(()=>{b.style.opacity='0';setTimeout(()=>{b.style.display='none';},300);},3000);
+}
+
+function toggleMoleSearch(){
+  moleSearchOpen=!moleSearchOpen;
+  if(moleSearchOpen&&typeof moleReact==='function')moleReact('search');
+  const bubble=document.getElementById('mole-bubble');
+  const idleBub=document.getElementById('mole-idle-bubble');
+  if(moleSearchOpen){
+    if(bubble){
+      bubble.style.display='block';
+      positionMoleBubble(bubble);
+      setTimeout(()=>document.getElementById('lesson-search')?.focus(),50);
+    }
+    if(idleBub){idleBub.style.display='none';}
+    moleState='idle';// stop walking when searching
+  } else {
+    if(bubble)bubble.style.display='none';
+    document.getElementById('lesson-search')&&(document.getElementById('lesson-search').value='');
+    hideSearchResults();
+  }
+}
+function drawMole(){
+  const c=document.getElementById('mole-canvas');if(!c)return;
+  const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,32,44);
+  ctx.imageSmoothingEnabled=false;
+
+  // Offset all drawing down 12px to leave emote space at top
+  ctx.save();
+  ctx.translate(0,12);
+
+  const f=moleFrame%4;
+  const flip=(moleDir<0);
+  if(flip){ctx.save();ctx.translate(32,0);ctx.scale(-1,1);}
+
+  // Breathing animation (subtle Y oscillation)
+  moleBreathPhase=(moleBreathPhase+0.04)%(Math.PI*2);
+  const breathOff=(moleState==='sleep')?Math.sin(moleBreathPhase)*1.5:Math.sin(moleBreathPhase)*0.4;
+
+  // Base bounce for walking
+  const walkBounce=(moleState==='walk'&&f%2===0)?-1:0;
+  // Dig bob
+  const digBob=(moleState==='dig')?(f%2===0?-2:1):0;
+  // Celebrate jump
+  const celebJump=(moleState==='celebrate')?(f%2===0?-3:0):0;
+  // Yawn stretch
+  const yawnStretch=(moleState==='yawn'&&f<2)?-1:0;
+  // Sleep sink
+  const sleepSink=(moleState==='sleep')?2:0;
+  // Peek crouch
+  const peekCrouch=(moleState==='peek')?2:0;
+  // Wave bounce
+  const waveBob=(moleState==='wave'&&f%2===0)?-1:0;
+
+  const bounce=walkBounce+digBob+celebJump+yawnStretch+sleepSink+peekCrouch+waveBob+Math.round(breathOff);
+
+  // Shadow (bigger during jump)
+  const shadowW=(moleState==='celebrate'&&f%2===0)?14:18;
+  ctx.fillStyle='rgba(0,0,0,.15)';
+  ctx.fillRect(16-shadowW/2,28,(shadowW),2);
+
+  // Body (round, chunky)
+  ctx.fillStyle='#888c92';
+  ctx.fillRect(8,16+bounce,16,10);
+  ctx.fillRect(7,18+bounce,18,6);
+  ctx.fillRect(10,15+bounce,12,1);
+  // Belly
+  ctx.fillStyle='#8b9199';
+  ctx.fillRect(11,19+bounce,10,6);
+  ctx.fillRect(12,18+bounce,8,1);
+  // Sleep belly rise
+  if(moleState==='sleep'){
+    const bellyPulse=Math.sin(moleBreathPhase)*1;
+    ctx.fillStyle='#8b9199';
+    ctx.fillRect(11,19+bounce-Math.round(bellyPulse),10,7);
+  }
+
+  // Head (big, round)
+  ctx.fillStyle='#9aa0a8';
+  ctx.fillRect(6,4+bounce,20,12);
+  ctx.fillRect(8,3+bounce,16,1);
+  ctx.fillRect(5,6+bounce,22,8);
+  ctx.fillRect(8,15+bounce,16,2);
+  // Forehead highlight
+  ctx.fillStyle='#a8aeb6';
+  ctx.fillRect(10,5+bounce,12,2);
+
+  // Ears
+  ctx.fillStyle='#9aa0a8';
+  ctx.fillRect(5,2+bounce,4,4);ctx.fillRect(23,2+bounce,4,4);
+  ctx.fillRect(6,1+bounce,2,2);ctx.fillRect(24,1+bounce,2,2);
+  // Ear perk for sniff/peek
+  if(moleState==='sniff'||moleState==='peek'){
+    ctx.fillRect(5,0+bounce,4,3);ctx.fillRect(23,0+bounce,4,3);
+  }
+  // Inner ear (pink)
+  ctx.fillStyle='#E8A0A0';
+  ctx.fillRect(6,3+bounce,2,2);ctx.fillRect(24,3+bounce,2,2);
+
+  // Snout (big pink oval)
+  ctx.fillStyle='#E8A0A0';
+  // Sniff: snout bobs forward
+  const snoutXOff=(moleState==='sniff'&&f%2===0)?1:0;
+  ctx.fillRect(12+snoutXOff,9+bounce,8,5);
+  ctx.fillRect(11+snoutXOff,10+bounce,10,3);
+  // Nose (dark, star-shaped)
+  ctx.fillStyle='#2a2a3e';
+  ctx.fillRect(14+snoutXOff,9+bounce,4,3);
+  ctx.fillRect(15+snoutXOff,8+bounce,2,1);
+  ctx.fillRect(13+snoutXOff,10+bounce,1,1);ctx.fillRect(18+snoutXOff,10+bounce,1,1);
+  // Nose shine
+  ctx.fillStyle='#555';
+  ctx.fillRect(15+snoutXOff,9+bounce,1,1);
+  // Sniff wiggle: small dots near nose
+  if(moleState==='sniff'&&f%3===0){
+    ctx.fillStyle='rgba(148,163,184,.4)';
+    ctx.fillRect(20+snoutXOff,9+bounce,2,1);ctx.fillRect(22+snoutXOff,10+bounce,1,1);
+  }
+
+  // Eyes
+  if(moleState==='sleep'){
+    // Sleeping: closed eyes with curved line
+    ctx.fillStyle='#1a1a2e';
+    ctx.fillRect(8,9+bounce,4,1);ctx.fillRect(20,9+bounce,4,1);
+    ctx.fillRect(9,10+bounce,2,1);ctx.fillRect(21,10+bounce,2,1);
+  } else if(moleState==='yawn'&&f>=1&&f<=2){
+    // Yawn: squinty eyes
+    ctx.fillStyle='#1a1a2e';
+    ctx.fillRect(8,9+bounce,4,1);ctx.fillRect(20,9+bounce,4,1);
+  } else if(moleState==='celebrate'){
+    // Celebrate: happy squint eyes (^ ^)
+    ctx.fillStyle='#1a1a2e';
+    ctx.fillRect(8,8+bounce,1,1);ctx.fillRect(11,8+bounce,1,1);ctx.fillRect(9,7+bounce,2,1);
+    ctx.fillRect(20,8+bounce,1,1);ctx.fillRect(23,8+bounce,1,1);ctx.fillRect(21,7+bounce,2,1);
+  } else if(moleState==='peek'){
+    // Peek: wide eyes (bigger pupils)
+    ctx.fillStyle='#1a1a2e';
+    ctx.fillRect(7,6+bounce,5,5);ctx.fillRect(20,6+bounce,5,5);
+    ctx.fillStyle='#111';
+    ctx.fillRect(9,7+bounce,3,3);ctx.fillRect(21,7+bounce,3,3);
+    ctx.fillStyle='#fff';
+    ctx.fillRect(8,6+bounce,2,2);ctx.fillRect(20,6+bounce,2,2);
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    ctx.fillRect(10,9+bounce,1,1);ctx.fillRect(22,9+bounce,1,1);
+  } else {
+    // Normal eyes
+    const blinking=(moleState==='idle'&&f===3)||(moleState==='nod'&&f%2===0);
+    if(blinking){
+      ctx.fillStyle='#9aa0a8';
+      ctx.fillRect(8,7+bounce,4,4);ctx.fillRect(20,7+bounce,4,4);
+      ctx.fillStyle='#1a1a2e';
+      ctx.fillRect(8,9+bounce,4,1);ctx.fillRect(20,9+bounce,4,1);
+    } else {
+      // Left eye
+      ctx.fillStyle='#1a1a2e';
+      ctx.fillRect(8,7+bounce,4,4);
+      ctx.fillStyle='#111';
+      ctx.fillRect(9,8+bounce,2,2);
+      ctx.fillStyle='#fff';
+      ctx.fillRect(8,7+bounce,1,1);
+      ctx.fillStyle='rgba(255,255,255,.5)';
+      ctx.fillRect(10,9+bounce,1,1);
+      // Right eye
+      ctx.fillStyle='#1a1a2e';
+      ctx.fillRect(20,7+bounce,4,4);
+      ctx.fillStyle='#111';
+      ctx.fillRect(21,8+bounce,2,2);
+      ctx.fillStyle='#fff';
+      ctx.fillRect(20,7+bounce,1,1);
+      ctx.fillStyle='rgba(255,255,255,.5)';
+      ctx.fillRect(22,9+bounce,1,1);
+    }
+  }
+
+  // Mouth variations
+  if(moleState==='yawn'&&f>=1&&f<=2){
+    // Yawn: open mouth
+    ctx.fillStyle='#1a1a2e';
+    ctx.fillRect(13,13+bounce,6,3);
+    ctx.fillStyle='#E8A0A0';
+    ctx.fillRect(14,14+bounce,4,1);
+  } else if(moleState==='celebrate'){
+    // Happy mouth (smile)
+    ctx.fillStyle='#2a2a3e';
+    ctx.fillRect(13,14+bounce,6,1);
+    ctx.fillRect(12,13+bounce,1,1);ctx.fillRect(19,13+bounce,1,1);
+  } else {
+    // Tiny teeth
+    ctx.fillStyle='#e8e8e8';
+    ctx.fillRect(14,14+bounce,2,1);ctx.fillRect(16,14+bounce,2,1);
+  }
+
+  // Whiskers
+  ctx.fillStyle='#8b9199';
+  ctx.fillRect(4,11+bounce,4,1);ctx.fillRect(24,11+bounce,4,1);
+  ctx.fillRect(3,9+bounce,4,1);ctx.fillRect(25,9+bounce,4,1);
+
+  // Arms/claws
+  ctx.fillStyle='#888c92';
+  if(moleState==='walk'){
+    if(f<2){ctx.fillRect(4,16+bounce,4,5);ctx.fillRect(24,18+bounce,4,5);}
+    else{ctx.fillRect(4,18+bounce,4,5);ctx.fillRect(24,16+bounce,4,5);}
+  } else if(moleState==='dig'){
+    // Digging: arms flail fast
+    if(f%2===0){ctx.fillRect(3,14+bounce,4,4);ctx.fillRect(25,17+bounce,4,4);}
+    else{ctx.fillRect(3,17+bounce,4,4);ctx.fillRect(25,14+bounce,4,4);}
+  } else if(moleState==='wave'){
+    // Wave: one arm up, one normal
+    ctx.fillRect(4,17+bounce,4,5);
+    // Right arm raised and waving
+    if(f%2===0){ctx.fillRect(25,10+bounce,4,5);}
+    else{ctx.fillRect(26,8+bounce,4,5);}
+  } else if(moleState==='celebrate'){
+    // Both arms up!
+    if(f%2===0){ctx.fillRect(3,10+bounce,4,5);ctx.fillRect(25,10+bounce,4,5);}
+    else{ctx.fillRect(2,8+bounce,4,5);ctx.fillRect(26,8+bounce,4,5);}
+  } else {
+    ctx.fillRect(4,17+bounce,4,5);ctx.fillRect(24,17+bounce,4,5);
+  }
+
+  // Claw fingers
+  ctx.fillStyle='#c8ccd2';
+  if(moleState==='dig'){
+    const clY=f%2===0?18:21;
+    ctx.fillRect(1,clY+bounce,3,2);ctx.fillRect(3,clY+1+bounce,2,2);ctx.fillRect(5,clY+bounce,2,2);
+    ctx.fillRect(24,clY+bounce+2,2,2);ctx.fillRect(26,clY+1+bounce+2,2,2);ctx.fillRect(28,clY+bounce+2,2,2);
+  } else if(moleState==='wave'||moleState==='celebrate'){
+    // Claws on raised arms
+    const armY=f%2===0?10:8;
+    ctx.fillRect(25,armY+bounce,2,2);ctx.fillRect(27,armY+1+bounce,2,2);ctx.fillRect(29,armY+bounce,1,2);
+    // Left normal claws for wave, raised for celebrate
+    if(moleState==='celebrate'){
+      ctx.fillRect(1,armY+bounce,2,2);ctx.fillRect(3,armY+1+bounce,2,2);ctx.fillRect(5,armY+bounce,1,2);
+    } else {
+      const clawY=22;
+      ctx.fillRect(3,clawY+bounce,2,2);ctx.fillRect(5,clawY+1+bounce,2,2);ctx.fillRect(7,clawY+bounce,1,2);
+    }
+  } else {
+    const clawY=moleState==='walk'?(f<2?21:23):22;
+    ctx.fillRect(3,clawY+bounce,2,2);ctx.fillRect(5,clawY+1+bounce,2,2);ctx.fillRect(7,clawY+bounce,1,2);
+    ctx.fillRect(24,clawY+bounce,1,2);ctx.fillRect(25,clawY+1+bounce,2,2);ctx.fillRect(27,clawY+bounce,2,2);
+  }
+
+  // Feet
+  ctx.fillStyle='#888c92';
+  if(moleState==='walk'){
+    if(f<2){ctx.fillRect(10,26,4,2);ctx.fillRect(19,27,4,1);}
+    else{ctx.fillRect(10,27,4,1);ctx.fillRect(19,26,4,2);}
+  } else if(moleState==='dig'){
+    // Dig: feet spread wide for stability
+    ctx.fillRect(8,26,5,2);ctx.fillRect(20,26,5,2);
+  } else if(moleState==='celebrate'){
+    // Celebrate: little hops
+    if(f%2===0){ctx.fillRect(10,27,4,1);ctx.fillRect(19,27,4,1);}
+    else{ctx.fillRect(10,26,4,2);ctx.fillRect(19,26,4,2);}
+  } else if(moleState==='sleep'){
+    // Sleep: feet tucked
+    ctx.fillRect(11,27,3,1);ctx.fillRect(19,27,3,1);
+  } else {
+    ctx.fillRect(10,26,4,2);ctx.fillRect(19,26,4,2);
+  }
+  // Toe claws
+  ctx.fillStyle='#c8ccd2';
+  ctx.fillRect(9,27,2,1);ctx.fillRect(22,27,2,1);
+
+  // Tail
+  ctx.fillStyle='#9aa0a8';
+  if(moleState==='celebrate'){
+    // Wagging tail
+    const tailX=f%2===0?5:7;
+    ctx.fillRect(tailX,19+bounce,2,2);ctx.fillRect(tailX-1,18+bounce,1,2);
+  } else if(moleState==='sleep'){
+    // Curled tail
+    ctx.fillRect(6,22+bounce,2,2);ctx.fillRect(5,21+bounce,2,1);
+  } else {
+    ctx.fillRect(6,20+bounce,2,2);
+    ctx.fillRect(5,19+bounce,1,2);
+  }
+
+  // Hard hat for dig state
+  if(moleState==='dig'){
+    ctx.fillStyle='#f59e0b';
+    ctx.fillRect(7,1+bounce,18,3);ctx.fillRect(9,0+bounce,14,2);
+    ctx.fillStyle='#d97706';
+    ctx.fillRect(13,0+bounce,6,1);
+  }
+
+  // Sleep cap
+  if(moleState==='sleep'){
+    ctx.fillStyle='#6366f1';
+    ctx.fillRect(8,1+bounce,16,4);ctx.fillRect(10,0+bounce,12,2);
+    // Bobble
+    ctx.fillStyle='#a5b4fc';
+    ctx.fillRect(22,0+bounce,3,3);
+  }
+
+  if(flip)ctx.restore();
+  ctx.restore(); // restore the translate(0,12)
+
+  // Emote bubble (drawn in top 12px space above mole)
+  if(moleEmote&&moleEmoteTick>0){
+    const emoteAlpha=Math.min(1,moleEmoteTick/10);
+    ctx.globalAlpha=emoteAlpha;
+    // Small bubble
+    ctx.fillStyle='rgba(30,41,59,.85)';
+    const emW=12,emH=10;
+    const emX=16-emW/2,emY=1;
+    if(ctx.roundRect){ctx.beginPath();ctx.roundRect(emX,emY,emW,emH,3);ctx.fill();}
+    else{ctx.fillRect(emX,emY,emW,emH);}
+    // Tiny pointer
+    ctx.fillRect(15,emY+emH,2,2);
+    // Emote character
+    ctx.fillStyle='#fbbf24';
+    ctx.font='7px sans-serif';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText(moleEmote,16,emY+emH/2+1);
+    ctx.globalAlpha=1;
+  }
+}
+
+function updateMole(){
+  if(moleHidden)return;
+  moleTick++;
+  const zone=document.getElementById('mole-zone');
+  const moleEl=document.getElementById('mole-char');
+  if(!zone||!moleEl)return;
+  const maxX=zone.offsetWidth-40;
+
+  // Emote countdown
+  if(moleEmoteTick>0)moleEmoteTick--;
+  if(moleEmoteTick<=0)moleEmote='';
+
+  // Process queued actions
+  processActionQueue();
+
+  // State timer for timed states
+  if(moleStateTimer>0){
+    moleStateTimer--;
+    if(moleStateTimer<=0&&moleState!=='idle'&&moleState!=='walk'){
+      moleState='idle';moleIdleSince=moleTick;
+    }
+  }
+
+  if(moleState==='idle'){
+    // Idle: blink every ~2s, occasionally start other behaviors
+    if(moleTick%4===0)moleFrame++;
+    moleIdleSince++;
+    if(moleTick%80===0&&!moleSearchOpen&&Math.random()>0.3){
+      // Pick a random behavior weighted by context
+      const r=Math.random();
+      if(r<0.45){
+        moleState='walk';moleDir=Math.random()>0.5?1:-1;
+      } else if(r<0.55){
+        moleState='sniff';moleStateTimer=60;moleFrame=0;
+      } else if(r<0.62){
+        moleState='dig';moleStateTimer=50;moleFrame=0;
+      } else if(r<0.68){
+        moleState='peek';moleStateTimer=35;moleFrame=0;
+      } else if(r<0.73){
+        moleState='yawn';moleStateTimer=45;moleFrame=0;
+      } else if(r<0.78){
+        moleState='wave';moleStateTimer=40;moleFrame=0;
+      } else if(r<0.82){
+        moleState='nod';moleStateTimer=30;moleFrame=0;
+      }
+    }
+    // After long idle, fall asleep
+    if(moleIdleSince>600&&!moleSearchOpen){
+      moleState='sleep';moleStateTimer=0;moleFrame=0;moleIdleSince=0;
+    }
+  } else if(moleState==='walk'){
+    if(moleTick%3===0)moleFrame++;
+    moleX+=moleDir*1.2;
+    if(moleX>maxX){moleX=maxX;moleDir=-1;}
+    if(moleX<20){moleX=20;moleDir=1;}
+    // Walking trail particles
+    if(moleTick%8===0)spawnMoleParticle('trail',moleX+16,0,1);
+    // Stop walking after a bit
+    if(moleTick%120===0){moleState='idle';moleIdleSince=0;}
+  } else if(moleState==='dig'){
+    if(moleTick%2===0)moleFrame++;
+    // Dirt particles while digging
+    if(moleTick%6===0)spawnMoleParticle('dirt',moleX+16,25,2);
+  } else if(moleState==='sniff'){
+    if(moleTick%4===0)moleFrame++;
+    // Sniff particles
+    if(moleTick%8===0)spawnMoleParticle('sniff',moleX+(moleDir>0?28:4),20,1);
+  } else if(moleState==='celebrate'){
+    if(moleTick%3===0)moleFrame++;
+    // Sparkle particles
+    if(moleTick%10===0)spawnMoleParticle('sparkle',moleX+16,10,2);
+  } else if(moleState==='yawn'){
+    if(moleTick%5===0)moleFrame++;
+  } else if(moleState==='sleep'){
+    if(moleTick%6===0)moleFrame++;
+    // Zzz particles
+    if(moleTick%25===0)spawnMoleParticle('zzz',moleX+24,8,1);
+    // Wake up on interaction
+    if(moleSearchOpen){moleState='idle';moleIdleSince=0;}
+  } else if(moleState==='peek'){
+    if(moleTick%4===0)moleFrame++;
+  } else if(moleState==='wave'){
+    if(moleTick%4===0)moleFrame++;
+  } else if(moleState==='nod'){
+    if(moleTick%3===0)moleFrame++;
+  }
+
+  moleEl.style.left=moleX+'px';
+  // Update speech bubble position too — clamped so it stays in the zone
+  const bubble=document.getElementById('mole-bubble');
+  if(bubble&&moleSearchOpen)positionMoleBubble(bubble);
+
+  // Update particles
+  updateMoleParticles();
+  drawMoleParticles();
+  drawMole();
+}
+
+// Toolkit search adapter: searches TOOLS instead of LESSONS.
+function filterSearch(query){
+  const results=document.getElementById('search-results');
+  if(!results)return;
+  if(!query||query.length<1){results.innerHTML='<div style="padding:.6rem;font-size:.7rem;color:var(--text-muted)">Type a tool name, e.g. "tm", "pipette", "codon"...</div>';return;}
+  const q=query.toLowerCase();
+  const matches=[];
+  TOOL_KEYS.forEach(key=>{
+    const t=TOOLS[key];
+    const haystack=((t.label||'')+' '+(t.eyebrow||'')+' '+(t.sub||'')).toLowerCase();
+    if(haystack.includes(q)){
+      let score=0;
+      if((t.label||'').toLowerCase().includes(q))score+=10;
+      if((t.eyebrow||'').toLowerCase().includes(q))score+=5;
+      if((t.sub||'').toLowerCase().includes(q))score+=3;
+      score+=1;
+      matches.push({key,tool:t,score});
+    }
+  });
+  matches.sort((a,b)=>b.score-a.score);
+  if(matches.length===0){
+    results.innerHTML='<div style="padding:.6rem;font-size:.7rem;color:var(--text-muted)">No tools match. Try "Tm", "primer", "codon", "pipette"...</div>';
+    return;
+  }
+  results.innerHTML=matches.map(m=>`<div onclick="selectTool('${m.key}');moleSearchOpen=false;document.getElementById('mole-bubble').style.display='none';document.getElementById('lesson-search').value='';hideSearchResults()" style="padding:.45rem .7rem;cursor:pointer;border-bottom:1px solid var(--border);transition:background .1s;display:flex;align-items:center;gap:.5rem;" onmouseenter="this.style.background='rgba(231,117,0,.08)'" onmouseleave="this.style.background='none'"><span style="font-size:.95rem;">${m.tool.icon}</span><div style="flex:1;"><div style="font-size:.72rem;color:var(--text);font-weight:500;">${m.tool.label}</div><div style="font-size:.6rem;color:var(--text-muted)">${m.tool.eyebrow}</div></div></div>`).join('');
+}
+
+function showSearchResults(){
+  const r=document.getElementById('search-results');
+  if(!r)return;
+  r.style.display='block';
+  filterSearch(document.getElementById('lesson-search')?.value||'');
+  // Position the dropdown so it never extends past the viewport.
+  // The dropdown is absolutely positioned inside the bubble. We compute where
+  // the bubble sits in the viewport and flip the dropdown right-anchored if
+  // a left-anchored 280px dropdown would overflow.
+  const bubble=document.getElementById('mole-bubble');
+  if(!bubble)return;
+  const bubbleRect=bubble.getBoundingClientRect();
+  const vw=window.innerWidth;
+  const desiredW=280;
+  const margin=8;
+  // Available width to the right of bubble's left edge
+  const roomRight=vw-bubbleRect.left-margin;
+  if(roomRight<desiredW){
+    // Either shrink the dropdown to fit, or right-anchor it
+    if(bubbleRect.right<=vw-margin){
+      // Right-anchor to bubble's right edge (within bubble's coord system)
+      r.style.left='auto';
+      r.style.right='0';
+      r.style.width=Math.min(desiredW,vw-margin*2)+'px';
+    } else {
+      // Bubble itself is past viewport (shouldn't happen with positionMoleBubble)
+      r.style.left='0';r.style.right='auto';
+      r.style.width=Math.max(180,roomRight)+'px';
+    }
+  } else {
+    r.style.left='0';r.style.right='auto';r.style.width=desiredW+'px';
+  }
+}
+function hideSearchResults(){
+  const r=document.getElementById('search-results');if(r)r.style.display='none';
+}
+
+function initMole(){
+  const zone=document.getElementById('mole-zone');
+  if(!zone)return;
+
+  const moleEl=document.createElement('div');
+  moleEl.id='mole-char';
+  moleEl.style.cssText='position:absolute;bottom:4px;left:60px;cursor:pointer;z-index:5;transition:none;';
+  moleEl.innerHTML=`<canvas id="mole-canvas" width="32" height="44" style="width:32px;height:44px;image-rendering:-webkit-optimize-contrast;image-rendering:pixelated;margin-top:-12px;" aria-label="Mole mascot \u2014 click to search tools"></canvas>`;
+  moleEl.setAttribute('role','button');
+  moleEl.setAttribute('tabindex','0');
+  moleEl.setAttribute('aria-label','Click to search tools');
+  moleEl.onclick=toggleMoleSearch;
+  moleEl.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMoleSearch();}});
+  moleEl.title='Click me to search the tools!';
+  zone.appendChild(moleEl);
+
+  const bubble=document.createElement('div');
+  bubble.id='mole-bubble';
+  bubble.style.cssText='position:absolute;top:48px;left:40px;display:none;background:var(--surface);border:1.5px solid var(--accent);border-radius:2px 10px 10px 10px;padding:.4rem .55rem;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.12);white-space:nowrap;max-width:calc(100vw - 16px);transition:opacity .15s;';
+  bubble.innerHTML=`<input id="lesson-search" type="text" placeholder="Search tools..." autocomplete="off" style="width:170px;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text);outline:none;" oninput="filterSearch(this.value)" onfocus="showSearchResults()" onblur="setTimeout(hideSearchResults,200)"><div id="search-results" style="display:none;position:absolute;top:100%;left:0;width:280px;max-height:320px;overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:6px;margin-top:4px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.4);"></div>`;
+  zone.appendChild(bubble);
+
+  const idleBubble=document.createElement('div');
+  idleBubble.id='mole-idle-bubble';
+  idleBubble.style.cssText='position:absolute;top:48px;left:40px;display:none;background:var(--surface);border:1px solid var(--border);border-radius:2px 8px 8px 8px;padding:.3rem .55rem;z-index:25;font-family:"DM Mono",monospace;font-size:.6rem;color:var(--text-dim);pointer-events:none;opacity:0;transition:opacity .3s;max-width:min(220px,calc(100vw - 16px));line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.08);';
+  zone.appendChild(idleBubble);
+
+  drawMole();
+  if(!prefersReducedMotion){
+    moleAnimInterval=setInterval(updateMole,80);
+    moleTipInterval=setInterval(showMoleIdleTip,20000);
+    setTimeout(()=>showMoleIdleTip(),2000);
+  } else {
+    setTimeout(()=>showMoleIdleTip(),2000);
+  }
+
+  window.addEventListener('resize',()=>{
+    const pc=document.getElementById('mole-particles');
+    const z=document.getElementById('mole-zone');
+    if(pc&&z)pc.width=z.offsetWidth;
+    // Keep bubble inside the (possibly resized) zone — also catches iPhone rotate
+    if(moleSearchOpen){
+      const bubble=document.getElementById('mole-bubble');
+      if(bubble)positionMoleBubble(bubble);
+      // Re-run dropdown positioning if open
+      const r=document.getElementById('search-results');
+      if(r&&getComputedStyle(r).display!=='none')showSearchResults();
+    }
+  });
+
+  (async()=>{
+    try{const r=await _store.get('molebio-mole-hidden');if(r&&r.value==='true'){moleHidden=true;applyMoleVisibility();}}catch(e){}
+  })();
+}
+
+
+// ============================================================
+// BOOTSTRAP
+// ============================================================
+function init(){
+  // Each subsystem is wrapped: if one throws (e.g. canvas issue on a restrictive
+  // browser), we still want the rest of the page to render. The page MUST always
+  // get to showHomePage() / selectTool() so users see something other than a header.
+  try{buildSidebar();}catch(e){console.warn('buildSidebar failed:',e);}
+  try{initMobileUI();}catch(e){console.warn('initMobileUI failed:',e);}
+  try{initKeyboardShortcuts();}catch(e){console.warn('initKeyboardShortcuts failed:',e);}
+  try{initMole();}catch(e){console.warn('initMole failed:',e);}
+  // Determine starting view based on URL hash
+  try{
+    const hash=window.location.hash.replace('#','');
+    if(hash&&TOOLS[hash]){
+      selectTool(hash);
+    } else {
+      showHomePage();
+    }
+  }catch(e){
+    console.error('Initial render failed:',e);
+    // Fallback: write a minimal page directly to right-panel so user sees SOMETHING
+    const rp=document.getElementById('right-panel');
+    if(rp){
+      rp.innerHTML='<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h2>MoleBio Toolkit</h2><p>Unable to initialize the page in this browser. Try refreshing, or open in Safari/Chrome on a desktop or laptop.</p></div>';
+    }
+  }
+  // Hashchange navigation
+  window.addEventListener('hashchange',()=>{
+    const h=window.location.hash.replace('#','');
+    if(h&&TOOLS[h]){selectTool(h);}
+    else if(!h){showHomePage();}
+  });
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',init);
+} else {
+  init();
+}
+
+// ============================================================
+// EXPORT INLINE-CALLED FUNCTIONS to window
+// (because event handlers attached via inline `onclick="..."` in
+// rendered HTML need to find these on the global object)
+// ============================================================
+const _w=window;
+_w.selectTool=selectTool;
+_w.showHomePage=showHomePage;
+_w.filterSidebar=filterSidebar;
+_w.showSettingsMenu=showSettingsMenu;
+_w.showToolSwitcher=showToolSwitcher;
+_w.updateToolSwitcherLabel=updateToolSwitcherLabel;
+_w.showAboutModal=showAboutModal;
+_w.toggleDarkMode=toggleDarkMode;
+_w.toggleHighContrast=toggleHighContrast;
+_w.sendMoleHome=sendMoleHome;
+// Mole
+_w.toggleMoleSearch=toggleMoleSearch;
+_w.filterSearch=filterSearch;
+_w.showSearchResults=showSearchResults;
+_w.hideSearchResults=hideSearchResults;
+_w.toggleMoleHidden=toggleMoleHidden;
+// Codon
+_w.codonStep=codonStep;_w.toggleCodonPlay=toggleCodonPlay;_w.translateAll=translateAll;
+_w.updateCodonDisplay=updateCodonDisplay;
+// Dogma
+_w.setDogmaSeq=setDogmaSeq;_w.mutateDogmaBase=mutateDogmaBase;_w.renderDogmaFlow=renderDogmaFlow;_w.onDogmaInputChange=onDogmaInputChange;_w.setDogmaInputMode=setDogmaInputMode;_w.copyDogmaSeq=copyDogmaSeq;
+// Units
+_w.calcUnits=calcUnits;_w.calcFromMass=calcFromMass;_w.calcFromMoles=calcFromMoles;
+_w.calcMgMl=calcMgMl;_w.calcMolar=calcMolar;_w.calcDilution=calcDilution;
+// Tm
+_w.calcTm=calcTm;
+// MW/pI
+_w.calcMwPi=calcMwPi;
+// Pipette
+_w.setPipType=setPipType;_w.drawPipette=drawPipette;
+// Inline state vars referenced via property descriptors
+[
+  ['codonSeq',()=>codonSeq,v=>{codonSeq=v;}],
+  ['codonPos',()=>codonPos,v=>{codonPos=v;}],
+  ['dogmaSeq',()=>dogmaSeq,v=>{dogmaSeq=v;}],
+  ['dogmaOrigSeq',()=>dogmaOrigSeq,v=>{dogmaOrigSeq=v;}],
+  ['pipVol',()=>pipVol,v=>{pipVol=v;}],
+  ['pipType',()=>pipType,v=>{pipType=v;}],
+  ['moleSearchOpen',()=>moleSearchOpen,v=>{moleSearchOpen=v;}],
+].forEach(([name,getter,setter])=>{
+  Object.defineProperty(_w,name,{get:getter,set:setter,configurable:true});
+});
+
+})(); // end IIFE
+</script>
+</body>
+</html>
