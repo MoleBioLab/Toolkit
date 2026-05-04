@@ -4,24 +4,33 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>MoleBio Toolkit — Interactive Molecular Biology Tools for Lecture & Lab</title>
-<meta name="description" content="MoleBio Toolkit is a course-tailored interactive companion for molecular biology lecture and lab — central dogma flow, codon translator, micropipette viewer, units &amp; molarity calculator, DNA Tm calculator, and protein MW/pI. Created by Dylan S. Blohm.">
+<meta name="description" content="MoleBio Toolkit is a course-tailored interactive companion for molecular biology lecture and lab — central dogma flow, codon translator, micropipette viewer, units &amp; molarity calculator, DNA cloning &amp; PCR planner, protein MW/pI, serial dilution, UV absorbance/purity, and buffer pH. Created by Dylan S. Blohm.">
 <meta name="author" content="Dylan S. Blohm">
-<meta name="keywords" content="molecular biology, biochemistry, MOL214, codon table, primer Tm, protein pI, micropipette, dilution, lab tools, Princeton">
+<meta name="keywords" content="molecular biology, biochemistry, MOL214, codon table, primer Tm, PCR, thermocycler, protein pI, micropipette, serial dilution, A260 A280, NanoDrop, spectrophotometry, buffer pH, Henderson Hasselbalch, lab tools, Princeton">
 <meta property="og:title" content="MoleBio Toolkit — Interactive Tools for Molecular Biology">
-<meta property="og:description" content="Six interactive tools for molecular biology lecture and lab: central dogma flow, codon translator, micropipette viewer, units &amp; molarity, DNA Tm, and protein MW/pI.">
+<meta property="og:description" content="Nine interactive tools for molecular biology lecture and lab: central dogma flow, codon translator, micropipette viewer, units &amp; molarity, DNA cloning &amp; PCR, protein MW/pI, serial dilution, UV absorbance/purity, and buffer pH.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MoleBio Toolkit">
-<meta property="og:image" content="og-image.png">
+<meta property="og:image" content="https://molebiolab.github.io/Toolkit/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MoleBio Toolkit — Interactive Tools for Molecular Biology">
+<meta property="og:url" content="https://molebiolab.github.io/Toolkit/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="og-image.png">
+<meta name="twitter:image" content="https://molebiolab.github.io/Toolkit/og-image.png">
 <meta name="twitter:title" content="MoleBio Toolkit">
 <meta name="twitter:description" content="Interactive molecular biology tools for lecture and lab.">
 <meta name="theme-color" content="#121212">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121212'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Georgia,serif' font-size='38' font-weight='700'%3E%3Ctspan fill='%23ffffff'%3EM%3C/tspan%3E%3Ctspan fill='%23E77500'%3EB%3C/tspan%3E%3C/text%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23121212'/%3E%3Ctext x='90' y='120' text-anchor='middle' font-family='Georgia,serif' font-size='100' font-weight='700'%3E%3Ctspan fill='%23ffffff'%3EM%3C/tspan%3E%3Ctspan fill='%23E77500'%3EB%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<!-- PWA: web app manifest (inline data URI for single-file deployment) -->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22MoleBio%20Toolkit%22%2C%22short_name%22%3A%22MoleBio%22%2C%22description%22%3A%22Interactive%20molecular%20biology%20tools%20for%20lecture%20and%20lab%20%E2%80%94%20primer%20Tm%2C%20PCR%20planner%2C%20micropipette%20viewer%2C%20units%20%26%20molarity%2C%20serial%20dilution%2C%20buffer%20pH%2C%20absorbance%2Fpurity%2C%20MW%2FpI%2C%20central%20dogma%2C%20codon%20translator.%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22any%22%2C%22background_color%22%3A%22%23FAF7F2%22%2C%22theme_color%22%3A%22%23121212%22%2C%22lang%22%3A%22en%22%2C%22categories%22%3A%5B%22education%22%2C%22science%22%2C%22utilities%22%5D%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20192%20192'%253E%253Crect%20width%3D'192'%20height%3D'192'%20rx%3D'42'%20fill%3D'%2523121212'%2F%253E%253Ctext%20x%3D'96'%20y%3D'128'%20text-anchor%3D'middle'%20font-family%3D'Georgia%2Cserif'%20font-size%3D'106'%20font-weight%3D'700'%253E%253Ctspan%20fill%3D'%2523ffffff'%253EM%253C%2Ftspan%253E%253Ctspan%20fill%3D'%2523E77500'%253EB%253C%2Ftspan%253E%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'112'%20fill%3D'%2523121212'%2F%253E%253Ctext%20x%3D'256'%20y%3D'342'%20text-anchor%3D'middle'%20font-family%3D'Georgia%2Cserif'%20font-size%3D'282'%20font-weight%3D'700'%253E%253Ctspan%20fill%3D'%2523ffffff'%253EM%253C%2Ftspan%253E%253Ctspan%20fill%3D'%2523E77500'%253EB%253C%2Ftspan%253E%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+<!-- iOS: web app capability + status bar styling. Uses translucent black so the cream/orange UI shows through. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MoleBio">
+<meta name="application-name" content="MoleBio Toolkit">
 <meta name="robots" content="index,follow">
 <meta name="dcterms.creator" content="Dylan S. Blohm">
 <meta name="dcterms.rights" content="Copyright 2026 Dylan S. Blohm. All rights reserved.">
@@ -242,6 +251,21 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
   .content-panel div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr) !important;}
 }
 </style>
+<!-- Google Analytics 4 (cookieless mode) — pageview + tool_open events. -->
+<!-- A trackEvent() helper exists later in the script and uses window.gtag when available. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WEKBRB8N6D"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+// Cookieless: no persistent client ID. Session-only, no consent banner needed for EU users.
+gtag('config','G-WEKBRB8N6D',{
+  client_storage:'none',
+  anonymize_ip:true,
+  allow_google_signals:false,
+  allow_ad_personalization_signals:false
+});
+</script>
 </head>
 <body>
 <script>
@@ -323,7 +347,7 @@ const _store=(function(){
 const TOOLS={
   dogma:{
     label:'Central Dogma Flow',
-    icon:'\u269B',
+    icon:'\u269B\uFE0F',
     iconBg:'rgba(231,117,0,.12)',
     color:'#E77500',
     sub:'DNA \u2192 RNA \u2192 protein',
@@ -345,12 +369,12 @@ const TOOLS={
     iconBg:'rgba(91,58,26,.10)',
     color:'#5b3a1a',
     sub:'P2 / P20 / P200 / P1000',
-    eyebrow:'Lab Techniques',
+    eyebrow:'Lab Equipment',
     render:()=>renderPipettePanel()
   },
   units:{
     label:'Units & Molarity',
-    icon:'\u2697',
+    icon:'\u2697\uFE0F',
     iconBg:'rgba(168,88,15,.10)',
     color:'#a8580f',
     sub:'Mass, moles, dilutions, and conversions',
@@ -358,11 +382,11 @@ const TOOLS={
     render:()=>renderUnitConvPanel()
   },
   tm:{
-    label:'DNA Tm Calculator',
-    icon:'\u{1F525}',
+    label:'DNA Cloning & PCR',
+    icon:'\u{1F501}',
     iconBg:'rgba(154,58,58,.10)',
     color:'#9a3a3a',
-    sub:'Primer melting temperature',
+    sub:'Primer Tm + thermocycler program',
     eyebrow:'Primer Design',
     render:()=>renderTmPanel()
   },
@@ -371,9 +395,36 @@ const TOOLS={
     icon:'\u{1F9EA}',
     iconBg:'rgba(61,74,94,.10)',
     color:'#3d4a5e',
-    sub:'Molecular weight, charge, extinction coefficient',
+    sub:'Molecular weight, pI, \u03B5\u2082\u2088\u2080',
     eyebrow:'Protein Biochemistry',
     render:()=>renderMwPiPanel()
+  },
+  serial:{
+    label:'Serial Dilution',
+    icon:'\u{1F9EB}',
+    iconBg:'rgba(20,120,140,.10)',
+    color:'#147888',
+    sub:'4–10 tubes, C\u2081V\u2081 = C\u2082V\u2082',
+    eyebrow:'Lab Techniques',
+    render:()=>renderSerialPanel()
+  },
+  buffer:{
+    label:'Buffer pH',
+    icon:'\u2696\uFE0F',
+    iconBg:'rgba(45,120,90,.10)',
+    color:'#2d785a',
+    sub:'Henderson\u2013Hasselbalch, titration curve',
+    eyebrow:'Buffer Composition',
+    render:()=>renderBufferPanel()
+  },
+  abs:{
+    label:'Absorbance & Purity',
+    icon:'\u{1F4C8}',
+    iconBg:'rgba(95,55,140,.10)',
+    color:'#5f378c',
+    sub:'A\u2082\u2086\u2080/A\u2082\u2088\u2080 ratios, Beer\u2013Lambert',
+    eyebrow:'Spectrophotometry',
+    render:()=>renderAbsPanel()
   }
 };
 
@@ -489,14 +540,14 @@ function showHomePage(){
               <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:${t.color};text-transform:uppercase;letter-spacing:.08em;font-weight:600;">${t.eyebrow}</span>
             </div>
             <div style="font-size:1rem;font-weight:600;color:var(--text);line-height:1.25;">${t.label}</div>
-            <div style="font-size:.76rem;color:var(--text-muted);line-height:1.5;">${t.sub}</div>
+            <div style="font-size:.76rem;color:var(--text-muted);line-height:1.5;min-height:2.25em;">${t.sub}</div>
           </button>`;
         }).join('')}
       </div>
       <div style="margin-top:1.8rem;padding:1.1rem 1.3rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;">
         <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:600;">About</div>
         <div style="font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:.7rem;text-align:center;">The MoleBio Toolkit is focused on the calculators and viewers most useful in real lecture and lab contexts. It is designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
-        <div style="font-size:.75rem;color:var(--text-muted);line-height:1.65;text-align:center;">Built by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;" target="_blank" rel="noopener">Dylan S. Blohm</a>. Press <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:.1em .4em;font-size:.7rem;color:var(--accent);font-family:inherit;">/</kbd> to search the tools.</div>
+        <div style="font-size:.75rem;color:var(--text-muted);line-height:1.65;text-align:center;">Created by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;" target="_blank" rel="noopener">Dylan S. Blohm</a>. Coded with Anthropic Claude. Press <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:.1em .4em;font-size:.7rem;color:var(--accent);font-family:inherit;">?</kbd> for full About &amp; shortcuts.</div>
       </div>
     </div>`;
   rp.scrollTop=0;
@@ -603,23 +654,34 @@ function showAboutModal(){
   const shortcuts=[
     ['/',  'Search tools (mole bubble)'],
     ['?',  'Open settings menu'],
-    ['1\u20136','Jump to a specific tool'],
+    ['1\u20139','Jump to a specific tool'],
     ['n',  'Next tool'],
     ['p',  'Previous tool'],
     ['h',  'Home page'],
     ['Esc','Close menus / modals'],
   ];
-  modal.innerHTML=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem 1.6rem 1.3rem;max-width:440px;width:92%;box-shadow:0 16px 48px rgba(0,0,0,.35);position:relative;max-height:85vh;overflow-y:auto;">
+  modal.innerHTML=`<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.6rem 1.6rem 1.3rem;max-width:460px;width:92%;box-shadow:0 16px 48px rgba(0,0,0,.35);position:relative;max-height:85vh;overflow-y:auto;">
     <button onclick="document.getElementById('about-modal').remove()" style="position:absolute;top:10px;right:14px;background:none;border:none;color:var(--text-muted);font-size:1.4rem;cursor:pointer;line-height:1;" aria-label="Close">&times;</button>
     <div style="text-align:center;font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text);margin-bottom:.7rem;">About Mole<span style="color:var(--accent);">Bio</span> Toolkit</div>
     <div style="text-align:center;font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:1rem;">A focused set of interactive tools for molecular biology students. Use them during lecture or lab to set up a pipette, design a primer, calculate a dilution, or step through translation in real time.</div>
-    <div style="text-align:center;font-size:.78rem;color:var(--text-dim);line-height:1.65;margin-bottom:1rem;">Built by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);" target="_blank" rel="noopener">Dylan S. Blohm</a>. Designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
-    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1rem 0 .55rem;">Keyboard shortcuts</div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1.1rem 0 .5rem;">Created by</div>
+    <div style="font-size:.78rem;color:var(--text-dim);line-height:1.65;margin-bottom:.4rem;"><a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);" target="_blank" rel="noopener">Dylan S. Blohm</a> — concept, curation, scientific direction, and design.</div>
+    <div style="font-size:.74rem;color:var(--text-muted);line-height:1.6;">Coded with Anthropic Claude.</div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1.1rem 0 .5rem;">For educational use</div>
+    <div style="font-size:.72rem;color:var(--text-muted);line-height:1.6;">Calculations follow standard textbook formulas (SantaLucia nearest-neighbor, Henderson\u2013Hasselbalch, Beer\u2013Lambert, etc.). Always verify against your protocol and confirm critical values (pH, Tm, concentration) at the bench. Not intended for clinical or diagnostic use.</div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1.1rem 0 .5rem;">Privacy</div>
+    <div style="font-size:.72rem;color:var(--text-muted);line-height:1.6;">No personal data collected. Anonymous, aggregate usage stats (which tools open most often) help shape future improvements. No cookies, no tracking across sites, no advertising.</div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin:1.1rem 0 .55rem;">Keyboard shortcuts</div>
     ${shortcuts.map(([k,d])=>`<div style="display:flex;align-items:center;gap:.7rem;padding:.35rem 0;border-bottom:1px solid var(--border);">
       <kbd style="font-family:'DM Mono',monospace;font-size:.72rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.18rem .45rem;color:var(--accent);min-width:36px;text-align:center;">${k}</kbd>
       <span style="font-size:.78rem;color:var(--text-dim);">${d}</span>
     </div>`).join('')}
     <div style="text-align:center;font-size:.65rem;color:var(--text-muted);margin-top:1rem;">Shortcuts disable while typing in input fields.</div>
+    <div style="text-align:center;font-size:.65rem;color:var(--text-muted);margin-top:.6rem;">Designed to work offline on phones, tablets, and laptops.</div>
   </div>`;
   document.body.appendChild(modal);
   modal.querySelector('button')?.focus();
@@ -717,7 +779,7 @@ function initKeyboardShortcuts(){
       const idx=currentTool?TOOL_KEYS.indexOf(currentTool):0;
       if(idx>0)selectTool(TOOL_KEYS[idx-1]);
     }
-    else if(/^[1-6]$/.test(e.key)){
+    else if(/^[1-9]$/.test(e.key)){
       const idx=parseInt(e.key,10)-1;
       if(idx<TOOL_KEYS.length){e.preventDefault();selectTool(TOOL_KEYS[idx]);}
     }
@@ -1622,7 +1684,7 @@ function renderUnitConvPanel(){
     <div style="display:flex;gap:.3rem;">
       <input id="uc-c1" type="number" value="1000" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcDilution()">
       <select id="uc-c1u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcDilution()">
-        <option value="M">M</option><option value="mM" selected>mM</option><option value="uM">µM</option></select>
+        <option value="M">M</option><option value="mM">mM</option><option value="uM" selected>µM</option></select>
     </div>
   </div>
   <div style="font-size:1rem;color:var(--text-muted);padding-bottom:.4rem;">×</div>
@@ -1650,6 +1712,51 @@ function renderUnitConvPanel(){
     </div>
   </div>
 </div>
+
+<div style="height:1px;background:var(--border);margin:.7rem 0;"></div>
+
+<div style="font-family:'DM Mono',monospace;font-size:.72rem;color:#147888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">CONCENTRATE MIXER <span style="color:var(--text-muted);text-transform:none;letter-spacing:0;font-size:.65rem;">— loading dye, sample buffer, 10× restriction enzyme buffer, etc.</span></div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .6rem;align-items:end;margin-bottom:.5rem;">
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">Sample volume</div>
+    <div style="display:flex;gap:.3rem;">
+      <input id="lc-sample" type="number" value="10" step="any" min="0" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcLoadingDye()">
+      <select id="lc-sample-u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcLoadingDye()">
+        <option value="uL" selected>µL</option><option value="mL">mL</option></select>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">Concentrate strength</div>
+    <div style="display:flex;gap:.3rem;">
+      <select id="lc-x-preset" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="setLoadingDyePreset(this.value)">
+        <option value="2">2×</option>
+        <option value="4">4×</option>
+        <option value="5">5×</option>
+        <option value="6" selected>6×</option>
+        <option value="10">10×</option>
+        <option value="custom">Custom…</option>
+      </select>
+      <input id="lc-x-custom" type="number" value="6" min="1.01" step="any" style="width:74px;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .4rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;display:none;" oninput="calcLoadingDye()">
+    </div>
+  </div>
+</div>
+
+<div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text-muted);">
+  <input type="checkbox" id="lc-topup" onchange="toggleLoadingDyeTopup()" style="accent-color:#147888;cursor:pointer;">
+  <label for="lc-topup" style="cursor:pointer;">Top up to a target final volume with water</label>
+</div>
+
+<div id="lc-final-row" style="display:none;margin-bottom:.5rem;">
+  <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:.2rem;">Target final volume</div>
+  <div style="display:flex;gap:.3rem;max-width:240px;">
+    <input id="lc-final" type="number" value="20" step="any" min="0" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="calcLoadingDye()">
+    <select id="lc-final-u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.76rem;color:var(--text);" onchange="calcLoadingDye()">
+      <option value="uL" selected>µL</option><option value="mL">mL</option></select>
+  </div>
+</div>
+
+<div id="lc-result" style="background:var(--surface2);border:1px solid #147888;border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.92rem;color:#147888;min-height:1.6em;font-weight:500;"></div>
 
 <div style="height:1px;background:var(--border);margin:.7rem 0;"></div>
 
@@ -1750,163 +1857,513 @@ function calcDilution(){
   const c2M=c2*CONC_FACTORS[c2u];
   const v2L=v2*VOL_FACTORS[v2u];
   const r=document.getElementById('uc-v1-result');if(!r)return;
+  // Reset border to default accent on each call (we mutate it on warnings)
+  r.style.borderColor='var(--accent)';
   if(c1M<=0||c2M<=0||v2L<=0||c2M>c1M){
-    r.textContent=c2M>c1M?'C₂ must be < C₁':'—';return;
+    r.innerHTML=c2M>c1M?'<span style="color:#9a3a3a;">C₂ must be ≤ C₁</span>':'—';
+    return;
   }
   const v1L=c2M*v2L/c1M;
+  const v1uL=v1L/VOL_FACTORS.uL;  // V₁ expressed in µL (lab unit)
   const b=bestUnit(v1L,VOL_FACTORS,['L','mL','uL','nL']);
-  r.innerHTML=`<span style="color:var(--accent);font-weight:600;">${fmtNum(b.val)} ${b.unit}</span>`;
+  // Pipettability check: P2 min ≈ 0.5 µL (practical accuracy floor); P1000 max = 1000 µL
+  const PIP_MIN_uL=0.5, PIP_MAX_uL=1000;
+  // Calculate fold dilution for the suggestion
+  const fold=c1M/c2M;
+  // Suggest a serial dilution scheme — pick the smallest power-of-10 (or 2) factor
+  // such that each step's transfer is pipettable
+  let suggestion='';
+  if(v1uL<PIP_MIN_uL){
+    // Pick a step factor and tube count
+    let stepFactor, nSteps;
+    if(fold<=20){ stepFactor=Math.sqrt(fold); nSteps=2; }
+    else if(fold<=100){ stepFactor=10; nSteps=2; }
+    else if(fold<=1000){ stepFactor=10; nSteps=3; }
+    else if(fold<=10000){ stepFactor=10; nSteps=4; }
+    else { stepFactor=10; nSteps=Math.ceil(Math.log10(fold)); }
+    nSteps=Math.max(2,Math.min(10,nSteps));
+    suggestion=`<div style="margin-top:.45rem;padding:.5rem .6rem;background:rgba(231,117,0,.08);border:1px solid rgba(231,117,0,.35);border-radius:5px;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-dim);line-height:1.55;">`
+      +`<b style="color:#9a3a3a;">⚠ Below P2 minimum (${PIP_MIN_uL} µL)</b> — this volume can't be accurately pipetted directly.`
+      +`<br>Total dilution: <b style="color:var(--text);">1:${fmtNum(fold)}</b>. `
+      +`Try a <b style="color:#147888;">${nSteps}-step ~1:${stepFactor%1===0?stepFactor:stepFactor.toFixed(1)} serial dilution</b> instead.`
+      +`<br><a href="#serial" onclick="event.preventDefault();selectTool('serial');" style="color:var(--accent);text-decoration:none;font-weight:600;">→ Open Serial Dilution tool</a>`
+      +`</div>`;
+    r.style.borderColor='#9a3a3a';
+  } else if(v1uL>PIP_MAX_uL){
+    suggestion=`<div style="margin-top:.45rem;padding:.5rem .6rem;background:rgba(231,117,0,.08);border:1px solid rgba(231,117,0,.35);border-radius:5px;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-dim);line-height:1.55;">`
+      +`<b style="color:#a8580f;">⚠ Above P1000 maximum (${PIP_MAX_uL} µL)</b> — pipette in multiple aliquots, use a serological pipette/cylinder, or scale down V₂.`
+      +`</div>`;
+    r.style.borderColor='#a8580f';
+  } else if(v1uL<2){
+    // In P2 range but small — gentle accuracy note, no warning state
+    suggestion=`<div style="margin-top:.4rem;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);line-height:1.5;">Use P2 — best accuracy in the upper half of its range. Mix well; small volumes pipette poorly into viscous stock.</div>`;
+  }
+  r.innerHTML=`<span style="color:var(--accent);font-weight:600;">${fmtNum(b.val)} ${b.unit}</span>${suggestion}`;
 }
 
-function calcUnits(){calcFromMass();calcFromMoles();calcMgMl();calcMolar();calcDilution();}
+function calcUnits(){calcFromMass();calcFromMoles();calcMgMl();calcMolar();calcDilution();calcLoadingDye();}
+
+function setLoadingDyePreset(v){
+  const cust=document.getElementById('lc-x-custom');
+  const presetEl=document.getElementById('lc-x-preset');
+  if(presetEl) presetEl.value=v;
+  if(v==='custom'){
+    if(cust){cust.style.display='';cust.focus();cust.select();}
+  } else {
+    if(cust){cust.style.display='none';cust.value=v;}
+  }
+  calcLoadingDye();
+}
+
+function toggleLoadingDyeTopup(){
+  const row=document.getElementById('lc-final-row');
+  const cb=document.getElementById('lc-topup');
+  if(row && cb) row.style.display=cb.checked?'':'none';
+  calcLoadingDye();
+}
+
+function calcLoadingDye(){
+  const result=document.getElementById('lc-result'); if(!result)return;
+  const sample=Math.max(0, parseFloat(document.getElementById('lc-sample')?.value)||0);
+  const sampleU=document.getElementById('lc-sample-u')?.value||'uL';
+  const presetEl=document.getElementById('lc-x-preset');
+  const preset=presetEl?.value||'6';
+  let X;
+  if(preset==='custom'){
+    X=Math.max(1.01, parseFloat(document.getElementById('lc-x-custom')?.value)||1.01);
+  } else {
+    X=parseFloat(preset)||1;
+  }
+  const topup=document.getElementById('lc-topup')?.checked||false;
+  // Convert sample to µL for internal math, present in chosen unit at the end
+  const sampleUL = sample * (sampleU==='mL'?1000:1);
+
+  // Reset border
+  result.style.borderColor='#147888';
+
+  // Edge cases
+  if(sampleUL<=0){
+    result.innerHTML='<span style="color:var(--text-muted);">Enter a sample volume to compute the recipe.</span>';
+    return;
+  }
+  if(X<=1.05){
+    result.innerHTML='<span style="color:#9a3a3a;">Concentrate strength must be greater than ~1× to make sense. (Real concentrates are typically 2×, 4×, 5×, 6×, or 10×.)</span>';
+    result.style.borderColor='#9a3a3a';
+    return;
+  }
+
+  if(!topup){
+    // Simple case: just add concentrated buffer to sample, final volume = sample + buffer
+    // V_buffer = V_sample / (X − 1)
+    const Vbuf_uL = sampleUL / (X-1);
+    const bufStr=_fmtUL(Vbuf_uL);
+    let warning='';
+    if(Vbuf_uL < 0.5){
+      warning='<div style="margin-top:.4rem;font-size:.62rem;color:#a8580f;line-height:1.5;">⚠ '+bufStr+' is below the P2 minimum (0.5 µL). Scale up your sample volume or use the "top up to final volume" option for a more pipettable recipe.</div>';
+      result.style.borderColor='#a8580f';
+    } else if(Vbuf_uL < 2){
+      warning='<div style="margin-top:.4rem;font-size:.6rem;color:var(--text-muted);line-height:1.5;">Use P2 — small volumes pipette best with a fresh tip and slow draw.</div>';
+    }
+    result.innerHTML=`<span style="color:var(--text-muted);font-size:.7rem;">Add</span> <span style="color:#147888;font-weight:600;">${bufStr}</span> <span style="color:var(--text-muted);font-size:.7rem;">of ${X}× concentrate to ${_fmtUL(sampleUL)} sample</span>${warning}`;
+    return;
+  }
+
+  // Top-up case: V_final is fixed; V_buffer = V_final / X; V_water = V_final − V_sample − V_buffer
+  const Vfinal_input=Math.max(0, parseFloat(document.getElementById('lc-final')?.value)||0);
+  const finalU=document.getElementById('lc-final-u')?.value||'uL';
+  const Vfinal_uL=Vfinal_input * (finalU==='mL'?1000:1);
+  if(Vfinal_uL<=0){
+    result.innerHTML='<span style="color:var(--text-muted);">Enter a target final volume.</span>';
+    return;
+  }
+  const Vbuf_uL = Vfinal_uL / X;
+  const Vwater_uL = Vfinal_uL - sampleUL - Vbuf_uL;
+
+  // Volume of sample-only is too large to fit at 1× in this final volume
+  if(Vwater_uL < -0.001){
+    // Sample alone exceeds available "non-buffer" room
+    const maxSample = Vfinal_uL - Vbuf_uL;
+    result.innerHTML=`<span style="color:#9a3a3a;">⚠ Sample (${_fmtUL(sampleUL)}) is too large for a ${_fmtUL(Vfinal_uL)} final volume at 1×.</span>`
+      +`<div style="font-size:.66rem;color:var(--text-muted);margin-top:.25rem;line-height:1.5;">Maximum sample for this final volume: <b style="color:var(--text);">${_fmtUL(maxSample)}</b> (the rest must be ${X}× buffer). Either reduce sample volume or increase target final volume.</div>`;
+    result.style.borderColor='#9a3a3a';
+    return;
+  }
+
+  const sampleStr=_fmtUL(sampleUL);
+  const bufStr=_fmtUL(Vbuf_uL);
+  const waterStr=_fmtUL(Vwater_uL);
+  const finStr=_fmtUL(Vfinal_uL);
+
+  // Pipettability warnings
+  let warning='';
+  if(Vbuf_uL>0 && Vbuf_uL<0.5){
+    warning+='<div style="font-size:.62rem;color:#a8580f;line-height:1.5;margin-top:.4rem;">⚠ '+bufStr+' buffer is below the P2 minimum (0.5 µL). Scale up the recipe.</div>';
+    result.style.borderColor='#a8580f';
+  }
+  if(Vwater_uL>0 && Vwater_uL<0.5){
+    warning+='<div style="font-size:.62rem;color:#a8580f;line-height:1.5;margin-top:.4rem;">⚠ '+waterStr+' water is below the P2 minimum. Skip the top-up or use a larger final volume.</div>';
+    result.style.borderColor='#a8580f';
+  }
+  if(Math.abs(Vwater_uL)<0.05){
+    // Effectively zero — the topup option is unnecessary
+    warning+='<div style="font-size:.62rem;color:var(--text-muted);line-height:1.5;margin-top:.4rem;">No water needed — sample + buffer already hits the target. (Same answer as untoggling "top up".)</div>';
+  }
+
+  result.innerHTML=`<div style="display:grid;grid-template-columns:auto 1fr;gap:.15rem .6rem;align-items:baseline;">`
+    +`<span style="color:var(--text-muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;">Sample</span>`
+    +`<span style="color:var(--text);font-weight:600;">${sampleStr}</span>`
+    +`<span style="color:var(--text-muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;">${X}× buffer</span>`
+    +`<span style="color:#147888;font-weight:700;">${bufStr}</span>`
+    +(Vwater_uL>0.05?`<span style="color:var(--text-muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;">Water (top up)</span>`
+      +`<span style="color:#147888;font-weight:700;">${waterStr}</span>`:'')
+    +`<span style="color:var(--text-muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;border-top:1px solid var(--border);padding-top:.25rem;margin-top:.15rem;">Total</span>`
+    +`<span style="color:var(--text);font-weight:600;border-top:1px solid var(--border);padding-top:.25rem;margin-top:.15rem;">${finStr} at 1×</span>`
+    +`</div>`
+    +warning;
+}
+
+function _fmtUL(uL){
+  // Format a volume given in µL, choosing readable unit
+  if(uL===0) return '0 µL';
+  if(Math.abs(uL)>=1000) return (uL/1000).toFixed(uL>=10000?1:2)+' mL';
+  if(Math.abs(uL)>=10) return uL.toFixed(2)+' µL';
+  if(Math.abs(uL)>=1) return uL.toFixed(2)+' µL';
+  if(Math.abs(uL)>=0.01) return uL.toFixed(2)+' µL';
+  return (uL*1000).toFixed(2)+' nL';
+}
 
 
 // ============================================================
 // DNA Tm CALCULATOR
 // ============================================================
-function renderTmPanel(){
-  const p=document.getElementById('right-panel');
-  p.innerHTML=`
-<div class="vp-header"><div class="vp-title">DNA Tm Calculator</div><div class="vp-desc">Enter a DNA sequence to calculate melting temperature</div></div>
-<div style="padding:.6rem .8rem;display:flex;flex-direction:column;gap:.5rem;border-bottom:1px solid var(--border);flex-shrink:0;">
-  <div>
-    <label style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);display:block;margin-bottom:.2rem;">DNA Sequence (5'→3')</label>
-    <textarea id="tm-seq" rows="2" placeholder="e.g. ATGCGATCGATCG" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.35rem .5rem;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--text);outline:none;resize:vertical;" oninput="calcTm()">${'ATGCGTACGTAGCTAGC'}</textarea>
-  </div>
-  <div style="display:flex;gap:.5rem;align-items:center;">
-    <label style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);width:50px;flex-shrink:0">[Na⁺] mM</label>
-    <input type="range" id="tm-salt" min="10" max="1000" value="500" style="flex:1;accent-color:#E77500;height:4px" oninput="document.getElementById('tm-salt-v').value=this.value;calcTm()">
-    <input type="number" id="tm-salt-v" min="10" max="1000" value="500" style="width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.15rem .3rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text);text-align:right;outline:none;" oninput="const v=Math.max(10,Math.min(1000,+this.value||10));document.getElementById('tm-salt').value=v;calcTm()">
-  </div>
-</div>
-<div style="flex:1;overflow-y:auto;padding:.6rem .8rem;">
-  <div id="tm-results" style="display:flex;flex-direction:column;gap:.6rem;"></div>
-</div>`;
-  calcTm();
-}
+// PCR planner state (persists across renders)
+let pcrPolymerase='taq';   // 'taq' | 'phusion' | 'q5' | 'platinum'
+let pcrAmpliconBp=1000;    // amplicon length in bp
+let pcrCycles=30;          // number of PCR cycles
+let pcrAnnealManual=null;  // null = auto from primer Tm, else custom temperature
+let pcrSeqF='ATGCGTACGTAGCTAGC';   // forward primer
+let pcrSeqR='ACGTACGTAGCTAGCTAA';  // reverse primer (default = complementary-ish but distinct)
+let pcrSalt=500;           // [Na+] mM, shared between both primers
 
-function calcTm(){
-  const raw=document.getElementById('tm-seq')?.value||'';
-  const seq=raw.toUpperCase().replace(/[^ATGC]/g,'');
-  const salt=(+document.getElementById('tm-salt-v')?.value||500)/1000;// convert mM to M
-  const res=document.getElementById('tm-results');if(!res)return;
+// Polymerase presets: extension rate (s/kb), max amplicon, denaturation temp/time, fidelity notes
+const POLYMERASES={
+  taq:     {label:'Taq',          rateSecPerKb:60, maxKb:5,  denTemp:95, denTime:30, finalExtTime:300, ext:72, note:'Standard fidelity, ~2.6×10⁻⁵ error rate. Adds 3′-A overhangs (TA cloning friendly).'},
+  phusion: {label:'Phusion',      rateSecPerKb:30, maxKb:10, denTemp:98, denTime:10, finalExtTime:300, ext:72, note:'High fidelity (~50× Taq), proofreading. Blunt-ended product.'},
+  q5:      {label:'Q5',            rateSecPerKb:30, maxKb:20, denTemp:98, denTime:10, finalExtTime:120, ext:72, note:'Very high fidelity (~280× Taq). Best for cloning long or GC-rich templates.'},
+  platinum:{label:'Platinum (HiFi)', rateSecPerKb:60, maxKb:10, denTemp:94, denTime:30, finalExtTime:600, ext:68, note:'Hot-start, balanced fidelity. 68 °C extension. Common for general PCR.'},
+};
 
-  if(seq.length<2){res.innerHTML='<div style="font-size:.75rem;color:var(--text-muted)">Enter at least 2 bases...</div>';return;}
-
+// Pure Tm computation — given a sequence and [Na+] in M, returns {tmNN, tmBasic, tmWallace, tmOwczarzy, gc, N, dH, dS_salt, ctDivisor, isPalindrome, valid, A, T, G, C}
+function _computeTm(rawSeq, saltMolar){
+  const seq=rawSeq.toUpperCase().replace(/[^ATGC]/g,'');
+  const N=seq.length;
+  if(N<2) return {valid:false, N:N, seq:seq};
   const A=seq.split('').filter(c=>c==='A').length;
   const T=seq.split('').filter(c=>c==='T').length;
   const G=seq.split('').filter(c=>c==='G').length;
   const C=seq.split('').filter(c=>c==='C').length;
-  const N=seq.length;
   const gc=(G+C)/N*100;
-
-  // Wallace rule (short oligos)
   const tmWallace=2*(A+T)+4*(G+C);
-  // Basic salt-adjusted (Marmur-Schildkraut-Doty form)
-  const tmBasic=81.5+16.6*Math.log10(salt)+41*(G+C)/N-675/N;
-
-  // SantaLucia nearest-neighbor (1998 unified parameters)
-  // ΔH and ΔS in cal/mol and cal/mol·K for each dinucleotide pair
+  const tmBasic=81.5+16.6*Math.log10(saltMolar)+41*(G+C)/N-675/N;
   const NN_H={AA:-7900,AT:-7200,TA:-7200,CA:-8500,GT:-8400,CT:-7800,GA:-8200,CG:-10600,GC:-9800,GG:-8000,
-              TT:-7900,AC:-8400,TG:-8500,AG:-7800,TC:-8200,CC:-8000
-              };
+              TT:-7900,AC:-8400,TG:-8500,AG:-7800,TC:-8200,CC:-8000};
   const NN_S={AA:-22.2,AT:-20.4,TA:-21.3,CA:-22.7,GT:-22.4,CT:-21.0,GA:-22.2,CG:-27.2,GC:-24.4,GG:-19.9,
-              TT:-22.2,AC:-22.4,TG:-22.7,AG:-21.0,TC:-22.2,CC:-19.9,
-              };
-  // Initiation parameters
+              TT:-22.2,AC:-22.4,TG:-22.7,AG:-21.0,TC:-22.2,CC:-19.9};
   let dH=0, dS=0;
-  // Initiation: +0.1 kcal/mol (100 cal) for GC init, +2.3 kcal for AT init
   const first=seq[0], last=seq[N-1];
   if(first==='G'||first==='C'){dH+=100;dS-=2.8;}else{dH+=2300;dS+=4.1;}
   if(last==='G'||last==='C'){dH+=100;dS-=2.8;}else{dH+=2300;dS+=4.1;}
-
   let nnValid=true;
   for(let i=0;i<N-1;i++){
     const pair=seq[i]+seq[i+1];
     if(NN_H[pair]!==undefined&&NN_S[pair]!==undefined){
       dH+=NN_H[pair]; dS+=NN_S[pair];
-    } else {
-      nnValid=false;break;
-    }
+    } else { nnValid=false; break; }
   }
-  // Salt correction for NN: ΔS = ΔS + 0.368 × (N-1) × ln[Na+]
-  // Self-complementarity check: a palindromic primer hybridizes to itself
-  // (revcomp == seq). SantaLucia symmetry correction: ΔS += -1.4 cal/mol·K, Ct/1 (not /4).
   const revcomp=seq.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).reverse().join('');
   const isPalindrome=(seq===revcomp);
   const dS_sym=isPalindrome?dS-1.4:dS;
-  const dS_salt=dS_sym+0.368*(N-1)*Math.log(salt);
-  // Tm = ΔH / (ΔS + R·ln(Ct/x)) - 273.15, where Ct = total strand concentration
-  // x = 1 for self-complementary (palindrome), 4 otherwise. Assume 250 nM oligo (typical PCR primer)
-  const Ct=250e-9;// 250 nM
-  const R=1.987;// cal/mol·K
+  const dS_salt=dS_sym+0.368*(N-1)*Math.log(saltMolar);
+  const Ct=250e-9, R=1.987;
   const ctDivisor=isPalindrome?1:4;
   const tmNN=nnValid? dH/(dS_salt+R*Math.log(Ct/ctDivisor))-273.15 : null;
-
-  // Owczarzy 2004 salt correction (Biochemistry 43, 3537–3554, Eq 22)
-  // 1/Tm(salt) = 1/Tm(1M) + (4.29·fGC − 3.95)·1e-5·ln[Na⁺] + 9.4e-6·(ln[Na⁺])²
-  // Tm in Kelvin throughout. We start from the NN Tm at [Na⁺]=1M (no linear salt term).
   let tmOwczarzy=null;
   if(nnValid){
-    const Tm1M_K=dH/(dS_sym+R*Math.log(Ct/ctDivisor));// Kelvin, no salt correction (1M reference)
+    const Tm1M_K=dH/(dS_sym+R*Math.log(Ct/ctDivisor));
     const fGC=(G+C)/N;
-    const lnNa=Math.log(salt);
+    const lnNa=Math.log(saltMolar);
     const invTm=1/Tm1M_K+(4.29*fGC-3.95)*1e-5*lnNa+9.4e-6*lnNa*lnNa;
     tmOwczarzy=1/invTm-273.15;
   }
+  return {valid:true, seq, N, A, T, G, C, gc, tmNN, tmBasic, tmWallace, tmOwczarzy, dH, dS_salt, ctDivisor, isPalindrome};
+}
 
-  function card(title,value,unit,formula,note,col){
-    return `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.6rem .8rem;border-left:3px solid ${col};">
-      <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:${col};text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;">${title}</div>
-      <div style="font-size:1.3rem;font-weight:600;color:var(--text);margin-bottom:.2rem;">${value}<span style="font-size:.7rem;color:var(--text-muted);margin-left:.2rem;">${unit}</span></div>
-      <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);margin-bottom:.15rem;">${formula}</div>
-      <div style="font-size:.62rem;color:var(--text-dim);">${note}</div>
+function renderTmPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`
+<div class="vp-header"><div class="vp-title">DNA Cloning & PCR</div><div class="vp-desc">Calculate primer Tm and design a thermocycler program. Enter forward and reverse primers, then plan the PCR program below.</div></div>
+
+<!-- Section 1: Primer Tm pair -->
+<div style="padding:.6rem .8rem;display:flex;flex-direction:column;gap:.5rem;border-bottom:1px solid var(--border);flex-shrink:0;">
+  <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;">Primer pair</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;">
+    <div>
+      <label style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);display:block;margin-bottom:.2rem;">FORWARD PRIMER (5'→3')</label>
+      <textarea id="tm-seq-f" rows="2" placeholder="e.g. ATGCGATCGATCG" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.35rem .5rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text);outline:none;resize:vertical;" oninput="pcrSeqF=this.value;calcTm()">${pcrSeqF}</textarea>
+    </div>
+    <div>
+      <label style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);display:block;margin-bottom:.2rem;">REVERSE PRIMER (5'→3')</label>
+      <textarea id="tm-seq-r" rows="2" placeholder="e.g. ACGTACGTAGCTAGC" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.35rem .5rem;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--text);outline:none;resize:vertical;" oninput="pcrSeqR=this.value;calcTm()">${pcrSeqR}</textarea>
+    </div>
+  </div>
+  <div style="display:flex;gap:.5rem;align-items:center;">
+    <label style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);width:54px;flex-shrink:0">[Na⁺] mM</label>
+    <input type="range" id="tm-salt" min="10" max="1000" value="${pcrSalt}" style="flex:1;accent-color:#9a3a3a;height:4px" oninput="pcrSalt=+this.value;document.getElementById('tm-salt-v').value=this.value;calcTm()">
+    <input type="number" id="tm-salt-v" min="10" max="1000" value="${pcrSalt}" style="width:54px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.15rem .3rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text);text-align:right;outline:none;" oninput="pcrSalt=Math.max(10,Math.min(1000,+this.value||10));document.getElementById('tm-salt').value=pcrSalt;calcTm()">
+    <span style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);">(default 500 mM = standard PCR buffer)</span>
+  </div>
+</div>
+
+<div style="flex:1;overflow-y:auto;padding:.6rem .8rem;display:flex;flex-direction:column;gap:.7rem;">
+
+  <!-- Two-column primer results -->
+  <div id="tm-pair-results" style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;"></div>
+
+  <!-- Annealing temperature recommendation -->
+  <div id="tm-anneal-rec"></div>
+
+  <!-- Section 2: PCR Planner -->
+  <div style="border-top:1px solid var(--border);padding-top:.7rem;">
+    <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:#9a3a3a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;font-weight:600;">PCR PLANNER — thermocycler program</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem .7rem;align-items:end;margin-bottom:.6rem;">
+      <div>
+        <div style="font-size:.6rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;margin-bottom:.2rem;">POLYMERASE</div>
+        <select id="pcr-poly" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.35rem .4rem;font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text);outline:none;" onchange="pcrPolymerase=this.value;pcrAnnealManual=null;calcTm()">
+          ${Object.entries(POLYMERASES).map(([k,v])=>`<option value="${k}"${k===pcrPolymerase?' selected':''}>${v.label}</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;margin-bottom:.2rem;">AMPLICON LENGTH</div>
+        <div style="display:flex;gap:.3rem;align-items:center;">
+          <input id="pcr-bp" type="number" min="50" step="any" value="${pcrAmpliconBp}" style="flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.35rem .4rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" oninput="pcrAmpliconBp=Math.max(50,+this.value||50);calcTm()">
+          <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);flex-shrink:0;">bp</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;margin-bottom:.2rem;">CYCLES</div>
+        <input id="pcr-cycles" type="number" min="1" max="50" step="1" value="${pcrCycles}" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.35rem .4rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" oninput="pcrCycles=Math.max(1,Math.min(50,parseInt(this.value)||1));calcTm()">
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;margin-bottom:.2rem;">ANNEAL °C <span id="pcr-anneal-mode" style="color:var(--text-muted);text-transform:none;letter-spacing:0;font-size:.55rem;">${pcrAnnealManual===null?'(auto)':'(manual)'}</span></div>
+        <div style="display:flex;gap:.3rem;align-items:center;">
+          <input id="pcr-anneal" type="number" step="0.1" placeholder="auto" value="${pcrAnnealManual===null?'':pcrAnnealManual}" style="flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.35rem .4rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" oninput="pcrAnnealManual=this.value===''?null:+this.value;calcTm()">
+          <button onclick="pcrAnnealManual=null;document.getElementById('pcr-anneal').value='';calcTm()" style="font-family:'DM Mono',monospace;font-size:.55rem;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.25rem .4rem;color:var(--text-muted);cursor:pointer;letter-spacing:.05em;flex-shrink:0;" title="Reset to automatic (Tm − 5°C)">AUTO</button>
+        </div>
+      </div>
+    </div>
+    <div id="pcr-program"></div>
+  </div>
+
+</div>`;
+  calcTm();
+}
+
+function calcTm(){
+  const seqF=document.getElementById('tm-seq-f')?.value||pcrSeqF;
+  const seqR=document.getElementById('tm-seq-r')?.value||pcrSeqR;
+  pcrSeqF=seqF; pcrSeqR=seqR;
+  const saltMolar=pcrSalt/1000;
+
+  const tmF=_computeTm(seqF, saltMolar);
+  const tmR=_computeTm(seqR, saltMolar);
+
+  // Render the two-column primer results
+  const pairBox=document.getElementById('tm-pair-results');
+  if(pairBox){
+    pairBox.innerHTML = renderPrimerColumn('Forward', tmF, '#9a3a3a') + renderPrimerColumn('Reverse', tmR, '#3d4a5e');
+  }
+
+  // Render annealing temperature recommendation
+  const recBox=document.getElementById('tm-anneal-rec');
+  let recommendedAnneal=null;
+  if(tmF.valid && tmR.valid && tmF.tmNN!==null && tmR.tmNN!==null){
+    const lower=Math.min(tmF.tmNN, tmR.tmNN);
+    recommendedAnneal=lower-5;
+    if(recBox){
+      const diff=Math.abs(tmF.tmNN-tmR.tmNN);
+      const diffNote = diff<=2 ? '✓ primers well-matched (Δ ≤ 2°C)'
+                     : diff<=5 ? '⚠ slight mismatch (Δ '+diff.toFixed(1)+'°C) — anneal at the lower Tm'
+                     :          '✗ poor match (Δ '+diff.toFixed(1)+'°C) — redesign primers for better PCR efficiency';
+      const diffColor = diff<=2 ? '#147888' : diff<=5 ? '#a8580f' : '#9a3a3a';
+      recBox.innerHTML=`<div style="background:rgba(154,58,58,.06);border:1px solid rgba(154,58,58,.3);border-radius:6px;padding:.5rem .7rem;">
+        <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:#9a3a3a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;font-weight:600;">Recommended annealing temperature</div>
+        <div style="font-family:'DM Mono',monospace;font-size:.95rem;color:#9a3a3a;font-weight:700;line-height:1.2;">${recommendedAnneal.toFixed(1)} °C</div>
+        <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.25rem;line-height:1.4;">= min(Tm<sub>F</sub>, Tm<sub>R</sub>) − 5 °C = min(${tmF.tmNN.toFixed(1)}, ${tmR.tmNN.toFixed(1)}) − 5</div>
+        <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:${diffColor};margin-top:.25rem;font-weight:500;">${diffNote}</div>
+      </div>`;
+    }
+  } else if(recBox){
+    recBox.innerHTML='<div style="font-size:.65rem;color:var(--text-muted);padding:.4rem 0;">Enter both primers to get an annealing temperature recommendation.</div>';
+  }
+
+  // Render PCR program
+  // Live-update the (auto)/(manual) tag next to the ANNEAL label
+  const modeTag=document.getElementById('pcr-anneal-mode');
+  if(modeTag) modeTag.textContent = pcrAnnealManual===null ? '(auto)' : '(manual)';
+
+  drawPcrProgram(recommendedAnneal);
+}
+
+function renderPrimerColumn(label, tm, color){
+  if(!tm.valid){
+    return `<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid ${color};border-radius:6px;padding:.55rem .7rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:${color};text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;font-weight:600;">${label}</div>
+      <div style="font-size:.7rem;color:var(--text-muted);">Enter at least 2 bases…</div>
     </div>`;
   }
+  // Pick best Tm: NN > Owczarzy > basic > Wallace
+  const tmDisplay = tm.tmNN!==null ? tm.tmNN : (tm.tmOwczarzy!==null ? tm.tmOwczarzy : tm.tmBasic);
+  const method = tm.tmNN!==null ? 'NN (SantaLucia)' : (tm.tmOwczarzy!==null ? 'Owczarzy' : (tm.N<=14 ? 'Wallace' : 'Basic salt-adj.'));
+  // Quality flags
+  const lengthOK = tm.N>=18 && tm.N<=25;
+  const gcOK = tm.gc>=40 && tm.gc<=60;
+  const tmOK = tmDisplay>=55 && tmDisplay<=65;
+  const allGood = lengthOK && gcOK && tmOK;
+  // Complement
+  const comp=tm.seq.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).join('');
 
-  let html=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:.5rem;">
-    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">Length</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${N} nt</div></div>
-    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">GC Content</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${gc.toFixed(1)}%</div></div>
-    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">A : T</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${A} : ${T}</div></div>
-    <div style="background:var(--surface2);border-radius:4px;padding:.4rem .6rem;text-align:center;"><div style="font-size:.58rem;color:var(--text-muted);">G : C</div><div style="font-size:.9rem;font-weight:600;color:var(--text);">${G} : ${C}</div></div>
-  </div>`;
-
-  // Nearest-neighbor first (most accurate for primers)
-  if(tmNN!==null&&N>=8&&N<=60){
-    const palindromeNote=isPalindrome?' Self-complementary detected: ΔS −1.4 symmetry correction, Ct/1.':'';
-    html+=card('SantaLucia Nearest-Neighbor (recommended)',''+tmNN.toFixed(1),'°C','Tm = ΔH / (ΔS + R·ln(Ct/'+ctDivisor+')) − 273.15','SantaLucia 1998 unified params. [Na⁺]='+(salt*1000).toFixed(0)+'mM, [oligo]=250nM. ΔH='+((dH/1000).toFixed(1))+'kcal, ΔS='+(dS_salt.toFixed(1))+'cal/K.'+palindromeNote,'#ec4899');
-  }
-
-  if(N<=14){
-    html+=card('Wallace Rule (short oligos)',''+tmWallace,'°C','Tm = 2(A+T) + 4(G+C)','Best for oligos ≤14 nt. Simple but approximate.','#10b981');
-  }
-  html+=card('Basic Salt-adjusted',''+tmBasic.toFixed(1),'°C','Tm = 81.5 + 16.6·log[Na⁺] + 41·(G+C)/N - 675/N','Marmur-Schildkraut-Doty form. [Na⁺] = '+salt.toFixed(3)+' M','#3b82f6');
-  if(tmOwczarzy!==null){
-    html+=card('Owczarzy 2004 (NN + reciprocal-Tm salt correction)',''+tmOwczarzy.toFixed(1),'°C','1/Tm(salt) = 1/Tm(1M) + (4.29·fGC − 3.95)·10⁻⁵·ln[Na⁺] + 9.4·10⁻⁶·(ln[Na⁺])²','Most accurate over 10 mM–1 M Na⁺; recommended for primers far from 50 mM.','#8b5cf6');
-  }
-
-  // PCR primer assessment (use NN if available, else basic)
-  const tmForPrimer=tmNN!==null?tmNN:tmBasic;
-  if(N>=15&&N<=30){
-    const ok=tmForPrimer>=55&&tmForPrimer<=65&&gc>=40&&gc<=60;
-    html+=`<div style="background:${ok?'rgba(16,185,129,.08)':'rgba(245,158,11,.08)'};border:1px solid ${ok?'#10b981':'#f59e0b'};border-radius:6px;padding:.5rem .7rem;margin-top:.3rem;">
-      <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:${ok?'#10b981':'#f59e0b'};margin-bottom:.2rem;">${ok?'✓ GOOD PCR PRIMER':'⚠ PCR PRIMER CHECK'}</div>
-      <div style="font-size:.62rem;color:var(--text-dim);">
-        Length: ${N} nt ${N>=18&&N<=25?'✓':'⚠ (ideal 18-25)'} · 
-        GC: ${gc.toFixed(0)}% ${gc>=40&&gc<=60?'✓':'⚠ (ideal 40-60%)'} · 
-        Tm: ${tmForPrimer.toFixed(1)}°C ${tmForPrimer>=55&&tmForPrimer<=65?'✓':'⚠ (ideal 55-65°C)'}
+  let html=`<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid ${color};border-radius:6px;padding:.55rem .7rem;display:flex;flex-direction:column;gap:.35rem;">
+    <div style="font-family:'DM Mono',monospace;font-size:.58rem;color:${color};text-transform:uppercase;letter-spacing:.08em;font-weight:600;">${label}</div>
+    <div style="display:flex;align-items:baseline;gap:.4rem;">
+      <span style="font-family:'DM Mono',monospace;font-size:1.25rem;color:${color};font-weight:700;line-height:1.1;">${tmDisplay.toFixed(1)} °C</span>
+      <span style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);">${method}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.25rem;font-family:'DM Mono',monospace;font-size:.58rem;">
+      <div style="background:var(--bg);padding:.2rem .4rem;border-radius:3px;text-align:center;">
+        <div style="color:var(--text-muted);">Length</div>
+        <div style="color:${lengthOK?'#147888':'#a8580f'};font-weight:600;">${tm.N} nt</div>
+      </div>
+      <div style="background:var(--bg);padding:.2rem .4rem;border-radius:3px;text-align:center;">
+        <div style="color:var(--text-muted);">GC</div>
+        <div style="color:${gcOK?'#147888':'#a8580f'};font-weight:600;">${tm.gc.toFixed(0)}%</div>
+      </div>
+      <div style="background:var(--bg);padding:.2rem .4rem;border-radius:3px;text-align:center;">
+        <div style="color:var(--text-muted);">Tm Range</div>
+        <div style="color:${tmOK?'#147888':'#a8580f'};font-weight:600;">${tmOK?'\u2713':'\u26A0'}</div>
       </div>
     </div>`;
+  if(tm.N>=15 && tm.N<=30){
+    html+=`<div style="font-family:'DM Mono',monospace;font-size:.55rem;color:${allGood?'#147888':'var(--text-muted)'};line-height:1.4;">${allGood?'\u2713 Good PCR primer':'Ideal: 18-25 nt, GC 40-60%, Tm 55-65°C'}</div>`;
+  }
+  // Complement (compact)
+  html+=`<div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--text-muted);line-height:1.5;border-top:1px solid var(--border);padding-top:.3rem;margin-top:.2rem;">
+    <div>5' <span style="color:var(--text-dim);word-break:break-all;">${tm.seq}</span> 3'</div>
+    <div>3' <span style="color:var(--text-dim);word-break:break-all;">${comp}</span> 5'</div>
+  </div>`;
+  html+='</div>';
+  return html;
+}
+
+function drawPcrProgram(autoAnneal){
+  const container=document.getElementById('pcr-program');
+  if(!container) return;
+  const poly=POLYMERASES[pcrPolymerase];
+  const annealTemp = pcrAnnealManual!==null ? pcrAnnealManual : (autoAnneal!==null ? autoAnneal : 55);
+  const annealSrc = pcrAnnealManual!==null ? '(manual)' : (autoAnneal!==null ? '(auto from primers)' : '(default — enter primers)');
+
+  // Extension time = (amplicon kb) × (rate s/kb), rounded up to whole seconds, with a sensible minimum of 10 s
+  const ampliconKb = pcrAmpliconBp/1000;
+  const extTimeSec = Math.max(10, Math.ceil(ampliconKb * poly.rateSecPerKb));
+  // Cycle time
+  const cycleTimeSec = poly.denTime + 30 + extTimeSec; // anneal step typically 15-30s, use 30s default
+  // Initial denaturation (typically 30s for Taq, longer for hot-start)
+  const initDenSec = pcrPolymerase==='platinum' ? 120 : (pcrPolymerase==='phusion'||pcrPolymerase==='q5' ? 30 : 180);
+  // Total time
+  const totalSec = initDenSec + (cycleTimeSec * pcrCycles) + poly.finalExtTime;
+
+  const fmtTime = (s) => {
+    if(s<60) return s+'s';
+    const m=Math.floor(s/60), sec=s%60;
+    if(sec===0) return m+'m';
+    return m+'m '+sec+'s';
+  };
+
+  // Length warning
+  let lengthWarning='';
+  if(ampliconKb > poly.maxKb){
+    lengthWarning=`<div style="margin-top:.4rem;padding:.4rem .55rem;background:rgba(168,88,15,.08);border:1px solid rgba(168,88,15,.3);border-radius:5px;font-family:'DM Mono',monospace;font-size:.6rem;color:#a8580f;line-height:1.5;">⚠ ${pcrAmpliconBp.toLocaleString()} bp exceeds the typical ${poly.maxKb} kb max for ${poly.label}. Consider Q5 or LongAmp for longer amplicons.</div>`;
   }
 
-  // Complement — use a small grid so the 5'/3' labels stay aligned even if the sequence wraps
-  const comp=seq.split('').map(c=>({A:'T',T:'A',G:'C',C:'G'}[c])).join('');
-  html+=`<div style="margin-top:.4rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);display:grid;grid-template-columns:auto 1fr auto;gap:.4rem;align-items:start;">
-    <span>5'</span><span style="word-break:break-all;color:var(--text-dim);">${seq}</span><span>3'</span>
-    <span>3'</span><span style="word-break:break-all;">${comp}</span><span>5'</span>
+  // Build the program table
+  let html=`<div style="overflow-x:auto;border:1px solid var(--border);border-radius:6px;background:var(--surface2);">
+    <table style="width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.7rem;min-width:440px;">
+    <thead><tr style="background:var(--bg);border-bottom:1px solid var(--border);">
+      <th style="text-align:left;padding:.4rem .55rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">STEP</th>
+      <th style="text-align:left;padding:.4rem .55rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">TEMP</th>
+      <th style="text-align:left;padding:.4rem .55rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">TIME</th>
+      <th style="text-align:left;padding:.4rem .55rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">REPEATS</th>
+    </tr></thead><tbody>
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Initial denaturation</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${poly.denTemp} °C</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${fmtTime(initDenSec)}</td>
+      <td style="padding:.35rem .55rem;color:var(--text-muted);">1×</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);background:rgba(154,58,58,.04);">
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Denaturation</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${poly.denTemp} °C</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${fmtTime(poly.denTime)}</td>
+      <td style="padding:.35rem .55rem;color:var(--text-muted);" rowspan="3"><b style="color:var(--text);">${pcrCycles}×</b></td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);background:rgba(154,58,58,.04);">
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Annealing</td>
+      <td style="padding:.35rem .55rem;color:#9a3a3a;font-weight:600;">${annealTemp.toFixed(1)} °C <span style="color:var(--text-muted);font-weight:400;font-size:.55rem;">${annealSrc}</span></td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">30s</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);background:rgba(154,58,58,.04);">
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Extension</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${poly.ext} °C</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${fmtTime(extTimeSec)}</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Final extension</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${poly.ext} °C</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">${fmtTime(poly.finalExtTime)}</td>
+      <td style="padding:.35rem .55rem;color:var(--text-muted);">1×</td>
+    </tr>
+    <tr>
+      <td style="padding:.35rem .55rem;color:var(--text);font-weight:500;">Hold</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">4 °C</td>
+      <td style="padding:.35rem .55rem;color:var(--text-dim);">∞</td>
+      <td style="padding:.35rem .55rem;color:var(--text-muted);">—</td>
+    </tr>
+    </tbody></table>
   </div>`;
 
-  res.innerHTML=html;
+  // Summary cards
+  html+=`<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.45rem;margin-top:.5rem;">
+    <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid #9a3a3a;border-radius:5px;padding:.4rem .55rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">Extension/cycle</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);font-weight:600;">${fmtTime(extTimeSec)}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);margin-top:.15rem;">${ampliconKb.toFixed(2)} kb × ${poly.rateSecPerKb} s/kb</div>
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid #9a3a3a;border-radius:5px;padding:.4rem .55rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">Time/cycle</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);font-weight:600;">${fmtTime(cycleTimeSec)}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);margin-top:.15rem;">denat. + anneal + ext.</div>
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid #9a3a3a;border-radius:5px;padding:.4rem .55rem;">
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;">Total run time</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.85rem;color:#9a3a3a;font-weight:700;">${fmtTime(totalSec)}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.55rem;color:var(--text-muted);margin-top:.15rem;">${pcrCycles} cycles + init/final</div>
+    </div>
+  </div>`;
+
+  // Polymerase note
+  html+=`<div style="margin-top:.5rem;padding:.45rem .6rem;background:var(--bg);border:1px solid var(--border);border-radius:5px;font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-dim);line-height:1.55;"><b style="color:var(--text);">${poly.label}:</b> ${poly.note}</div>`;
+
+  html+=lengthWarning;
+  container.innerHTML=html;
 }
 
 // ============================================================
@@ -2143,8 +2600,8 @@ function drawPipette(){
   var area=document.getElementById('pip-area');if(!area)return;area.innerHTML='';
   var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 260 430');s.style.cssText='max-width:100%;max-height:100%;display:block;';area.appendChild(s);
   var NS2='http://www.w3.org/2000/svg';
-  function el(tag,a){var n=document.createElementNS(NS2,tag);if(a)Object.entries(a).forEach(function(e){n.setAttribute(e[0],String(e[1]));});s.appendChild(n);return n;}
-  function txt(x,y,str,c,fs,fw){var t=el('text',{x:x,y:y,'text-anchor':'middle','font-size':fs||9,fill:c||'#94a3b8','font-family':'DM Mono,monospace','font-weight':fw||'600'});t.textContent=str;}
+  function el(tag,a,parent){var n=document.createElementNS(NS2,tag);if(a)Object.entries(a).forEach(function(e){n.setAttribute(e[0],String(e[1]));});(parent||s).appendChild(n);return n;}
+  function txt(x,y,str,c,fs,fw,_unused,parent){var t=el('text',{x:x,y:y,'text-anchor':'middle','font-size':fs||9,fill:c||'#94a3b8','font-family':'DM Mono,monospace','font-weight':fw||'600'},parent);t.textContent=str;}
   var ranges={P2:{min:0.2,max:2},P20:{min:2,max:20},P200:{min:20,max:200},P1000:{min:100,max:1000}};
   var r=ranges[pipType],vol=Math.max(0,Math.min(r.max,pipVol)),outOfRange=pipVol<r.min||pipVol>r.max;
   var rangeEl=document.getElementById('pip-range');if(rangeEl)rangeEl.textContent='Range: '+r.min+'–'+r.max+' µL';
@@ -2165,56 +2622,85 @@ function drawPipette(){
   el('rect',{x:cx+bw/2-2,y:178,width:14,height:6,rx:2,fill:'#475569'});
 
   // ── VOLUME WINDOW (3 digits) ──
+  // Gilson convention for which digit is the "red" (fractional / smallest-step) digit:
+  //   P1000 → top digit (thousands)     — red
+  //   P200  → none red                  — pure whole µL display
+  //   P20   → bottom digit (tenths)     — red, decimal between middle & bottom
+  //   P2    → bottom digit (hundredths) — red, decimal between top & middle
+  var redIdx={P1000:0, P200:-1, P20:2, P2:2}[pipType];   // -1 = no red
+  var decimalAfter={P1000:-1, P200:-1, P20:1, P2:0}[pipType];  // index after which to draw decimal point (-1 = no decimal)
   var wy=152,ww=50,wh=95;
   el('rect',{x:cx-ww/2,y:wy,width:ww,height:wh,rx:5,fill:'#f8fafc',stroke:'#cbd5e1','stroke-width':1.5});
   [[d1,wy+20],[d2,wy+46],[d3,wy+72]].forEach(function(pair,idx){
-    el('rect',{x:cx-20,y:pair[1]-15,width:40,height:22,rx:3,fill:idx===2?'#fee2e2':'#f1f5f9',stroke:'#e2e8f0','stroke-width':0.5});
-    txt(cx,pair[1]+2,String(pair[0]),'#1e293b',20,'700');
+    var isRed = idx===redIdx;
+    el('rect',{x:cx-20,y:pair[1]-15,width:40,height:22,rx:3,fill:isRed?'#fee2e2':'#f1f5f9',stroke:isRed?'#fca5a5':'#e2e8f0','stroke-width':0.5});
+    txt(cx,pair[1]+2,String(pair[0]),isRed?'#dc2626':'#1e293b',20,'700');
+    // Decimal point: small dot just after this row's digit cell when this is the row before the decimal
+    if(idx===decimalAfter){
+      el('circle',{cx:cx+22, cy:pair[1]+8, r:1.6, fill:'#1e293b'});
+    }
   });
-  var d3prev=(d3+9)%10,d3next=(d3+1)%10;
-  if(pipType==='P2'){el('circle',{cx:cx+18,cy:wy+14,r:2,fill:'#ef4444'});}
-  else if(pipType==='P20'){el('circle',{cx:cx+18,cy:wy+60,r:2,fill:'#ef4444'});}
 
   // ── HORIZONTAL TICK DIAL (below window, centered ±half scale) ──
+  // Real Gilson pipettes work this way: the pointer/indicator is fixed in the
+  // center, and as you turn the volume adjuster, the tick wheel rotates underneath
+  // — you see the ticks slide past a fixed reference. This mirrors that physical
+  // behavior: pointer is locked, ticks slide based on dialOffset.
   var dialY=wy+wh+14,dialW=56,dialH=22;
   el('rect',{x:cx-dialW/2-3,y:dialY-3,width:dialW+6,height:dialH+6,rx:4,fill:'#0f172a',stroke:'#475569','stroke-width':1});
   el('rect',{x:cx-dialW/2,y:dialY,width:dialW,height:dialH,rx:2,fill:'#1e293b'});
-  // The dial has 10 divisions: 5 left of center, 5 right.
-  // Layout: 4 short ticks, 1 long (labeled), center long (0), 1 long (labeled), 4 short ticks
-  // Total 11 tick positions (indices 0–10), center at 5
+  // Half-tick labels per pipette type (the ±5-tick edge label)
   var halfLabels={P2:'0.005',P20:'0.05',P200:'0.5',P1000:'5'};
   var halfLabel=halfLabels[pipType];
   // dialFrac is 0–1 representing position within the sub-digit (0.0 = exactly on digit, 0.5 = halfway)
-  // Map dialFrac to position: frac 0 → center, frac 0.5 → right edge, frac ~1.0 → approaches center from left
-  // Actually dialFrac maps linearly 0–9 across 10 ticks. Remap: dial value 0 = center, 5 = right edge, wrapping
-  var dialDigit=Math.round(dialFrac*10)%10;
   // Pointer position: dialFrac 0→center, 0.5→right end, 1.0→center (wraps). Convert to -5..+5 range
   var rawDial=dialFrac*10; // 0 to ~10
-  var dialOffset=rawDial<=5?rawDial:rawDial-10; // -5 to +5, 0=center
-  for(var t=0;t<=10;t++){
-    var tx=cx-dialW/2+3+((t)/10)*(dialW-6);
-    var isCenter=(t===5);
-    var isHalf=(t===0||t===10);
+  var dialOffset=rawDial<=5?rawDial:rawDial-10; // -5 to +5, 0 = exactly on digit, ±5 = halfway
+
+  // Tick spacing in pixels (one full sub-digit step = (dialW-6)/10 pixels)
+  var tickStep=(dialW-6)/10;
+  // Build a clipPath so ticks scrolling past the window edges are hidden
+  // (this is how the dial "wraps" visually — you only see ~10 ticks at a time)
+  var defs=el('defs',{});
+  var clip=el('clipPath',{id:'pip-dial-clip'},defs);
+  el('rect',{x:cx-dialW/2,y:dialY,width:dialW,height:dialH+18},clip);  // include label area
+
+  // Group for the moving ticks + labels (everything inside scrolls together)
+  var dialGroup=el('g',{'clip-path':'url(#pip-dial-clip)'});
+  // Render extra ticks on either side so when the wheel scrolls, ticks slide in
+  // smoothly from the edges instead of popping in. Drawing 21 ticks (-10 to +10)
+  // with the +/-5 ticks being major + labeled — since dialOffset is in [-5,+5],
+  // a -dialOffset shift of up to ±5*tickStep pixels will keep both half-labels in view.
+  var pixelShift = dialOffset * tickStep;  // ticks slide in the direction of dial rotation
+  for(var t=-10;t<=10;t++){
+    // Position before shift: tick t at center + t*tickStep
+    var tx = cx + t*tickStep + pixelShift;
+    var isCenter=(t===0);
+    var isHalf=(t===-5||t===5);
     var isMajor=isCenter||isHalf;
     var tickLen=isMajor?14:8;
-    var tickCol=isCenter?'#94a3b8':isMajor?'#94a3b8':'#586e85';
-    el('line',{x1:tx,y1:dialY+2,x2:tx,y2:dialY+2+tickLen,stroke:tickCol,'stroke-width':isMajor?1:0.7});
+    var tickCol=isMajor?'#94a3b8':'#586e85';
+    el('line',{x1:tx,y1:dialY+2,x2:tx,y2:dialY+2+tickLen,stroke:tickCol,'stroke-width':isMajor?1:0.7},dialGroup);
+    // Labels: edge ticks (±5) get the half-label, center gets "0"
+    if(t===-5)      txt(tx,dialY+dialH+11,halfLabel,'#64748b',6,'500',null,dialGroup);
+    else if(t===5)  txt(tx,dialY+dialH+11,halfLabel,'#64748b',6,'500',null,dialGroup);
+    else if(t===0)  txt(tx,dialY+dialH+11,'0','#64748b',6,'600',null,dialGroup);
+    // Wrap labels for -10/+10 (these scroll into view as you go past the half-tick)
+    else if(t===-10) txt(tx,dialY+dialH+11,'0','#64748b',6,'600',null,dialGroup);
+    else if(t===10)  txt(tx,dialY+dialH+11,'0','#64748b',6,'600',null,dialGroup);
   }
-  // Labels: left half-label, center 0, right half-label
-  var txLeft=cx-dialW/2+3;
-  var txCenter=cx-dialW/2+3+(5/10)*(dialW-6);
-  var txRight=cx-dialW/2+3+(10/10)*(dialW-6);
-  txt(txLeft,dialY+dialH+11,halfLabel,'#64748b',6,'500');
-  txt(txRight,dialY+dialH+11,halfLabel,'#64748b',6,'500');
-  // Red pointer triangle — position mapped from dialOffset (-5 to +5) → tick positions 0–10
-  var pointerPos=(dialOffset+5)/10; // 0 to 1
-  var pointerX=cx-dialW/2+3+pointerPos*(dialW-6);
-  el('polygon',{points:(pointerX-3)+','+(dialY+dialH+1)+' '+(pointerX+3)+','+(dialY+dialH+1)+' '+pointerX+','+(dialY+dialH-4),fill:'#ef4444'});
 
-  // Digit meaning labels
-  var meanings={P2:['µL','0.1 µL','0.01 µL'],P20:['10 µL','1 µL','0.1 µL'],P200:['100 µL','10 µL','1 µL'],P1000:['1000 µL','100 µL','10 µL']};
+  // Red pointer triangle — FIXED in the center, regardless of dial position
+  el('polygon',{points:(cx-3)+','+(dialY+dialH+1)+' '+(cx+3)+','+(dialY+dialH+1)+' '+cx+','+(dialY+dialH-4),fill:'#ef4444'});
+
+  // Digit meaning labels — right-aligned just outside the pipette body's left edge
+  // (body left edge = cx - bw/2 = cx - 32; labels' right edge sits at cx - 38 with a 6px gap)
+  var meanings={P2:['1 µL','0.1 µL','0.01 µL'],P20:['10 µL','1 µL','0.1 µL'],P200:['100 µL','10 µL','1 µL'],P1000:['1000 µL','100 µL','10 µL']};
   var m=meanings[pipType];
-  [[wy+22,m[0]],[wy+48,m[1]],[wy+74,m[2]]].forEach(function(pair){txt(cx-43,pair[0],pair[1],'#64748b',6);});
+  [[wy+22,m[0]],[wy+48,m[1]],[wy+74,m[2]]].forEach(function(pair){
+    var t=el('text',{x:cx-38,y:pair[0],'text-anchor':'end','font-size':6,fill:'#64748b','font-family':'DM Mono,monospace','font-weight':'600'});
+    t.textContent=pair[1];
+  });
 
   // Nose cone
   el('rect',{x:cx-10,y:300,width:20,height:55,rx:4,fill:'#334155',stroke:'#475569','stroke-width':1});
@@ -2225,13 +2711,1229 @@ function drawPipette(){
 
   var info=document.getElementById('pip-info');
   if(info){
-    var readout=d1+''+d2+(pipType==='P2'||pipType==='P20'?'.':'')+d3;
+    // Build readout string with the correct decimal placement per pipette:
+    //   P1000/P200 → no decimal
+    //   P20        → decimal between d2 and d3 (e.g. "02.5")
+    //   P2         → decimal between d1 and d2 (e.g. "1.05")
+    var readout;
+    if(pipType==='P2')      readout = d1+'.'+d2+''+d3;
+    else if(pipType==='P20') readout = d1+''+d2+'.'+d3;
+    else                     readout = d1+''+d2+''+d3;
     var dialUnits={P2:'0.001',P20:'0.01',P200:'0.1',P1000:'1'};
-    var dialShow=dialOffset>0?'+'+dialOffset:dialOffset<0?String(dialOffset):'0';
+    // Round dial display to 1 decimal to avoid float artifacts (e.g. 4.999999... → 5)
+    var dialRounded=Math.round(dialOffset*10)/10;
+    var dialShow=dialRounded>0?'+'+(Number.isInteger(dialRounded)?dialRounded:dialRounded.toFixed(1)):dialRounded<0?(Number.isInteger(dialRounded)?String(dialRounded):dialRounded.toFixed(1)):'0';
     if(outOfRange)info.innerHTML='<b style="color:#ef4444">⚠ '+pipVol+' µL is outside the '+pipType+' range ('+r.min+'–'+r.max+' µL).</b> Use a different pipette.';
     else info.innerHTML='<b style="color:var(--accent2)">'+pipType+' set to '+pipVol+' µL</b> — Window: <b>'+readout+'</b>, dial: <b>'+dialShow+'</b> (each tick = '+dialUnits[pipType]+' µL)';
   }
 }
+
+// ============================================================
+// SERIAL DILUTION
+// ============================================================
+let serNTubes=6, serC0=1000, serC0Unit='uM', serFactor=2, serFactorMode='preset', serVfinal=200, serDiluentVol=null;
+// serDiluentVol null => auto-compute from factor (V_xfer = V_final / factor)
+let serMode='conc';        // 'conc' | 'plating'
+let serPlateVol=100;       // µL plated onto each plate (cell-plating mode)
+let serDnaMass=null;       // ng of DNA used in transformation (optional → CFU/µg)
+let serCounts={};          // tube index (0..N) → counted colonies (number); 0 is the stock plate
+const SER_FACTORS={2:'1:2 (½)',5:'1:5 (⅕)',10:'1:10',100:'1:100'};
+
+function renderSerialPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`<div class="vp-header"><div class="vp-title">Serial Dilution</div><div class="vp-desc">Sequential dilution across 4–10 tubes — each tube uses C\u2081V\u2081 = C\u2082V\u2082 from the previous tube. Use <b>Cell plating</b> mode for transformation/CFU counting workflows.</div></div>
+<div class="vp-controls" style="gap:.4rem;">
+  <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);margin-right:.2rem;">Mode:</span>
+  <button class="vp-btn${serMode==='conc'?' active':''}" id="ser-mode-conc" onclick="setSerialMode('conc')">Concentration</button>
+  <button class="vp-btn${serMode==='plating'?' active':''}" id="ser-mode-plating" onclick="setSerialMode('plating')">Cell plating</button>
+  <span style="width:1px;height:20px;background:var(--border);margin:0 .35rem;"></span>
+  <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);margin-right:.2rem;">Tubes:</span>
+  ${[4,5,6,7,8,9,10].map(n=>`<button class="vp-btn${n===serNTubes?' active':''}" id="ser-n-${n}" onclick="setSerialN(${n})">${n}</button>`).join('')}
+</div>
+<div style="padding:.8rem 1.4rem;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem .9rem;align-items:end;">
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;" id="ser-c0-label">${serMode==='plating'?'STARTING CELL DENSITY C\u2080':'STARTING CONC. C\u2080'}</div>
+    <div style="display:flex;gap:.3rem;">
+      <input id="ser-c0" type="number" value="${serC0}" step="any" min="0" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="serC0=Math.max(0,+this.value||0);drawSerial()">
+      <select id="ser-c0u" style="background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.3rem;font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text);" onchange="serC0Unit=this.value;drawSerial()">
+        ${serMode==='plating'
+          ? `<option value="cells/mL"${serC0Unit==='cells/mL'?' selected':''}>cells/mL</option>
+             <option value="CFU/mL"${serC0Unit==='CFU/mL'?' selected':''}>CFU/mL</option>`
+          : `<option value="M"${serC0Unit==='M'?' selected':''}>M</option>
+             <option value="mM"${serC0Unit==='mM'?' selected':''}>mM</option>
+             <option value="uM"${serC0Unit==='uM'?' selected':''}>µM</option>
+             <option value="nM"${serC0Unit==='nM'?' selected':''}>nM</option>
+             <option value="mg/mL"${serC0Unit==='mg/mL'?' selected':''}>mg/mL</option>
+             <option value="ng/uL"${serC0Unit==='ng/uL'?' selected':''}>ng/µL</option>`}
+      </select>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">DILUTION FACTOR</div>
+    <div style="display:flex;gap:.3rem;">
+      <select id="ser-factor-preset" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="setSerialFactorPreset(this.value)">
+        <option value="2"${serFactorMode==='preset'&&serFactor===2?' selected':''}>1:2 (½)</option>
+        <option value="3"${serFactorMode==='preset'&&serFactor===3?' selected':''}>1:3</option>
+        <option value="5"${serFactorMode==='preset'&&serFactor===5?' selected':''}>1:5</option>
+        <option value="10"${serFactorMode==='preset'&&serFactor===10?' selected':''}>1:10</option>
+        <option value="100"${serFactorMode==='preset'&&serFactor===100?' selected':''}>1:100</option>
+        <option value="custom"${serFactorMode==='custom'?' selected':''}>Custom…</option>
+      </select>
+      <input id="ser-factor-custom" type="number" value="${serFactor}" min="1.01" step="any" style="width:74px;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .4rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;${serFactorMode==='custom'?'':'display:none;'}" oninput="serFactor=Math.max(1.01,+this.value||2);serDiluentVol=null;drawSerial()">
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">FINAL VOL / TUBE V\u2082</div>
+    <div style="display:flex;gap:.3rem;align-items:center;">
+      <input id="ser-vf" type="number" value="${serVfinal}" min="1" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="serVfinal=Math.max(1,+this.value||1);drawSerial()">
+      <span style="font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text-muted);">µL</span>
+    </div>
+  </div>
+  ${serMode==='plating'?`<div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">PLATING VOLUME</div>
+    <div style="display:flex;gap:.3rem;align-items:center;">
+      <input id="ser-plate-vol" type="number" value="${serPlateVol}" min="1" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="serPlateVol=Math.max(1,+this.value||1);drawSerial()">
+      <span style="font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text-muted);">µL/plate</span>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">DNA TRANSFORMED <span style="color:var(--text-muted);text-transform:none;letter-spacing:0;">(opt.)</span></div>
+    <div style="display:flex;gap:.3rem;align-items:center;">
+      <input id="ser-dna-mass" type="number" value="${serDnaMass===null?'':serDnaMass}" placeholder="e.g. 100" min="0" step="any" style="flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="serDnaMass=this.value===''?null:Math.max(0,+this.value||0);drawSerial()">
+      <span style="font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text-muted);">ng</span>
+    </div>
+  </div>`:''}
+</div>
+<div style="flex:1;overflow-y:auto;padding:0;min-height:0;">
+  <div id="ser-svg-area" style="padding:1rem 1.4rem .4rem;display:flex;align-items:flex-start;justify-content:center;background:var(--surface);"></div>
+  <div id="ser-protocol" style="padding:.4rem 1.4rem 1rem;"></div>
+</div>
+<div id="ser-info" style="padding:.55rem 1.4rem;border-top:1px solid var(--border);flex-shrink:0;font-size:.66rem;line-height:1.55;color:var(--text-muted);"></div>`;
+  drawSerial();
+}
+
+function setSerialN(n){
+  serNTubes=Math.max(4,Math.min(10,n|0));
+  document.querySelectorAll('[id^=ser-n-]').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('ser-n-'+serNTubes);
+  if(btn)btn.classList.add('active');
+  drawSerial();
+}
+
+function setSerialMode(m){
+  if(serMode===m)return;
+  serMode=m;
+  // Switch defaults sensibly when changing modes
+  if(m==='plating'){
+    // Typical microbiology defaults
+    if(!['cells/mL','CFU/mL'].includes(serC0Unit)){
+      serC0Unit='CFU/mL';
+      serC0=1e9;            // ~OD600 ~1 ≈ 8e8 cells/mL — round to 1e9 for an easy default
+    }
+    // Use 1:10 dilution factor (standard for plating series)
+    if(serFactorMode==='preset'&&serFactor!==10){
+      serFactor=10;
+    }
+    serVfinal=900;          // 100 µL transfer + 900 µL diluent → easy 1:10
+    serNTubes=6;
+    // Note: serCounts NOT reset — user can toggle back and find their counts intact.
+    // Use the "Clear all" button to wipe them.
+  } else {
+    // Restore concentration defaults
+    if(['cells/mL','CFU/mL'].includes(serC0Unit)){
+      serC0Unit='uM';
+      serC0=1000;
+    }
+    if(serFactor===10 && serVfinal===900) serVfinal=200; // back to compact
+  }
+  // Re-render entire panel (controls + body) so visibility-dependent inputs appear/disappear
+  renderSerialPanel();
+}
+
+function setSerialCount(idx, valStr){
+  if(valStr===''||valStr==null){ delete serCounts[idx]; }
+  else {
+    const v=Math.max(0, parseInt(valStr,10)||0);
+    serCounts[idx]=v;
+  }
+  // Don't re-render the inputs (would lose focus); just redraw the analysis panel
+  drawSerialPlatingAnalysis();
+}
+
+function setSerialFactorPreset(v){
+  if(v==='custom'){
+    serFactorMode='custom';
+    const cust=document.getElementById('ser-factor-custom');
+    if(cust){cust.style.display='';cust.focus();cust.select();}
+  } else {
+    serFactorMode='preset';
+    serFactor=+v;
+    const cust=document.getElementById('ser-factor-custom');
+    if(cust){cust.style.display='none';cust.value=serFactor;}
+    serDiluentVol=null;
+    drawSerial();
+  }
+}
+
+function _serFmtConc(c, baseUnit){
+  // c is value in baseUnit; auto-rescale for readability for molar units
+  if(c===0) return '0 '+baseUnit;
+  // Cells and CFU: scientific notation since these span 10^0 to 10^10+
+  if(baseUnit==='cells/mL' || baseUnit==='CFU/mL'){
+    if(c>=10000) return c.toExponential(2)+' '+baseUnit;
+    if(c>=10) return Math.round(c).toLocaleString()+' '+baseUnit;
+    if(c>=0.1) return c.toFixed(2)+' '+baseUnit;
+    return c.toExponential(2)+' '+baseUnit;
+  }
+  const molarLadder=['M','mM','uM','nM','pM'];
+  const factors={M:1,mM:1e-3,uM:1e-6,nM:1e-9,pM:1e-12};
+  const massLadder={'mg/mL':['mg/mL','µg/mL','ng/mL','pg/mL'],'ng/uL':['mg/mL','µg/mL','ng/µL','pg/µL']};
+  // Map base concentration to "M-equivalent" for molar; stay-in-unit for mass
+  if(molarLadder.includes(baseUnit)){
+    const conc_M=c*factors[baseUnit];
+    for(const u of molarLadder){
+      const v=conc_M/factors[u];
+      if(v>=1 && v<1000) return v.toFixed(v>=100?1:v>=10?2:3)+' '+(u==='uM'?'µM':u);
+    }
+    // outside ladder: scientific
+    if(conc_M<1e-12) return (conc_M/1e-15).toFixed(2)+' fM';
+    return c.toExponential(2)+' '+(baseUnit==='uM'?'µM':baseUnit);
+  }
+  // mass-based: scale by powers of 1000
+  if(baseUnit==='mg/mL' || baseUnit==='ng/uL'){
+    const mgmL = baseUnit==='mg/mL' ? c : c/1000; // ng/µL == µg/mL == mg/mL/1000? No: 1 ng/µL = 1 µg/mL = 0.001 mg/mL
+    // Pick best mass-conc unit
+    if(mgmL>=1) return mgmL.toFixed(mgmL>=100?1:mgmL>=10?2:3)+' mg/mL';
+    if(mgmL>=1e-3) return (mgmL*1000).toFixed(2)+' µg/mL';
+    if(mgmL>=1e-6) return (mgmL*1e6).toFixed(2)+' ng/mL';
+    return (mgmL*1e9).toFixed(2)+' pg/mL';
+  }
+  return c.toExponential(2)+' '+baseUnit;
+}
+
+function _serFmtVol(uL){
+  if(uL>=1000) return (uL/1000).toFixed(uL>=10000?1:2)+' mL';
+  if(uL>=1) return (uL>=100?uL.toFixed(1):uL.toFixed(2))+' µL';
+  return (uL*1000).toFixed(1)+' nL';
+}
+
+function drawSerial(){
+  const area=document.getElementById('ser-svg-area');
+  const proto=document.getElementById('ser-protocol');
+  const info=document.getElementById('ser-info');
+  if(!area||!proto)return;
+
+  // Sync custom input
+  const cust=document.getElementById('ser-factor-custom');
+  if(cust && serFactorMode==='custom') serFactor=Math.max(1.01,+cust.value||2);
+
+  const N=serNTubes;
+  const f=serFactor;
+  const Vf=serVfinal; // µL final volume per tube
+  const Vxfer = Vf/f;   // µL transferred from previous tube
+  const Vdil = Vf - Vxfer; // µL diluent added to each tube
+
+  // Concentrations C0..CN  (tube i has Ci = C0 / f^i for i>=1; tube 0 = stock at C0)
+  // We'll show N tubes: tube 1..N (each receives transfer from previous)
+  // Display tube 0 (stock) on the far left as a labeled source
+  const concs=[];
+  for(let i=0;i<=N;i++) concs.push(serC0/Math.pow(f,i));
+
+  // ── SVG visualization ──
+  const tubeW = 44, tubeH = 110, gap = 32;
+  const labelTopH = 36;
+  const labelBotH = 32;
+  const sideMargin = 18;
+  const totalTubes = N+1; // include stock
+  const svgW = sideMargin*2 + totalTubes*tubeW + (totalTubes-1)*gap;
+  const svgH = labelTopH + tubeH + labelBotH + 26; // extra for arrows row
+
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`0 0 ${svgW} ${svgH}`);
+  svg.setAttribute('width','100%');
+  svg.style.cssText='max-width:100%;height:auto;display:block;max-height:280px;';
+  function el(tag,attrs,parent){
+    const n=document.createElementNS(NS,tag);
+    if(attrs)Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));
+    (parent||svg).appendChild(n);
+    return n;
+  }
+  function txt(x,y,s,color,size,weight,parent){
+    const t=el('text',{x,y,'text-anchor':'middle','font-size':size||10,fill:color||'#737373','font-family':'DM Mono,monospace','font-weight':weight||'400'},parent);
+    t.textContent=s;return t;
+  }
+
+  // Compute color intensity per tube (log-scale opacity from 0.95 down to ~0.04)
+  // tube 0 = stock = full intensity; tube N = lightest
+  const intensity = (i) => {
+    if(N===0) return 0.9;
+    // log scale by dilution-fold
+    const fold = Math.pow(f,i);
+    const minOp = 0.06, maxOp = 0.95;
+    // normalize log(fold) over [0, log(f^N)]
+    const t = Math.log(fold) / Math.log(Math.pow(f,N));
+    return maxOp - t*(maxOp-minOp);
+  };
+
+  // Theme accent for liquid color
+  const accentRGB='231,117,0'; // Princeton orange — matches accent
+
+  for(let i=0;i<totalTubes;i++){
+    const x = sideMargin + i*(tubeW+gap);
+    const yTop = labelTopH;
+    const yBot = labelTopH + tubeH;
+
+    // Tube top label
+    const tubeNum = i===0 ? 'Stock' : 'Tube '+i;
+    txt(x+tubeW/2, 14, tubeNum, i===0?'var(--accent2)':'var(--text-dim)', 10, '600');
+    txt(x+tubeW/2, 27, i===0 ? 'C\u2080' : 'C'+_subscript(i), i===0?'var(--accent)':'var(--text-muted)', 9, '500');
+
+    // Tube body (rounded bottom)
+    // Path: rectangle with semicircle bottom
+    const tubeRadius = tubeW/2;
+    const bodyH = tubeH - tubeRadius;
+    const tubePath = `M ${x} ${yTop} L ${x} ${yTop+bodyH} A ${tubeRadius} ${tubeRadius} 0 0 0 ${x+tubeW} ${yTop+bodyH} L ${x+tubeW} ${yTop} Z`;
+    el('path',{d:tubePath, fill:'rgba(255,255,255,.04)', stroke:'var(--border-strong)', 'stroke-width':1.2});
+
+    // Liquid fill (a clipped rounded-bottom shape, nearly filling the tube)
+    const liqTopY = yTop + 12; // slight headspace
+    const liqBodyH = (yTop+bodyH) - liqTopY;
+    const liqOp = intensity(i);
+    const liqPath = `M ${x+1.5} ${liqTopY} L ${x+1.5} ${yTop+bodyH} A ${tubeRadius-1.5} ${tubeRadius-1.5} 0 0 0 ${x+tubeW-1.5} ${yTop+bodyH} L ${x+tubeW-1.5} ${liqTopY} Z`;
+    el('path',{d:liqPath, fill:`rgba(${accentRGB},${liqOp})`, stroke:'none'});
+
+    // Meniscus highlight
+    el('ellipse',{cx:x+tubeW/2, cy:liqTopY, rx:tubeW/2-1.5, ry:1.6, fill:`rgba(${accentRGB},${Math.min(1,liqOp+0.15)})`, stroke:`rgba(${accentRGB},${Math.min(1,liqOp+0.3)})`, 'stroke-width':0.6});
+
+    // Cap on stock (visual differentiator)
+    if(i===0){
+      el('rect',{x:x-2, y:yTop-5, width:tubeW+4, height:6, rx:2, fill:'var(--accent2)', stroke:'none'});
+    }
+
+    // Bottom label: concentration
+    const baseUnit = serC0Unit;
+    txt(x+tubeW/2, yBot+14, _serFmtConc(concs[i], baseUnit), i===0?'var(--accent)':'var(--text-dim)', 8.5, '600');
+    // Dilution fold label (below concentration)
+    const foldLabel = i===0 ? 'undiluted' : '1:'+_serFmtFold(Math.pow(f,i));
+    txt(x+tubeW/2, yBot+24, foldLabel, 'var(--text-muted)', 7.5, '400');
+
+    // Arrows between tubes (transfer)
+    if(i<totalTubes-1){
+      const ax = x + tubeW + 2;
+      const ax2 = ax + gap - 4;
+      const ay = yTop + tubeH/2;
+      // Transfer arrow — use --text so it's near-black in light theme, near-white in dark
+      el('line',{x1:ax, y1:ay, x2:ax2, y2:ay, stroke:'var(--text)', 'stroke-width':1.6, 'marker-end':'url(#ser-arrow)'});
+      // small label "Vxfer"
+      txt((ax+ax2)/2, ay-5, _serFmtVol(Vxfer), 'var(--text)', 7.5, '700');
+    }
+  }
+  // Arrow marker def
+  const defs=el('defs',{});
+  const marker=el('marker',{id:'ser-arrow', markerWidth:7, markerHeight:7, refX:6, refY:3.5, orient:'auto', markerUnits:'strokeWidth'}, defs);
+  el('path',{d:'M0,0 L7,3.5 L0,7 Z', fill:'var(--text)'}, marker);
+
+  // Diluent indicator under tubes 1..N
+  for(let i=1;i<totalTubes;i++){
+    const x = sideMargin + i*(tubeW+gap);
+    const ly = labelTopH + tubeH + 32;
+    txt(x+tubeW/2, ly+8, '+ '+_serFmtVol(Vdil)+' diluent', 'var(--text-muted)', 7, '400');
+  }
+
+  area.innerHTML='';
+  area.appendChild(svg);
+
+  // ── Protocol table ──
+  const concHeader = serMode==='plating' ? 'CELLS / mL' : 'FINAL CONC.';
+  let html='<div style="font-family:\'DM Mono\',monospace;font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;padding:.3rem 0;">PROTOCOL — '+N+'-step '+_serFmtFactor(f)+(serMode==='plating'?' plating dilution series':' serial dilution')+'</div>';
+  html+='<div style="overflow-x:auto;border:1px solid var(--border);border-radius:6px;background:var(--surface2);"><table style="width:100%;border-collapse:collapse;font-family:\'DM Mono\',monospace;font-size:.7rem;min-width:520px;">';
+  html+='<thead><tr style="background:var(--bg);border-bottom:1px solid var(--border);">'
+       +'<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">TUBE</th>'
+       +'<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">DILUENT</th>'
+       +'<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">TRANSFER</th>'
+       +'<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">'+concHeader+'</th>'
+       +'<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">FOLD</th>';
+  if(serMode==='plating') html+='<th style="text-align:left;padding:.45rem .6rem;color:var(--text-muted);font-weight:500;letter-spacing:.05em;">EXP. COLONIES</th>';
+  html+='</tr></thead><tbody>';
+  for(let i=1;i<=N;i++){
+    const fromLbl = i===1 ? 'Stock' : 'Tube '+(i-1);
+    html+='<tr style="border-bottom:1px solid var(--border);">'
+         +'<td style="padding:.4rem .6rem;color:var(--text);font-weight:500;">Tube '+i+'</td>'
+         +'<td style="padding:.4rem .6rem;color:var(--text-dim);">'+_serFmtVol(Vdil)+'</td>'
+         +'<td style="padding:.4rem .6rem;color:var(--text-dim);">'+_serFmtVol(Vxfer)+' from '+fromLbl+'</td>'
+         +'<td style="padding:.4rem .6rem;color:var(--accent);font-weight:600;">'+_serFmtConc(concs[i],serC0Unit)+'</td>'
+         +'<td style="padding:.4rem .6rem;color:var(--text-muted);">1:'+_serFmtFold(Math.pow(f,i))+'</td>';
+    if(serMode==='plating'){
+      // Expected colonies if you plate serPlateVol µL of this tube
+      // colonies = (cells/mL) × (plating volume in mL)
+      const platedmL = serPlateVol/1000;
+      const expCol = concs[i]*platedmL;
+      let colColor='var(--text-dim)';
+      let colNote='';
+      if(expCol>=30 && expCol<=300){ colColor='#147888'; colNote=' \u2713'; }
+      else if(expCol<30 && expCol>=1){ colColor='var(--text-muted)'; colNote=' (sparse)'; }
+      else if(expCol<1){ colColor='var(--text-muted)'; colNote=' (none likely)'; }
+      else if(expCol>300){ colColor='#a8580f'; colNote=' (TNTC)'; }
+      html+='<td style="padding:.4rem .6rem;color:'+colColor+';font-weight:500;">'+_serFmtCount(expCol)+colNote+'</td>';
+    }
+    html+='</tr>';
+  }
+  html+='</tbody></table></div>';
+
+  // Worked example for tube 1 — show C1V1 = C2V2
+  const c1Display=_serFmtConc(concs[0],serC0Unit);
+  const c2Display=_serFmtConc(concs[1],serC0Unit);
+  html+='<div style="margin-top:.7rem;padding:.65rem .85rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;">Worked example — Tube 1</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--text-dim);line-height:1.7;">'
+       +'C\u2081 V\u2081 = C\u2082 V\u2082 \u2192 ('+c1Display+')('+_serFmtVol(Vxfer)+') = ('+c2Display+')('+_serFmtVol(Vf)+')'
+       +'<br>Add <b style="color:var(--accent2);">'+_serFmtVol(Vdil)+'</b> diluent to tube 1, then transfer <b style="color:var(--accent2);">'+_serFmtVol(Vxfer)+'</b> from stock and mix. Repeat for each subsequent tube.'
+       +'</div></div>';
+
+  // Plating section (only in plating mode)
+  if(serMode==='plating'){
+    html+='<div id="ser-plating-analysis"></div>';
+  }
+
+  proto.innerHTML=html;
+
+  // Final fold label
+  const finalFold=Math.pow(f,N);
+  if(info){
+    if(serMode==='plating'){
+      info.innerHTML='<b style="color:var(--accent2)">Plating series:</b> '+N+' tubes, '+_serFmtFactor(f)+' steps, '+serPlateVol+' µL plated per plate. '
+        +'<span style="color:var(--text-muted)">A plate is "countable" with <b>30–300 colonies</b> — too few = high statistical error, too many = TNTC. Enter your colony counts below to back-calculate the original CFU/mL.</span>';
+    } else {
+      info.innerHTML='<b style="color:var(--accent2)">Final tube</b> reaches a <b>1:'+_serFmtFold(finalFold)+'</b> dilution ('+_serFmtConc(concs[N],serC0Unit)+'). Each step transfers '+_serFmtVol(Vxfer)+' into '+_serFmtVol(Vdil)+' diluent for a total volume of '+_serFmtVol(Vf)+' per tube. <span style="color:var(--text-muted)">Tip: pre-aliquot diluent into all tubes first, then transfer sequentially with a fresh tip each time.</span>';
+    }
+  }
+
+  // Render plating analysis (count inputs + back-calculation)
+  if(serMode==='plating') drawSerialPlatingAnalysis();
+}
+
+function _serFmtCount(n){
+  if(n===0) return '0';
+  if(n>=1e6) return n.toExponential(1);
+  if(n>=10000) return Math.round(n).toLocaleString();
+  if(n>=100) return Math.round(n).toString();
+  if(n>=10) return n.toFixed(1);
+  if(n>=1) return n.toFixed(1);
+  if(n>=0.01) return n.toFixed(2);
+  return n.toExponential(1);
+}
+
+function drawSerialPlatingAnalysis(){
+  const container=document.getElementById('ser-plating-analysis');
+  if(!container) return;
+  const N=serNTubes, f=serFactor;
+  const concs=[];
+  for(let i=0;i<=N;i++) concs.push(serC0/Math.pow(f,i));
+  const platedmL = serPlateVol/1000;
+
+  // Build the "enter your counts" UI: a row of small inputs, one per tube (1..N)
+  let html='<div style="margin-top:.85rem;padding:.7rem .85rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;">';
+  html+='<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;">'
+       +'<span>Plate counts \u2014 enter colonies counted</span>'
+       +'<button onclick="clearSerialCounts()" style="font-family:inherit;font-size:.55rem;color:var(--text-muted);background:transparent;border:1px solid var(--border);border-radius:3px;padding:.2rem .5rem;cursor:pointer;letter-spacing:.05em;">Clear all</button>'
+       +'</div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.5rem;">';
+  for(let i=1;i<=N;i++){
+    const expColi=concs[i]*platedmL;
+    let chipColor='var(--text-muted)';
+    let chipBg='var(--surface2)';
+    if(expColi>=30&&expColi<=300){ chipColor='#147888'; chipBg='rgba(20,120,136,.08)'; }
+    else if(expColi>300){ chipColor='#a8580f'; chipBg='rgba(168,88,15,.06)'; }
+    const v=serCounts[i]!==undefined?serCounts[i]:'';
+    html+='<div style="background:'+chipBg+';border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;display:flex;flex-direction:column;gap:.2rem;">'
+         +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:'+chipColor+';display:flex;justify-content:space-between;align-items:center;letter-spacing:.05em;">'
+         +'<span>Tube '+i+' \u2022 1:'+_serFmtFold(Math.pow(f,i))+'</span>'
+         +(expColi>=30&&expColi<=300?'<span title="In countable range">\u2713</span>':'')
+         +'</div>'
+         +'<input type="number" min="0" step="1" placeholder="exp. ~'+_serFmtCount(expColi)+'" value="'+v+'" oninput="setSerialCount('+i+',this.value)" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:.3rem .4rem;font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--text);outline:none;" />'
+         +'</div>';
+  }
+  html+='</div>';
+
+  // Back-calculation block
+  // For each tube with a count, CFU/mL_original = colonies / (plating_vol_mL × dilution_factor_at_that_tube)
+  // dilution_factor_at_that_tube = 1/f^i (so colonies/(platedmL × f^-i) = colonies × f^i / platedmL)
+  const calcs=[];
+  for(let i=1;i<=N;i++){
+    if(serCounts[i]==null||serCounts[i]<0) continue;
+    const cnt=serCounts[i];
+    const fold=Math.pow(f,i);
+    const cfuPerML = (cnt/platedmL)*fold;
+    const inCountable = cnt>=30 && cnt<=300;
+    calcs.push({tube:i, count:cnt, fold, cfuPerML, inCountable});
+  }
+  const countable=calcs.filter(c=>c.inCountable);
+  if(calcs.length>0){
+    html+='<div style="margin-top:.7rem;padding-top:.65rem;border-top:1px dashed var(--border);">';
+    html+='<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;">Back-calculated CFU / mL</div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.5rem;">';
+    for(const c of calcs){
+      const tagColor = c.inCountable ? '#147888' : (c.count<30 ? '#a8580f' : '#9a3a3a');
+      const tagText  = c.inCountable ? '\u2713 countable' : (c.count<30 ? 'sparse \u2014 high error' : 'TNTC \u2014 unreliable');
+      html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid '+tagColor+';border-radius:5px;padding:.5rem .6rem;">'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem;">Tube '+c.tube+' \u2022 1:'+_serFmtFold(c.fold)+'</div>'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:.92rem;color:'+tagColor+';font-weight:600;line-height:1.2;">'+_serFmtSci(c.cfuPerML)+'</div>'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:'+tagColor+';margin-top:.2rem;">'+tagText+'</div>'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:.58rem;color:var(--text-muted);margin-top:.2rem;line-height:1.45;">'+c.count+' col \u00D7 '+_serFmtFold(c.fold)+' / '+platedmL.toFixed(3)+' mL</div>'
+           +'</div>';
+    }
+    html+='</div>';
+
+    // Best estimate from countable plates (geometric mean if >1, else just the one)
+    if(countable.length>0){
+      let geoMean;
+      if(countable.length===1) geoMean=countable[0].cfuPerML;
+      else {
+        const sumLog=countable.reduce((a,c)=>a+Math.log(c.cfuPerML),0);
+        geoMean=Math.exp(sumLog/countable.length);
+      }
+      // Total CFU in original tube (V₀ = the volume of stock you started from; we'll assume "1 mL" recovery for transformation case
+      // but really we don't know V₀, so present per-mL as the canonical answer
+      html+='<div style="margin-top:.7rem;padding:.65rem .8rem;background:rgba(20,120,136,.06);border:1px solid rgba(20,120,136,.3);border-radius:5px;">'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:#147888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.25rem;font-weight:600;">Best estimate '+(countable.length>1?'(geometric mean of '+countable.length+' countable plates)':'(from 1 countable plate)')+'</div>'
+           +'<div style="font-family:\'DM Mono\',monospace;font-size:1.1rem;color:#147888;font-weight:700;line-height:1.2;">'+_serFmtSci(geoMean)+' CFU/mL</div>';
+      // Transformation efficiency, if DNA mass given
+      if(serDnaMass!==null && serDnaMass>0){
+        // Conventional: transformation efficiency = total CFU / µg DNA
+        // Assume 1 mL of recovery culture (standard for transformation: SOC outgrowth volume)
+        // -- but better: students plate FROM the recovery, and CFU/mL × recovery_mL = total CFU
+        // We'll show CFU/µg using 1 mL recovery as the assumption, and clearly note it
+        const cfuPerUg = geoMean * 1.0 / (serDnaMass/1000); // ×1 mL recovery, ÷ µg DNA
+        html+='<div style="margin-top:.45rem;padding-top:.45rem;border-top:1px solid rgba(20,120,136,.2);">'
+             +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:#147888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;font-weight:600;">Transformation efficiency</div>'
+             +'<div style="font-family:\'DM Mono\',monospace;font-size:.92rem;color:#147888;font-weight:700;line-height:1.2;">'+_serFmtSci(cfuPerUg)+' CFU / µg DNA</div>'
+             +'<div style="font-family:\'DM Mono\',monospace;font-size:.58rem;color:var(--text-muted);margin-top:.25rem;line-height:1.45;">= '+_serFmtSci(geoMean)+' CFU/mL \u00D7 1.0 mL recovery / '+(serDnaMass/1000)+' µg DNA. <i>Adjust numerator if your recovery volume \u2260 1 mL.</i> Typical chemically-competent <i>E. coli</i>: 10\u2078\u201310\u2079 CFU/µg.</div>'
+             +'</div>';
+      }
+      html+='</div>';
+    } else if(calcs.length>0){
+      html+='<div style="margin-top:.7rem;padding:.55rem .8rem;background:rgba(168,88,15,.06);border:1px solid rgba(168,88,15,.3);border-radius:5px;font-family:\'DM Mono\',monospace;font-size:.66rem;color:var(--text-dim);line-height:1.5;">'
+           +'<b style="color:#a8580f;">\u26A0 No plate in the 30\u2013300 range.</b> Counts outside this range have high statistical error (sparse) or are uncountable (TNTC). Repeat with adjusted dilutions, or use the C\u2080 input above to predict which tubes will land in range.'
+           +'</div>';
+    }
+    html+='</div>';
+  }
+
+  html+='</div>';
+  container.innerHTML=html;
+}
+
+function clearSerialCounts(){
+  serCounts={};
+  drawSerialPlatingAnalysis();
+}
+
+function _serFmtSci(n){
+  // Format CFU/mL etc — always scientific notation (these numbers span many orders of magnitude)
+  if(n===0||!isFinite(n)) return '0';
+  if(n>=1e4 || n<0.01) return n.toExponential(2);
+  if(n>=100) return Math.round(n).toLocaleString();
+  return n.toPrecision(3);
+}
+
+function _subscript(n){
+  const map={0:'\u2080',1:'\u2081',2:'\u2082',3:'\u2083',4:'\u2084',5:'\u2085',6:'\u2086',7:'\u2087',8:'\u2088',9:'\u2089'};
+  return String(n).split('').map(d=>map[d]||d).join('');
+}
+function _serFmtFold(x){
+  if(x>=1e6) return x.toExponential(1);
+  if(x>=1000) return Math.round(x).toLocaleString();
+  if(Number.isInteger(x)) return ''+x;
+  return x.toFixed(x>=100?0:x>=10?1:2);
+}
+function _serFmtFactor(f){
+  if(Number.isInteger(f)) return '1:'+f;
+  return '1:'+f.toFixed(2);
+}
+
+// ============================================================
+// ABSORBANCE & PURITY (UV-Vis + A260/A280 ratios)
+// ============================================================
+let absMode='dsDNA';   // 'dsDNA' | 'ssDNA' | 'RNA' | 'protein'
+let absPath=1.0;       // pathlength in cm (default 1 cm cuvette; NanoDrop preset = 0.1 cm)
+let absA260=0.5;       // measured absorbance values (user-controlled)
+let absA280=0.278;     // → A260/A280 = 1.80 (clean dsDNA default)
+let absA230=0.25;      // → A260/A230 = 2.0 (clean)
+let absExtCoef=1.0;    // for protein mode: extinction coefficient (M^-1 cm^-1, in mg/mL units actually e1%/10) — we'll use mg/mL E1% style
+// For protein mode: A280 = E(0.1%) * c(mg/mL) * path; default E0.1% = 1.0 (e.g. ~1 mg/mL IgG)
+
+const ABS_FACTORS={dsDNA:50, ssDNA:33, RNA:40, protein:null}; // µg/mL per A260 unit (for nucleic acids)
+const ABS_TARGETS={dsDNA:{a260a280:1.80, a260a230:2.0}, ssDNA:{a260a280:1.85, a260a230:2.0}, RNA:{a260a280:2.0, a260a230:2.0}, protein:{a260a280:0.57, a260a230:null}};
+
+function renderAbsPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`<div class="vp-header"><div class="vp-title">Absorbance & Purity</div><div class="vp-desc">Interactive UV\u2013Vis spectrum with A\u2082\u2086\u2080/A\u2082\u2088\u2080 and A\u2082\u2086\u2080/A\u2082\u2083\u2080 purity ratios. Drag the slider points or pick a preset to explore how contaminants distort the spectrum.</div></div>
+<div class="vp-controls" style="gap:.4rem;">
+  <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);margin-right:.2rem;">Sample:</span>
+  <button class="vp-btn${absMode==='dsDNA'?' active':''}" id="abs-mode-dsDNA" onclick="setAbsMode('dsDNA')">dsDNA</button>
+  <button class="vp-btn${absMode==='ssDNA'?' active':''}" id="abs-mode-ssDNA" onclick="setAbsMode('ssDNA')">ssDNA</button>
+  <button class="vp-btn${absMode==='RNA'?' active':''}" id="abs-mode-RNA" onclick="setAbsMode('RNA')">RNA</button>
+  <button class="vp-btn${absMode==='protein'?' active':''}" id="abs-mode-protein" onclick="setAbsMode('protein')">Protein</button>
+  <span style="flex:1;"></span>
+  <span style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--text-muted);margin-right:.2rem;">Preset:</span>
+  <button class="vp-btn" onclick="setAbsPreset('clean')" title="Pure sample">Clean</button>
+  <button class="vp-btn" onclick="setAbsPreset('protein')" title="Protein contamination">+Protein</button>
+  <button class="vp-btn" onclick="setAbsPreset('phenol')" title="Phenol/guanidinium">+Phenol</button>
+  <button class="vp-btn" onclick="setAbsPreset('salt')" title="Salt/EDTA/sugar">+Salt</button>
+</div>
+<div style="padding:.55rem 1.4rem;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface);display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.55rem .8rem;align-items:end;">
+  <div>
+    <div style="font-size:.62rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;display:flex;justify-content:space-between;"><span>A\u2082\u2086\u2080</span><span style="color:var(--accent);" id="abs-a260-v">${absA260.toFixed(3)}</span></div>
+    <input type="range" id="abs-a260" min="0" max="2" step="0.005" value="${absA260}" style="width:100%;accent-color:#E77500;height:4px;" oninput="absA260=+this.value;document.getElementById('abs-a260-v').textContent=absA260.toFixed(3);drawAbs()">
+  </div>
+  <div>
+    <div style="font-size:.62rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;display:flex;justify-content:space-between;"><span>A\u2082\u2088\u2080</span><span style="color:#5f378c;" id="abs-a280-v">${absA280.toFixed(3)}</span></div>
+    <input type="range" id="abs-a280" min="0" max="2" step="0.005" value="${absA280}" style="width:100%;accent-color:#5f378c;height:4px;" oninput="absA280=+this.value;document.getElementById('abs-a280-v').textContent=absA280.toFixed(3);drawAbs()">
+  </div>
+  <div>
+    <div style="font-size:.62rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;display:flex;justify-content:space-between;"><span>A\u2082\u2083\u2080</span><span style="color:#147888;" id="abs-a230-v">${absA230.toFixed(3)}</span></div>
+    <input type="range" id="abs-a230" min="0" max="2" step="0.005" value="${absA230}" style="width:100%;accent-color:#147888;height:4px;" oninput="absA230=+this.value;document.getElementById('abs-a230-v').textContent=absA230.toFixed(3);drawAbs()">
+  </div>
+  <div>
+    <div style="font-size:.62rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;">PATH</div>
+    <select id="abs-path" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.32rem .4rem;font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text);outline:none;" onchange="absPath=+this.value;drawAbs()">
+      <option value="1"${absPath===1?' selected':''}>1.0 cm (cuvette)</option>
+      <option value="0.1"${absPath===0.1?' selected':''}>0.1 cm (NanoDrop)</option>
+      <option value="0.05"${absPath===0.05?' selected':''}>0.05 cm (NanoDrop low)</option>
+    </select>
+  </div>
+  <div id="abs-protein-ext-wrap" style="${absMode==='protein'?'':'display:none;'}">
+    <div style="font-size:.62rem;color:var(--text-muted);font-family:'DM Mono',monospace;letter-spacing:.04em;">E\u00B9% (0.1%)</div>
+    <input id="abs-ext" type="number" value="${absExtCoef}" step="0.05" min="0.01" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.32rem .4rem;font-family:'DM Mono',monospace;font-size:.74rem;color:var(--text);outline:none;" oninput="absExtCoef=Math.max(0.01,+this.value||1);drawAbs()">
+  </div>
+</div>
+<div style="flex:1;overflow-y:auto;padding:0;min-height:0;">
+  <div id="abs-svg-area" style="padding:.7rem 1.4rem .3rem;background:var(--surface);"></div>
+  <div id="abs-results" style="padding:.4rem 1.4rem 1rem;"></div>
+</div>
+<div id="abs-info" style="padding:.55rem 1.4rem;border-top:1px solid var(--border);flex-shrink:0;font-size:.66rem;line-height:1.55;color:var(--text-muted);"></div>`;
+  drawAbs();
+}
+
+function setAbsMode(m){
+  absMode=m;
+  document.querySelectorAll('[id^=abs-mode-]').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('abs-mode-'+m);
+  if(btn)btn.classList.add('active');
+  // Toggle E1% input visibility
+  const wrap=document.getElementById('abs-protein-ext-wrap');
+  if(wrap)wrap.style.display=m==='protein'?'':'none';
+  // Set sensible default values per mode (clean preset)
+  setAbsPreset('clean');
+}
+
+function setAbsPreset(kind){
+  const targets=ABS_TARGETS[absMode];
+  // Pick a base A260 and derive others from target ratios
+  if(absMode==='protein'){
+    // For protein, A280 is the dominant. Use a clean ratio of ~0.57 (A260/A280)
+    // base on a moderate A280 ~1.0
+    if(kind==='clean'){
+      absA280=1.0; absA260=0.57; absA230=0.50;
+    } else if(kind==='protein'){
+      absA280=1.0; absA260=0.55; absA230=0.45;
+    } else if(kind==='phenol'){
+      absA280=1.0; absA260=0.85; absA230=0.40;   // contamination raises A260
+    } else if(kind==='salt'){
+      absA280=1.0; absA260=0.60; absA230=0.95;   // salt elevates A230
+    }
+  } else {
+    // Nucleic acids — base on A260 ~ 0.5
+    const base=0.5;
+    absA260=base;
+    if(kind==='clean'){
+      absA280=base/targets.a260a280;
+      absA230=base/targets.a260a230;
+    } else if(kind==='protein'){
+      // protein contamination → elevated A280 (lower 260/280 ratio, e.g. ~1.5)
+      absA280=base/1.5;
+      absA230=base/2.0;
+    } else if(kind==='phenol'){
+      // phenol/guanidinium → elevated A230 (low 260/230 ratio, e.g. ~1.0)
+      absA280=base/targets.a260a280;
+      absA230=base/1.0;
+    } else if(kind==='salt'){
+      // salt/EDTA/sugar → elevated A230, moderate effect
+      absA280=base/targets.a260a280;
+      absA230=base/1.4;
+    }
+  }
+  // Update slider DOM if visible
+  const a260=document.getElementById('abs-a260'); if(a260){a260.value=absA260; document.getElementById('abs-a260-v').textContent=absA260.toFixed(3);}
+  const a280=document.getElementById('abs-a280'); if(a280){a280.value=absA280; document.getElementById('abs-a280-v').textContent=absA280.toFixed(3);}
+  const a230=document.getElementById('abs-a230'); if(a230){a230.value=absA230; document.getElementById('abs-a230-v').textContent=absA230.toFixed(3);}
+  drawAbs();
+}
+
+function drawAbs(){
+  const area=document.getElementById('abs-svg-area');
+  const res=document.getElementById('abs-results');
+  const info=document.getElementById('abs-info');
+  if(!area||!res)return;
+
+  const ratio280 = absA280>0 ? absA260/absA280 : 0;
+  const ratio230 = absA230>0 ? absA260/absA230 : 0;
+
+  // ── Build a simulated spectrum from the three measured points (220–340 nm) ──
+  // Strategy: model the spectrum as a weighted sum of smooth basis chromophores
+  // (nucleic acid peak ~260, aromatic/Trp peak ~280, salt/phenol peak ~230) plus
+  // a low-wavelength end-absorption term. We solve a 3×3 linear system for the
+  // basis amplitudes that exactly match the user's A230/A260/A280 sliders, then
+  // evaluate the smooth combined curve at every wavelength. This makes a single
+  // slider gracefully reshape the entire curve rather than lifting a flat segment.
+  const wlMin=220, wlMax=340;
+
+  // Gaussian helper: peak=1 at center, FWHM ~ 2.355*sigma
+  function gauss(wl, center, sigma){
+    const d=(wl-center)/sigma;
+    return Math.exp(-0.5*d*d);
+  }
+  // Asymmetric peak: wider on the long-wavelength side (more realistic for aromatic peaks)
+  function asymGauss(wl, center, sigmaL, sigmaR){
+    const sigma = wl<center ? sigmaL : sigmaR;
+    const d=(wl-center)/sigma;
+    return Math.exp(-0.5*d*d);
+  }
+
+  // Basis chromophores — each evaluated as a smooth function of wavelength.
+  // Tuned so that pure samples give the canonical diagnostic ratios:
+  //   pure NA:      A260/A280 = 1.79,  A260/A230 = 2.04
+  //   pure protein: A260/A280 = 0.56
+  //   pure salt:    A260/A230 = 0.07
+  // B_NA: nucleic acid (peak 260 with broad 240-280 shoulder + 230 component)
+  // B_PR: aromatic protein (peak ~278 from Trp/Tyr + 260 contribution + peptide tail)
+  // B_SP: salt/phenol/EDTA-like (peak 230, sharp drop)
+  function B_NA(wl){
+    return gauss(wl,260,15) + 0.20*gauss(wl,283,12) + 0.40*gauss(wl,232,14);
+  }
+  function B_PR(wl){
+    return asymGauss(wl,278,9,11) + 0.40*gauss(wl,260,12) + 0.50*gauss(wl,225,18);
+  }
+  function B_SP(wl){
+    return asymGauss(wl,230,8,10) + 0.08*gauss(wl,250,14);
+  }
+
+  // Sample basis functions at the three diagnostic wavelengths to build the matrix
+  // [ B_NA(230) B_PR(230) B_SP(230) ] [α]   [A230]
+  // [ B_NA(260) B_PR(260) B_SP(260) ] [β] = [A260]
+  // [ B_NA(280) B_PR(280) B_SP(280) ] [γ]   [A280]
+  const M=[
+    [B_NA(230), B_PR(230), B_SP(230)],
+    [B_NA(260), B_PR(260), B_SP(260)],
+    [B_NA(280), B_PR(280), B_SP(280)],
+  ];
+  const b=[absA230, absA260, absA280];
+  // Solve via Cramer's rule (3×3 — fast and avoids dependencies)
+  function det3(m){
+    return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])
+         - m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])
+         + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+  }
+  const D = det3(M);
+  let alpha=0, beta=0, gamma=0;
+  if(Math.abs(D)>1e-12){
+    const Mx = M.map((row,i)=>[b[i], row[1], row[2]]);
+    const My = M.map((row,i)=>[row[0], b[i], row[2]]);
+    const Mz = M.map((row,i)=>[row[0], row[1], b[i]]);
+    alpha = det3(Mx)/D;
+    beta  = det3(My)/D;
+    gamma = det3(Mz)/D;
+  }
+
+  // Evaluate combined curve at every sample wavelength
+  const samples=[];
+  const sampleN=240;
+  for(let i=0;i<=sampleN;i++){
+    const wl=wlMin+(wlMax-wlMin)*i/sampleN;
+    const A = alpha*B_NA(wl) + beta*B_PR(wl) + gamma*B_SP(wl);
+    samples.push({wl, A:Math.max(0,A)});
+  }
+
+  // ── SVG plot ──
+  const pw=560, ph=190, pad={l:48,r:18,t:14,b:34};
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`0 0 ${pw} ${ph}`);
+  svg.setAttribute('width','100%');
+  svg.style.cssText='max-width:100%;height:auto;display:block;max-height:240px;';
+  function el(tag,attrs,parent){
+    const n=document.createElementNS(NS,tag);
+    if(attrs)Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));
+    (parent||svg).appendChild(n); return n;
+  }
+  function txt(x,y,s,color,size,weight,anchor,parent){
+    const t=el('text',{x,y,'text-anchor':anchor||'middle','font-size':size||9,fill:color||'var(--text-muted)','font-family':'DM Mono,monospace','font-weight':weight||'400'},parent);
+    t.textContent=s; return t;
+  }
+
+  // axes / grid
+  const yMax=Math.max(0.5, Math.ceil(Math.max(absA260,absA280,absA230, ...samples.map(s=>s.A))*2)/2);
+  const xToPx=wl=>pad.l+(wl-wlMin)/(wlMax-wlMin)*(pw-pad.l-pad.r);
+  const yToPx=A=>pad.t+(1-A/yMax)*(ph-pad.t-pad.b);
+
+  // Plot background panel
+  el('rect',{x:pad.l,y:pad.t,width:pw-pad.l-pad.r,height:ph-pad.t-pad.b,fill:'rgba(243,241,236,.35)',stroke:'var(--border)','stroke-width':1});
+
+  // y gridlines
+  const ySteps=Math.round(yMax/0.25);
+  for(let i=0;i<=ySteps;i++){
+    const A=i*0.25; if(A>yMax+1e-6) break;
+    const y=yToPx(A);
+    el('line',{x1:pad.l,y1:y,x2:pw-pad.r,y2:y,stroke:'var(--border)','stroke-width':0.5,'stroke-dasharray':'2,3'});
+    txt(pad.l-6,y+3,A.toFixed(2),'var(--text-muted)',8,'400','end');
+  }
+  // x gridlines (every 20 nm)
+  for(let wl=220;wl<=340;wl+=20){
+    const x=xToPx(wl);
+    el('line',{x1:x,y1:pad.t,x2:x,y2:ph-pad.b,stroke:'var(--border)','stroke-width':0.5,'stroke-dasharray':'2,3'});
+    txt(x,ph-pad.b+12,wl,'var(--text-muted)',8,'400');
+  }
+
+  // Curve
+  let pathD='';
+  samples.forEach((s,i)=>{ pathD+=(i===0?'M':'L')+' '+xToPx(s.wl)+' '+yToPx(s.A)+' '; });
+  // Fill under curve (subtle)
+  const fillD=pathD+' L '+xToPx(samples[samples.length-1].wl)+' '+yToPx(0)+' L '+xToPx(samples[0].wl)+' '+yToPx(0)+' Z';
+  el('path',{d:fillD, fill:'rgba(231,117,0,.10)', stroke:'none'});
+  el('path',{d:pathD, fill:'none', stroke:'var(--accent)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'});
+
+  // Markers at 230, 260, 280
+  function marker(wl,A,color,label){
+    const x=xToPx(wl), y=yToPx(A);
+    el('line',{x1:x,y1:y,x2:x,y2:ph-pad.b,stroke:color,'stroke-width':1,'stroke-dasharray':'3,2','opacity':.7});
+    el('circle',{cx:x,cy:y,r:4,fill:color,stroke:'var(--surface)','stroke-width':1.5});
+    txt(x,pad.t+10,label,color,9.5,'700');
+    txt(x,pad.t+22,A.toFixed(3),color,8.5,'500');
+  }
+  marker(230,absA230,'#147888','230');
+  marker(260,absA260,'#E77500','260');
+  marker(280,absA280,'#5f378c','280');
+
+  // y-axis label
+  txt(14, pad.t+(ph-pad.t-pad.b)/2, 'Absorbance', 'var(--text-muted)',9,'500','middle',svg).setAttribute('transform',`rotate(-90 14 ${pad.t+(ph-pad.t-pad.b)/2})`);
+  // x-axis label
+  txt(pad.l+(pw-pad.l-pad.r)/2, ph-2, 'Wavelength (nm)', 'var(--text-muted)',9,'500');
+
+  area.innerHTML='';
+  area.appendChild(svg);
+
+  // ── Results: ratios + concentration ──
+  const tgt280=ABS_TARGETS[absMode].a260a280;
+  const tgt230=ABS_TARGETS[absMode].a260a230;
+  const purity280=_purityVerdict(ratio280, tgt280, absMode);
+  const purity230=tgt230!==null ? _purityVerdict230(ratio230) : {label:'—', color:'var(--text-muted)', detail:'Not typically used for protein samples'};
+
+  // Concentration
+  let concStr='', concDetail='';
+  if(absMode==='protein'){
+    // c (mg/mL) = A280 / (E1% * path)  (using E1% = E0.1% in dL/(g·cm) convention; here using E1% per 1 mg/mL · cm)
+    const c_mgml = absA280/(absExtCoef*absPath);
+    concStr=c_mgml>=1?c_mgml.toFixed(2)+' mg/mL':(c_mgml*1000).toFixed(2)+' µg/mL';
+    concDetail=`A\u2082\u2088\u2080 / (E\u00B9% · path) = ${absA280.toFixed(3)} / (${absExtCoef} · ${absPath} cm)`;
+  } else {
+    const factor=ABS_FACTORS[absMode]; // µg/mL per A260
+    const c_ugml = absA260*factor/absPath;
+    concStr=c_ugml>=1000?(c_ugml/1000).toFixed(2)+' mg/mL':c_ugml.toFixed(1)+' µg/mL';
+    concDetail=`A\u2082\u2086\u2080 \u00D7 ${factor} / path = ${absA260.toFixed(3)} \u00D7 ${factor} / ${absPath} cm`;
+  }
+
+  let html='';
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.6rem;margin-bottom:.5rem;">';
+  // Conc card
+  html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:.55rem .7rem;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">Concentration</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:1.05rem;color:var(--accent);font-weight:600;line-height:1.2;">'+concStr+'</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.25rem;line-height:1.4;">'+concDetail+'</div>'
+       +'</div>';
+  // A260/A280 card
+  html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid '+purity280.color+';border-radius:6px;padding:.55rem .7rem;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">A\u2082\u2086\u2080 / A\u2082\u2088\u2080</div>'
+       +'<div style="display:flex;align-items:baseline;gap:.4rem;"><span style="font-family:\'DM Mono\',monospace;font-size:1.05rem;color:'+purity280.color+';font-weight:600;line-height:1.2;">'+ratio280.toFixed(2)+'</span><span style="font-family:\'DM Mono\',monospace;font-size:.7rem;color:var(--text-muted);">target ~'+(tgt280?tgt280.toFixed(2):'—')+'</span></div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.62rem;color:'+purity280.color+';margin-top:.25rem;font-weight:500;">'+purity280.label+'</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.15rem;line-height:1.4;">'+purity280.detail+'</div>'
+       +'</div>';
+  // A260/A230 card
+  html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid '+purity230.color+';border-radius:6px;padding:.55rem .7rem;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem;">A\u2082\u2086\u2080 / A\u2082\u2083\u2080</div>'
+       +'<div style="display:flex;align-items:baseline;gap:.4rem;"><span style="font-family:\'DM Mono\',monospace;font-size:1.05rem;color:'+purity230.color+';font-weight:600;line-height:1.2;">'+(absA230>0?ratio230.toFixed(2):'—')+'</span><span style="font-family:\'DM Mono\',monospace;font-size:.7rem;color:var(--text-muted);">target &gt; 2.0</span></div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.62rem;color:'+purity230.color+';margin-top:.25rem;font-weight:500;">'+purity230.label+'</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.15rem;line-height:1.4;">'+purity230.detail+'</div>'
+       +'</div>';
+  html+='</div>';
+
+  // Beer-Lambert reminder
+  html+='<div style="padding:.55rem .7rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-family:\'DM Mono\',monospace;font-size:.7rem;color:var(--text-dim);line-height:1.65;">'
+       +'<span style="color:var(--text-muted);font-size:.55rem;text-transform:uppercase;letter-spacing:.08em;font-weight:600;">Beer\u2013Lambert</span><br>'
+       +'A = \u03B5 \u00B7 c \u00B7 \u2113 — '+(absMode==='protein'
+         ? 'For protein, c (mg/mL) = A\u2082\u2088\u2080 / (E\u00B9% \u00B7 \u2113). Common E\u00B9% values: BSA \u2248 6.6, IgG \u2248 13.7, generic protein \u2248 10. <a style="color:var(--accent);text-decoration:none;" href="#mwpi" onclick="event.preventDefault();selectTool(\'mwpi\');">Compute E from sequence \u2192</a>'
+         : 'For '+absMode+', c (µg/mL) = A\u2082\u2086\u2080 \u00D7 '+ABS_FACTORS[absMode]+' / \u2113. NanoDrop: \u2113 = 0.1 cm; standard cuvette: \u2113 = 1 cm.')
+       +'</div>';
+
+  res.innerHTML=html;
+
+  if(info){
+    const expectedNote=absMode==='protein'
+      ? 'Pure protein has A\u2082\u2086\u2080/A\u2082\u2088\u2080 \u2248 0.57 (low 260 because nucleotide tails are absent). High 260/280 \u2192 nucleic acid contamination.'
+      : 'Pure '+absMode+' has A\u2082\u2086\u2080/A\u2082\u2088\u2080 \u2248 '+tgt280.toFixed(2)+' and A\u2082\u2086\u2080/A\u2082\u2083\u2080 &gt; 2.0. Low 260/280 \u2192 protein contamination; low 260/230 \u2192 phenol/guanidinium/EDTA carryover.';
+    info.innerHTML='<b style="color:var(--accent2)">Sample:</b> '+absMode+' &middot; '+expectedNote;
+  }
+}
+
+function _purityVerdict(r, target, mode){
+  if(mode==='protein'){
+    // For protein: target ~0.57; high ratio = nucleic-acid contamination
+    if(r<0.6) return {label:'\u2713 Pure protein', color:'#147888', detail:'A\u2082\u2086\u2080/A\u2082\u2088\u2080 below 0.6 indicates minimal nucleic acid contamination.'};
+    if(r<0.8) return {label:'\u26A0 Slight NA contamination', color:'#a8580f', detail:'Elevated 260 absorbance suggests some nucleic acid carryover.'};
+    return {label:'\u2717 Significant NA contamination', color:'#9a3a3a', detail:'High A\u2082\u2086\u2080 relative to A\u2082\u2088\u2080 \u2014 nucleic acids are inflating the reading.'};
+  }
+  // Nucleic acid
+  const lo=target-0.1, hi=target+0.15;
+  if(r>=lo && r<=hi) return {label:'\u2713 Pure '+mode, color:'#147888', detail:'A\u2082\u2086\u2080/A\u2082\u2088\u2080 in the expected range \u2014 minimal protein contamination.'};
+  if(r<lo){
+    if(r<1.5) return {label:'\u2717 Significant protein contamination', color:'#9a3a3a', detail:'Low ratio \u2014 protein is absorbing strongly at 280.'};
+    return {label:'\u26A0 Some protein contamination', color:'#a8580f', detail:'Slightly low ratio \u2014 trace protein contamination likely.'};
+  }
+  // r > hi
+  return {label:'\u26A0 Possible RNA contamination', color:'#a8580f', detail:'Higher than expected \u2014 RNA contamination or measurement noise at low concentration.'};
+}
+
+function _purityVerdict230(r){
+  if(r>=2.0 && r<=2.4) return {label:'\u2713 Clean', color:'#147888', detail:'Above 2.0 \u2014 minimal phenol/guanidinium/salt carryover.'};
+  if(r>=1.8 && r<2.0) return {label:'\u26A0 Borderline', color:'#a8580f', detail:'Slightly low \u2014 trace phenol, guanidinium, EDTA, or carbohydrate.'};
+  if(r<1.8) return {label:'\u2717 Contamination at 230', color:'#9a3a3a', detail:'Low ratio \u2014 phenol, TRIzol, guanidinium thiocyanate, EDTA, or polysaccharides absorbing strongly at 230.'};
+  return {label:'\u26A0 Unusually high', color:'#a8580f', detail:'A\u2082\u2083\u2080 may be very low (low concentration) \u2014 ratio less reliable.'};
+}
+
+// ============================================================
+// BUFFER pH (HENDERSON-HASSELBALCH)
+// ============================================================
+// Common biological buffer systems with their pKa at 25°C and useful pH range.
+// pKa values from Good et al. (1966) and standard biochem references.
+// prepStyle: 'mix' = both forms are stable salts/solutions, mix at calculated ratio.
+//            'titrate' = one form is dominant in stock, titrate to pH with strong acid/base.
+const BUFFER_SYSTEMS={
+  tris:      {label:'Tris-HCl',           pKa:8.06, range:[7.0,9.0], acidName:'Tris·HCl',          baseName:'Tris base',        prepStyle:'titrate', titrant:'HCl', stockForm:'base', note:'Most common protein buffer. Note: pKa drops ~0.03/°C with rising temperature — adjust pH at the working temperature.'},
+  phosphate: {label:'Sodium Phosphate',   pKa:7.20, range:[6.2,8.2], acidName:'NaH₂PO₄ (monobasic)', baseName:'Na₂HPO₄ (dibasic)', prepStyle:'mix',     note:'Second pKa of phosphoric acid. PBS is a phosphate buffer. Avoid with Ca²⁺/Mg²⁺ (precipitates).'},
+  acetate:   {label:'Sodium Acetate',     pKa:4.76, range:[3.6,5.6], acidName:'Acetic acid',        baseName:'Sodium acetate',    prepStyle:'mix',     note:'Standard mildly acidic buffer. Used in nucleic acid precipitation, protein crystallography.'},
+  hepes:     {label:'HEPES',              pKa:7.55, range:[6.8,8.2], acidName:'HEPES (free acid)',  baseName:'HEPES sodium salt', prepStyle:'titrate', titrant:'NaOH', stockForm:'acid', note:"Good's buffer — minimal metal binding, biologically inert. Common for cell culture."},
+  mes:       {label:'MES',                pKa:6.10, range:[5.5,6.7], acidName:'MES (free acid)',    baseName:'MES sodium salt',   prepStyle:'titrate', titrant:'NaOH', stockForm:'acid', note:"Good's buffer for slightly acidic pH. Common in plant biology, low-pH cell work."},
+  bicarbonate:{label:'Bicarbonate (CO₂)', pKa:6.35, range:[5.5,7.5], acidName:'H₂CO₃ / CO₂(aq)',   baseName:'NaHCO₃',           prepStyle:'mix',     note:'Open to atmospheric CO₂; pH drifts unless equilibrated. Cell culture media use ~5% CO₂ atmosphere.'},
+  custom:    {label:'Custom',             pKa:7.0,  range:[5.0,9.0], acidName:'HA (acid form)',     baseName:'A⁻ (conjugate base)', prepStyle:'mix',  note:'Enter your own pKa. The useful buffering range is pKa ± 1.'}
+};
+
+let bufSystem='tris';        // active buffer key
+let bufTargetPH=7.4;          // target pH
+let bufTotalConc=50;          // target buffer concentration in mM
+let bufVolumeML=500;          // buffer volume in mL
+let bufStockM=1.0;            // stock solution concentration (M) — student dilutes from this
+let bufCustomPKa=7.0;         // custom pKa when system='custom'
+
+function renderBufferPanel(){
+  const p=document.getElementById('right-panel');
+  p.innerHTML=`<div class="vp-header"><div class="vp-title">Buffer pH</div><div class="vp-desc">Mix the right ratio of weak acid + conjugate base to hit a target pH using the Henderson–Hasselbalch equation. Pick a buffer system below, set the target pH, and see the recipe.</div></div>
+<div class="vp-controls" style="gap:.4rem;flex-wrap:wrap;">
+  <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);margin-right:.2rem;">Buffer system:</span>
+  ${Object.entries(BUFFER_SYSTEMS).map(([k,v])=>`<button class="vp-btn${k===bufSystem?' active':''}" id="buf-sys-${k}" onclick="setBufferSystem('${k}')">${v.label}</button>`).join('')}
+</div>
+<div style="padding:.8rem 1.4rem;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface);display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.7rem .9rem;align-items:end;">
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">TARGET pH</div>
+    <input id="buf-ph" type="number" min="0" max="14" step="0.1" value="${bufTargetPH}" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="bufTargetPH=Math.max(0,Math.min(14,+this.value||0));drawBuffer()">
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">TOTAL CONC.</div>
+    <div style="display:flex;gap:.3rem;align-items:center;">
+      <input id="buf-total" type="number" min="0" step="any" value="${bufTotalConc}" style="flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="bufTotalConc=Math.max(0,+this.value||0);drawBuffer()">
+      <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);flex-shrink:0;">mM</span>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">FINAL VOLUME</div>
+    <div style="display:flex;gap:.3rem;align-items:center;">
+      <input id="buf-vol" type="number" min="0" step="any" value="${bufVolumeML}" style="flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="bufVolumeML=Math.max(0,+this.value||0);drawBuffer()">
+      <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text-muted);flex-shrink:0;">mL</span>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">STOCK CONC.</div>
+    <select id="buf-stock" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.78rem;color:var(--text);outline:none;" onchange="bufStockM=+this.value;drawBuffer()">
+      <option value="0.5"${bufStockM===0.5?' selected':''}>0.5 M</option>
+      <option value="1"${bufStockM===1?' selected':''}>1 M</option>
+      <option value="2"${bufStockM===2?' selected':''}>2 M</option>
+      <option value="3"${bufStockM===3?' selected':''}>3 M</option>
+    </select>
+  </div>
+  <div id="buf-pka-wrap" style="${bufSystem==='custom'?'':'display:none;'}">
+    <div style="font-size:.65rem;color:var(--text-muted);margin-bottom:.2rem;font-family:'DM Mono',monospace;letter-spacing:.04em;">CUSTOM pKa</div>
+    <input id="buf-pka" type="number" min="0" max="14" step="0.01" value="${bufCustomPKa}" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.4rem .5rem;font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text);outline:none;" oninput="bufCustomPKa=Math.max(0,Math.min(14,+this.value||0));drawBuffer()">
+  </div>
+</div>
+<div style="flex:1;overflow-y:auto;padding:0;min-height:0;">
+  <div id="buf-result" style="padding:.7rem 1.4rem .3rem;"></div>
+  <div id="buf-curve" style="padding:.3rem 1.4rem .8rem;background:var(--surface);"></div>
+</div>
+<div id="buf-info" style="padding:.55rem 1.4rem;border-top:1px solid var(--border);flex-shrink:0;font-size:.66rem;line-height:1.55;color:var(--text-muted);"></div>`;
+  drawBuffer();
+}
+
+function setBufferSystem(k){
+  if(!BUFFER_SYSTEMS[k]) return;
+  bufSystem=k;
+  document.querySelectorAll('[id^=buf-sys-]').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('buf-sys-'+k);
+  if(btn)btn.classList.add('active');
+  // Show/hide custom pKa input
+  const wrap=document.getElementById('buf-pka-wrap');
+  if(wrap) wrap.style.display = k==='custom' ? '' : 'none';
+  // Snap target pH to mid-range of new system if it's currently outside the buffer range
+  const sys=BUFFER_SYSTEMS[k];
+  if(bufTargetPH<sys.range[0] || bufTargetPH>sys.range[1]){
+    bufTargetPH=Math.round(sys.pKa*10)/10;
+    const phInput=document.getElementById('buf-ph');
+    if(phInput) phInput.value=bufTargetPH;
+  }
+  drawBuffer();
+}
+
+function drawBuffer(){
+  const sys=BUFFER_SYSTEMS[bufSystem];
+  const pKa = bufSystem==='custom' ? bufCustomPKa : sys.pKa;
+  const pH = bufTargetPH;
+  // Henderson–Hasselbalch: pH = pKa + log10([A⁻]/[HA])
+  // ratio R = [A⁻]/[HA] = 10^(pH - pKa)
+  const ratio = Math.pow(10, pH - pKa);
+  // Mole fractions: f_base = R/(1+R), f_acid = 1/(1+R)
+  const fBase = ratio/(1+ratio);
+  const fAcid = 1/(1+ratio);
+  // Concentrations (mM)
+  const cBase = bufTotalConc * fBase;
+  const cAcid = bufTotalConc * fAcid;
+  // Moles needed in the user's volume
+  const volL = bufVolumeML/1000;
+  const molBase = cBase/1000 * volL;  // mol
+  const molAcid = cAcid/1000 * volL;
+  // Convert to mmol for display readability
+  const mmolBase = molBase*1000;
+  const mmolAcid = molAcid*1000;
+
+  // Buffering capacity zone check: a buffer is "good" within pKa ± 1
+  const distance = Math.abs(pH - pKa);
+  let qualityLabel, qualityColor, qualityNote;
+  if(distance <= 0.5){
+    qualityLabel='\u2713 Excellent buffering';
+    qualityColor='#147888';
+    qualityNote='Within pKa ± 0.5 — maximum buffer capacity. Small additions of acid/base barely shift pH.';
+  } else if(distance <= 1.0){
+    qualityLabel='\u2713 Good buffering';
+    qualityColor='#147888';
+    qualityNote='Within pKa ± 1 — the standard "useful range." Most lab protocols target this zone.';
+  } else if(distance <= 1.5){
+    qualityLabel='\u26A0 Marginal buffering';
+    qualityColor='#a8580f';
+    qualityNote='Outside pKa ± 1 — buffer capacity is dropping fast. Consider a different buffer system.';
+  } else {
+    qualityLabel='\u2717 Poor buffering';
+    qualityColor='#9a3a3a';
+    qualityNote='Far from pKa — the system is mostly one form, with very little capacity to resist pH change.';
+  }
+  // Out-of-published-range warning
+  const outOfPubRange = pH<sys.range[0] || pH>sys.range[1];
+
+  // ── Stock-based recipe ──
+  // Mix mode: combine the acid stock + base stock at the right ratio, then top up with water.
+  // Titrate mode: take the dominant form's stock alone, titrate to pH with strong acid/base.
+  const stockMmM = bufStockM*1000;        // stock in mM for direct comparison
+  // Volumes for two-stock mixing (always computed, used by both modes for the math)
+  // V_stock × C_stock = V_final × C_final → V_stock = (V_final × C_final) / C_stock
+  const volAcidStock_mL = bufVolumeML * cAcid / stockMmM;     // mL of acid stock needed
+  const volBaseStock_mL = bufVolumeML * cBase / stockMmM;     // mL of base stock needed
+  const volWater_mL     = bufVolumeML - volAcidStock_mL - volBaseStock_mL;
+  // Concentration sanity: target conc must be < stock conc, and individual stock vols must be < final vol
+  const dilutionTooLow = bufTotalConc >= stockMmM;            // can't make stock >= itself
+
+  // ── Result section ──
+  const fmtMl = (v) => v>=100 ? v.toFixed(1)+' mL' : v>=1 ? v.toFixed(2)+' mL' : (v*1000).toFixed(1)+' µL';
+  const fmtRatio = (r) => {
+    if(r>=100) return r.toExponential(2);
+    if(r>=10) return r.toFixed(1);
+    if(r>=1) return r.toFixed(2);
+    if(r>=0.01) return r.toFixed(3);
+    return r.toExponential(2);
+  };
+
+  let html='';
+
+  if(dilutionTooLow){
+    html+='<div style="background:var(--surface2);border:1px solid #9a3a3a;border-left:3px solid #9a3a3a;border-radius:6px;padding:.6rem .85rem;margin-bottom:.5rem;font-family:\'DM Mono\',monospace;font-size:.75rem;color:#9a3a3a;line-height:1.5;">'
+         +'⚠ Target concentration ('+bufTotalConc+' mM) is at or above the stock concentration ('+bufStockM+' M). '
+         +'<span style="color:var(--text-muted);">Choose a lower target or a more concentrated stock.</span>'
+         +'</div>';
+  } else if(sys.prepStyle==='titrate'){
+    // Titrate-from-one-form prep
+    const dominantStock = sys.stockForm==='base' ? sys.baseName : sys.acidName;
+    const volStock_mL = bufVolumeML * bufTotalConc / stockMmM;
+    const startVol_mL = bufVolumeML * 0.8;  // dissolve in ~80% of final volume to leave headroom for titrant + topup
+    html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid #2d785a;border-radius:6px;padding:.7rem .85rem;margin-bottom:.5rem;">'
+         +'<div style="font-family:\'DM Mono\',monospace;font-size:.58rem;color:#2d785a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;font-weight:600;">Recipe \u2014 '+sys.label+', pH '+pH.toFixed(2)+', '+bufTotalConc+' mM, '+bufVolumeML+' mL</div>'
+         +'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--text);line-height:1.7;">'
+         +'<b style="color:#2d785a;">1.</b> Add <b style="color:#2d785a;">'+fmtMl(volStock_mL)+'</b> of '+bufStockM+' M '+dominantStock+' to ~'+fmtMl(startVol_mL)+' water<br>'
+         +'<b style="color:#2d785a;">2.</b> Titrate to <b style="color:#2d785a;">pH '+pH.toFixed(2)+'</b> with '+sys.titrant+' (drop-wise, with stirring)<br>'
+         +'<b style="color:#2d785a;">3.</b> Top up to <b style="color:#2d785a;">'+bufVolumeML+' mL</b> with water and re-check pH'
+         +'</div>'
+         +'<div style="margin-top:.5rem;padding-top:.4rem;border-top:1px dashed var(--border);font-family:\'DM Mono\',monospace;font-size:.62rem;color:var(--text-muted);line-height:1.5;">'
+         +'Henderson\u2013Hasselbalch: pH = pKa + log<sub>10</sub>([A⁻]/[HA]) \u2192 '+pH.toFixed(2)+' = '+pKa.toFixed(2)+' + log<sub>10</sub>('+fmtRatio(ratio)+')'
+         +'</div>'
+         +'</div>';
+  } else {
+    // Two-stock mixing prep
+    html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid #2d785a;border-radius:6px;padding:.7rem .85rem;margin-bottom:.5rem;">'
+         +'<div style="font-family:\'DM Mono\',monospace;font-size:.58rem;color:#2d785a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;font-weight:600;">Recipe \u2014 '+sys.label+', pH '+pH.toFixed(2)+', '+bufTotalConc+' mM, '+bufVolumeML+' mL</div>'
+         +'<div style="display:grid;grid-template-columns:auto auto 1fr;gap:.3rem .8rem;align-items:baseline;font-family:\'DM Mono\',monospace;">'
+         +'<span style="font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">'+bufStockM+' M acid</span>'
+         +'<span style="font-size:.95rem;color:var(--text);font-weight:600;">'+fmtMl(volAcidStock_mL)+'</span>'
+         +'<span style="font-size:.7rem;color:var(--text-muted);">'+sys.acidName+'</span>'
+         +'<span style="font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">'+bufStockM+' M base</span>'
+         +'<span style="font-size:.95rem;color:#2d785a;font-weight:700;">'+fmtMl(volBaseStock_mL)+'</span>'
+         +'<span style="font-size:.7rem;color:var(--text-muted);">'+sys.baseName+'</span>'
+         +'<span style="font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;">Water</span>'
+         +'<span style="font-size:.95rem;color:var(--text);font-weight:600;">'+fmtMl(volWater_mL)+'</span>'
+         +'<span style="font-size:.7rem;color:var(--text-muted);">to final volume</span>'
+         +'<span style="font-size:.62rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--border);padding-top:.3rem;margin-top:.2rem;">Total</span>'
+         +'<span style="font-size:.85rem;color:var(--text);font-weight:600;border-top:1px solid var(--border);padding-top:.3rem;margin-top:.2rem;">'+bufVolumeML+' mL</span>'
+         +'<span style="font-size:.7rem;color:var(--text-muted);border-top:1px solid var(--border);padding-top:.3rem;margin-top:.2rem;">at '+bufTotalConc+' mM</span>'
+         +'</div>'
+         +'<div style="margin-top:.5rem;padding-top:.4rem;border-top:1px dashed var(--border);font-family:\'DM Mono\',monospace;font-size:.62rem;color:var(--text-muted);line-height:1.5;">'
+         +'Henderson\u2013Hasselbalch: pH = pKa + log<sub>10</sub>([A⁻]/[HA]) \u2192 '+pH.toFixed(2)+' = '+pKa.toFixed(2)+' + log<sub>10</sub>('+fmtRatio(ratio)+')'
+         +'</div>'
+         +'</div>';
+  }
+
+  // Quality + ratio row
+  html+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.45rem;margin-bottom:.5rem;">';
+  html+='<div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid '+qualityColor+';border-radius:6px;padding:.5rem .7rem;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.15rem;">Buffering capacity</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:'+qualityColor+';font-weight:600;">'+qualityLabel+'</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.2rem;line-height:1.45;">|pH \u2212 pKa| = '+distance.toFixed(2)+' &middot; '+qualityNote+'</div>'
+       +'</div>';
+  html+='<div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.5rem .7rem;">'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.15rem;">Ratio [A⁻] : [HA]</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.92rem;color:var(--text);font-weight:600;">'+fmtRatio(ratio)+' : 1</div>'
+       +'<div style="font-family:\'DM Mono\',monospace;font-size:.6rem;color:var(--text-muted);margin-top:.2rem;line-height:1.45;">'+(fBase*100).toFixed(1)+'% base form &middot; '+(fAcid*100).toFixed(1)+'% acid form</div>'
+       +'</div>';
+  html+='</div>';
+
+  // System note
+  html+='<div style="padding:.5rem .7rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-family:\'DM Mono\',monospace;font-size:.65rem;color:var(--text-dim);line-height:1.6;">'
+       +'<span style="font-size:.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;">'+sys.label+' &middot; pKa = '+pKa.toFixed(2)+' (25 °C)</span><br>'
+       +sys.note;
+  if(outOfPubRange) html+='<br><span style="color:#a8580f;">\u26A0 pH '+pH.toFixed(2)+' is outside the typical published useful range ('+sys.range[0]+'\u2013'+sys.range[1]+').</span>';
+  html+='</div>';
+
+  document.getElementById('buf-result').innerHTML=html;
+
+  // ── Titration curve SVG ──
+  drawBufferTitrationCurve(pKa, pH, sys);
+
+  // Info bar — adapt to prep style
+  const info=document.getElementById('buf-info');
+  if(info){
+    if(sys.prepStyle==='titrate'){
+      info.innerHTML='<b style="color:#2d785a">Tip:</b> always titrate at the temperature you\'ll use the buffer at \u2014 Tris pKa drops ~0.03 per °C. Use a calibrated pH meter; don\'t rely on calculation alone for the final pH.';
+    } else {
+      info.innerHTML='<b style="color:#2d785a">Tip:</b> mix the two stock solutions at the calculated ratio, then verify the pH with a calibrated pH meter. Small adjustments can be made by adding more of either stock.';
+    }
+  }
+}
+
+function drawBufferTitrationCurve(pKa, targetPH, sys){
+  const container=document.getElementById('buf-curve');
+  if(!container) return;
+  // Plot pH (y) vs. fraction-base f_base (x). Sigmoidal curve passes through (0.5, pKa).
+  // pH = pKa + log10(f_base / (1 - f_base))
+  const pw=560, ph=170, pad={l:40,r:18,t:14,b:36};
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('viewBox',`0 0 ${pw} ${ph}`);
+  svg.setAttribute('width','100%');
+  svg.style.cssText='max-width:100%;height:auto;display:block;max-height:220px;';
+  function el(tag,attrs,parent){
+    const n=document.createElementNS(NS,tag);
+    if(attrs)Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));
+    (parent||svg).appendChild(n); return n;
+  }
+  function txt(x,y,s,color,size,weight,anchor,parent){
+    const t=el('text',{x,y,'text-anchor':anchor||'middle','font-size':size||9,fill:color||'var(--text-muted)','font-family':'DM Mono,monospace','font-weight':weight||'400'},parent);
+    t.textContent=s; return t;
+  }
+  // Y range: 4 below pKa to 4 above (cover full sigmoidal)
+  const yMin=Math.max(0, pKa-4), yMax=Math.min(14, pKa+4);
+  const xToPx = f => pad.l + f*(pw-pad.l-pad.r);
+  const yToPx = pH => pad.t + (1-(pH-yMin)/(yMax-yMin))*(ph-pad.t-pad.b);
+  // Plot panel
+  el('rect',{x:pad.l,y:pad.t,width:pw-pad.l-pad.r,height:ph-pad.t-pad.b,fill:'rgba(243,241,236,.35)',stroke:'var(--border)','stroke-width':1});
+  // Y gridlines (integer pH values)
+  for(let pHi=Math.ceil(yMin);pHi<=Math.floor(yMax);pHi++){
+    const y=yToPx(pHi);
+    el('line',{x1:pad.l,y1:y,x2:pw-pad.r,y2:y,stroke:'var(--border)','stroke-width':0.5,'stroke-dasharray':'2,3'});
+    txt(pad.l-6,y+3,pHi,'var(--text-muted)',8,'400','end');
+  }
+  // X gridlines (fraction base)
+  for(let i=0;i<=10;i++){
+    const f=i/10;
+    const x=xToPx(f);
+    el('line',{x1:x,y1:pad.t,x2:x,y2:ph-pad.b,stroke:'var(--border)','stroke-width':0.5,'stroke-dasharray':'2,3'});
+    if(i%2===0) txt(x,ph-pad.b+12,(f*100)+'%','var(--text-muted)',8,'400');
+  }
+  // Buffering range shaded zone (pKa ± 1)
+  const bandTop=yToPx(Math.min(yMax,pKa+1));
+  const bandBot=yToPx(Math.max(yMin,pKa-1));
+  el('rect',{x:pad.l,y:bandTop,width:pw-pad.l-pad.r,height:bandBot-bandTop,fill:'rgba(45,120,90,.10)',stroke:'none'});
+  txt(pw-pad.r-4,bandTop+10,'pKa ± 1 (buffer zone)','#2d785a',8,'600','end');
+  // Titration curve
+  let pathD='';
+  for(let i=1;i<=199;i++){
+    const f=i/200;
+    const pHval = pKa + Math.log10(f/(1-f));
+    if(pHval>=yMin && pHval<=yMax){
+      const x=xToPx(f), y=yToPx(pHval);
+      pathD += (pathD===''?'M':'L')+' '+x+' '+y+' ';
+    }
+  }
+  el('path',{d:pathD, fill:'none', stroke:'#2d785a','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'});
+  // pKa marker (horizontal line at pH=pKa, hits curve at f=0.5)
+  const pKaY=yToPx(pKa);
+  el('line',{x1:pad.l,y1:pKaY,x2:xToPx(0.5),y2:pKaY,stroke:'#2d785a','stroke-width':1,'stroke-dasharray':'3,2','opacity':.6});
+  el('line',{x1:xToPx(0.5),y1:pKaY,x2:xToPx(0.5),y2:ph-pad.b,stroke:'#2d785a','stroke-width':1,'stroke-dasharray':'3,2','opacity':.6});
+  el('circle',{cx:xToPx(0.5),cy:pKaY,r:3.5,fill:'#2d785a',stroke:'var(--surface)','stroke-width':1.2});
+  txt(xToPx(0.5)+6, pKaY-4,'pKa = '+pKa.toFixed(2),'#2d785a',9,'700','start');
+  // Target pH marker (current setting)
+  const fBase = 1/(1+Math.pow(10, pKa-targetPH));
+  if(targetPH>=yMin && targetPH<=yMax){
+    const tx=xToPx(fBase), ty=yToPx(targetPH);
+    el('line',{x1:pad.l,y1:ty,x2:tx,y2:ty,stroke:'#E77500','stroke-width':1.2,'stroke-dasharray':'4,2','opacity':.85});
+    el('line',{x1:tx,y1:ty,x2:tx,y2:ph-pad.b,stroke:'#E77500','stroke-width':1.2,'stroke-dasharray':'4,2','opacity':.85});
+    el('circle',{cx:tx,cy:ty,r:4.5,fill:'#E77500',stroke:'var(--surface)','stroke-width':1.5});
+    // label position depends on which side of pKa
+    if(fBase>0.5){
+      txt(tx-6, ty-6, 'pH '+targetPH.toFixed(2)+'  ('+(fBase*100).toFixed(0)+'% base)','#E77500',9,'700','end');
+    } else {
+      txt(tx+6, ty-6, 'pH '+targetPH.toFixed(2)+'  ('+(fBase*100).toFixed(0)+'% base)','#E77500',9,'700','start');
+    }
+  }
+  // Axis labels
+  txt(14, pad.t+(ph-pad.t-pad.b)/2, 'pH', 'var(--text-muted)',9,'500','middle',svg).setAttribute('transform',`rotate(-90 14 ${pad.t+(ph-pad.t-pad.b)/2})`);
+  txt(pad.l+(pw-pad.l-pad.r)/2, ph-2, 'Fraction in base form ([A⁻] / total)', 'var(--text-muted)',9,'500');
+
+  container.innerHTML='';
+  container.appendChild(svg);
+}
+
 
 // ============================================================
 // ============================================================
@@ -3045,12 +4747,20 @@ _w.setDogmaSeq=setDogmaSeq;_w.mutateDogmaBase=mutateDogmaBase;_w.renderDogmaFlow
 // Units
 _w.calcUnits=calcUnits;_w.calcFromMass=calcFromMass;_w.calcFromMoles=calcFromMoles;
 _w.calcMgMl=calcMgMl;_w.calcMolar=calcMolar;_w.calcDilution=calcDilution;
-// Tm
-_w.calcTm=calcTm;
+_w.calcLoadingDye=calcLoadingDye;_w.setLoadingDyePreset=setLoadingDyePreset;_w.toggleLoadingDyeTopup=toggleLoadingDyeTopup;
+// Tm / PCR
+_w.calcTm=calcTm;_w._computeTm=_computeTm;_w.drawPcrProgram=drawPcrProgram;_w.renderPrimerColumn=renderPrimerColumn;
 // MW/pI
 _w.calcMwPi=calcMwPi;
 // Pipette
 _w.setPipType=setPipType;_w.drawPipette=drawPipette;
+// Serial dilution
+_w.setSerialN=setSerialN;_w.setSerialFactorPreset=setSerialFactorPreset;_w.drawSerial=drawSerial;
+_w.setSerialMode=setSerialMode;_w.setSerialCount=setSerialCount;_w.clearSerialCounts=clearSerialCounts;_w.drawSerialPlatingAnalysis=drawSerialPlatingAnalysis;
+// Absorbance
+_w.setAbsMode=setAbsMode;_w.setAbsPreset=setAbsPreset;_w.drawAbs=drawAbs;
+// Buffer pH
+_w.setBufferSystem=setBufferSystem;_w.drawBuffer=drawBuffer;_w.drawBufferTitrationCurve=drawBufferTitrationCurve;
 // Inline state vars referenced via property descriptors
 [
   ['codonSeq',()=>codonSeq,v=>{codonSeq=v;}],
@@ -3060,6 +4770,36 @@ _w.setPipType=setPipType;_w.drawPipette=drawPipette;
   ['pipVol',()=>pipVol,v=>{pipVol=v;}],
   ['pipType',()=>pipType,v=>{pipType=v;}],
   ['moleSearchOpen',()=>moleSearchOpen,v=>{moleSearchOpen=v;}],
+  ['serNTubes',()=>serNTubes,v=>{serNTubes=v;}],
+  ['serC0',()=>serC0,v=>{serC0=v;}],
+  ['serC0Unit',()=>serC0Unit,v=>{serC0Unit=v;}],
+  ['serFactor',()=>serFactor,v=>{serFactor=v;}],
+  ['serFactorMode',()=>serFactorMode,v=>{serFactorMode=v;}],
+  ['serVfinal',()=>serVfinal,v=>{serVfinal=v;}],
+  ['serDiluentVol',()=>serDiluentVol,v=>{serDiluentVol=v;}],
+  ['serMode',()=>serMode,v=>{serMode=v;}],
+  ['serPlateVol',()=>serPlateVol,v=>{serPlateVol=v;}],
+  ['serDnaMass',()=>serDnaMass,v=>{serDnaMass=v;}],
+  ['serCounts',()=>serCounts,v=>{serCounts=v;}],
+  ['absMode',()=>absMode,v=>{absMode=v;}],
+  ['absPath',()=>absPath,v=>{absPath=v;}],
+  ['absA260',()=>absA260,v=>{absA260=v;}],
+  ['absA280',()=>absA280,v=>{absA280=v;}],
+  ['absA230',()=>absA230,v=>{absA230=v;}],
+  ['absExtCoef',()=>absExtCoef,v=>{absExtCoef=v;}],
+  ['pcrPolymerase',()=>pcrPolymerase,v=>{pcrPolymerase=v;}],
+  ['pcrAmpliconBp',()=>pcrAmpliconBp,v=>{pcrAmpliconBp=v;}],
+  ['pcrCycles',()=>pcrCycles,v=>{pcrCycles=v;}],
+  ['pcrAnnealManual',()=>pcrAnnealManual,v=>{pcrAnnealManual=v;}],
+  ['pcrSeqF',()=>pcrSeqF,v=>{pcrSeqF=v;}],
+  ['pcrSeqR',()=>pcrSeqR,v=>{pcrSeqR=v;}],
+  ['pcrSalt',()=>pcrSalt,v=>{pcrSalt=v;}],
+  ['bufSystem',()=>bufSystem,v=>{bufSystem=v;}],
+  ['bufTargetPH',()=>bufTargetPH,v=>{bufTargetPH=v;}],
+  ['bufTotalConc',()=>bufTotalConc,v=>{bufTotalConc=v;}],
+  ['bufVolumeML',()=>bufVolumeML,v=>{bufVolumeML=v;}],
+  ['bufStockM',()=>bufStockM,v=>{bufStockM=v;}],
+  ['bufCustomPKa',()=>bufCustomPKa,v=>{bufCustomPKa=v;}],
 ].forEach(([name,getter,setter])=>{
   Object.defineProperty(_w,name,{get:getter,set:setter,configurable:true});
 });
