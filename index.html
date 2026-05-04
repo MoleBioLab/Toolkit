@@ -250,6 +250,100 @@ header{position:relative;z-index:20;display:flex;align-items:center;justify-cont
   .content-panel div[style*="grid-template-columns:1fr auto 1fr"]{grid-template-columns:1fr !important;}
   .content-panel div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr) !important;}
 }
+/* Home page ambient background blobs — Princeton soft-matter style.
+   Defined organic shapes that drift via JS physics simulation, with
+   pairwise collision so they squish/bounce off each other. */
+.home-page-wrap{
+  position:relative;
+  width:100%;
+  /* Block element that grows with content — children push the height,
+     so the absolute-positioned blob layer fills the full scroll height. */
+}
+.home-blob-layer{
+  position:absolute;
+  top:0; right:0; bottom:0; left:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.home-blob{
+  position:absolute;
+  will-change:transform;
+}
+/* Asymmetric border-radius gives each blob an organic non-circle outline.
+   Sizes/colors only here — position and motion are handled by JS. */
+.home-blob-1{
+  width:560px; height:500px;
+  background:rgba(231,117,0,.10);
+  border-radius:62% 38% 55% 45% / 50% 60% 40% 50%;
+}
+.home-blob-2{
+  width:520px; height:460px;
+  background:rgba(20,120,140,.10);
+  border-radius:48% 52% 38% 62% / 55% 45% 55% 45%;
+}
+.home-blob-3{
+  width:440px; height:400px;
+  background:rgba(91,58,26,.09);
+  border-radius:55% 45% 65% 35% / 45% 55% 45% 55%;
+}
+.home-blob-4{
+  width:400px; height:360px;
+  background:rgba(231,117,0,.07);
+  border-radius:42% 58% 50% 50% / 60% 40% 60% 40%;
+}
+.home-blob-5{
+  width:360px; height:320px;
+  background:rgba(20,120,140,.08);
+  border-radius:55% 45% 40% 60% / 50% 60% 40% 50%;
+}
+.home-blob-6{
+  width:420px; height:380px;
+  background:rgba(91,58,26,.08);
+  border-radius:60% 40% 50% 50% / 45% 55% 45% 55%;
+}
+.home-blob-7{
+  width:340px; height:300px;
+  background:rgba(231,117,0,.08);
+  border-radius:48% 52% 60% 40% / 55% 45% 55% 45%;
+}
+/* Inner element handles squish — animated only via JS. */
+.home-blob-inner{
+  width:100%; height:100%;
+  border-radius:inherit;
+  background:inherit;
+  will-change:transform;
+}
+/* Dark mode tone-down */
+:root[data-theme="dark"] .home-blob-1{ background:rgba(240,143,31,.08); }
+:root[data-theme="dark"] .home-blob-2{ background:rgba(20,120,140,.07); }
+:root[data-theme="dark"] .home-blob-3{ background:rgba(155,108,56,.07); }
+:root[data-theme="dark"] .home-blob-4{ background:rgba(240,143,31,.05); }
+:root[data-theme="dark"] .home-blob-5{ background:rgba(20,120,140,.06); }
+:root[data-theme="dark"] .home-blob-6{ background:rgba(155,108,56,.06); }
+:root[data-theme="dark"] .home-blob-7{ background:rgba(240,143,31,.06); }
+@media (prefers-reduced-motion: reduce){
+  /* Static positioning only; JS won't run the physics loop */
+  .home-blob{ transform:none !important; }
+}
+/* Mobile: scale blobs down so they don't dominate small screens, and hide
+   the 2 smallest extras (we still get a reasonable density with 5 blobs). */
+@media (max-width:720px){
+  .home-blob-1{ width:280px; height:250px; }
+  .home-blob-2{ width:260px; height:230px; }
+  .home-blob-3{ width:220px; height:200px; }
+  .home-blob-4{ width:200px; height:180px; }
+  .home-blob-5{ width:180px; height:160px; }
+  .home-blob-6, .home-blob-7{ display:none; }
+}
+/* Dark mode: tiles and about card use translucent dark surface instead of cream.
+   The colored --tile-tint var stays applied; only the underlying surface swaps. */
+:root[data-theme="dark"] .home-tile{
+  background:linear-gradient(var(--tile-tint), var(--tile-tint)), rgba(26,29,35,.72) !important;
+}
+:root[data-theme="dark"] .home-about-card{
+  background:rgba(26,29,35,.72) !important;
+}
 </style>
 <!-- Google Analytics 4 (cookieless mode) — pageview + tool_open events. -->
 <!-- A trackEvent() helper exists later in the script and uses window.gtag when available. -->
@@ -483,6 +577,8 @@ function selectTool(key){
   document.querySelectorAll('[data-tool-btn]').forEach(b=>b.classList.remove('active'));
   const btn=document.querySelector(`[data-tool-btn="${key}"]`);
   if(btn)btn.classList.add('active');
+  // Tear down home-page background blob parallax if it was active
+  if(typeof teardownHomeBlobParallax==='function')teardownHomeBlobParallax();
   // Make sure layout is in default state (in case we were on home)
   const sb=document.getElementById('sidebar');
   const rp=document.getElementById('right-panel');
@@ -525,32 +621,281 @@ function showHomePage(){
   rp.style.display='';
   rp.style.overflowY='auto';
   rp.innerHTML=`
-    <div style="max-width:980px;margin:0 auto;padding:2rem 1.5rem 3rem;width:100%;" class="fade-in">
-      <div style="text-align:center;margin-bottom:2rem;">
-        <div style="font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--text);letter-spacing:-.02em;">Mole<span style="color:var(--accent);">Bio</span> Toolkit</div>
-        <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-muted);margin-top:.3rem;letter-spacing:.1em;text-transform:uppercase;">Interactive Tools for Molecular Biology Lecture & Lab</div>
-        <div style="font-size:.85rem;color:var(--text-dim);margin-top:.7rem;line-height:1.6;max-width:880px;margin-left:auto;margin-right:auto;">A focused set of interactive tools for molecular biology students. Use them during lecture or lab to set up a pipette, design a primer, calculate a dilution, or step through translation in real time.</div>
+    <div class="home-page-wrap">
+      <div class="home-blob-layer" aria-hidden="true">
+        <div class="home-blob home-blob-1"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-2"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-3"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-4"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-5"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-6"><div class="home-blob-inner"></div></div>
+        <div class="home-blob home-blob-7"><div class="home-blob-inner"></div></div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.85rem;" id="home-grid">
-        ${TOOL_KEYS.map(k=>{
-          const t=TOOLS[k];
-          return `<button onclick="selectTool('${k}')" style="background:${t.iconBg};border:1.5px solid ${t.color}55;border-radius:10px;padding:1.1rem 1.2rem;cursor:pointer;text-align:left;transition:all .18s;display:flex;flex-direction:column;gap:.45rem;font-family:'DM Sans',sans-serif;min-height:110px;" onmouseenter="this.style.borderColor='${t.color}';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px ${t.color}25'" onmouseleave="this.style.borderColor='${t.color}55';this.style.transform='none';this.style.boxShadow='none'">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span style="font-size:1.6rem;line-height:1;">${t.icon}</span>
-              <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:${t.color};text-transform:uppercase;letter-spacing:.08em;font-weight:600;">${t.eyebrow}</span>
-            </div>
-            <div style="font-size:1rem;font-weight:600;color:var(--text);line-height:1.25;">${t.label}</div>
-            <div style="font-size:.76rem;color:var(--text-muted);line-height:1.5;min-height:2.25em;">${t.sub}</div>
-          </button>`;
-        }).join('')}
-      </div>
-      <div style="margin-top:1.8rem;padding:1.1rem 1.3rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;">
-        <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:600;">About</div>
-        <div style="font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:.7rem;text-align:center;">The MoleBio Toolkit is focused on the calculators and viewers most useful in real lecture and lab contexts. It is designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
-        <div style="font-size:.75rem;color:var(--text-muted);line-height:1.65;text-align:center;">Created by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;" target="_blank" rel="noopener">Dylan S. Blohm</a>. Coded with Anthropic Claude. Press <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:.1em .4em;font-size:.7rem;color:var(--accent);font-family:inherit;">?</kbd> for full About &amp; shortcuts.</div>
+      <div style="max-width:980px;margin:0 auto;padding:2rem 1.5rem 3rem;width:100%;position:relative;z-index:1;" class="fade-in">
+        <div style="text-align:center;margin-bottom:2rem;">
+          <div style="font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--text);letter-spacing:-.02em;">Mole<span style="color:var(--accent);">Bio</span> Toolkit</div>
+          <div style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--text-muted);margin-top:.3rem;letter-spacing:.1em;text-transform:uppercase;">Interactive Tools for Molecular Biology Lecture & Lab</div>
+          <div style="font-size:.85rem;color:var(--text-dim);margin-top:.7rem;line-height:1.6;max-width:880px;margin-left:auto;margin-right:auto;">A focused set of interactive tools for molecular biology students. Use them during lecture or lab to set up a pipette, design a primer, calculate a dilution, or step through translation in real time.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.85rem;" id="home-grid">
+          ${TOOL_KEYS.map(k=>{
+            const t=TOOLS[k];
+            // Tile background: a translucent page-bg layer behind the colored tint.
+            // The tint color is set via CSS var so dark-mode override can keep it
+            // while swapping the underlying surface color.
+            return `<button onclick="selectTool('${k}')" style="--tile-tint:${t.iconBg};background:linear-gradient(var(--tile-tint), var(--tile-tint)), rgba(250,248,244,.78);border:1.5px solid ${t.color}55;border-radius:10px;padding:1.1rem 1.2rem;cursor:pointer;text-align:left;transition:all .18s;display:flex;flex-direction:column;gap:.45rem;font-family:'DM Sans',sans-serif;min-height:110px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);" class="home-tile" onmouseenter="this.style.borderColor='${t.color}';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px ${t.color}25'" onmouseleave="this.style.borderColor='${t.color}55';this.style.transform='none';this.style.boxShadow='none'">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:1.6rem;line-height:1;">${t.icon}</span>
+                <span style="font-family:'DM Mono',monospace;font-size:.58rem;color:${t.color};text-transform:uppercase;letter-spacing:.08em;font-weight:600;">${t.eyebrow}</span>
+              </div>
+              <div style="font-size:1rem;font-weight:600;color:var(--text);line-height:1.25;">${t.label}</div>
+              <div style="font-size:.76rem;color:var(--text-muted);line-height:1.5;min-height:2.25em;">${t.sub}</div>
+            </button>`;
+          }).join('')}
+        </div>
+        <div style="margin-top:1.8rem;padding:1.1rem 1.3rem;background:rgba(250,248,244,.78);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);border:1px solid var(--border);border-radius:10px;" class="home-about-card">
+          <div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;font-weight:600;">About</div>
+          <div style="font-size:.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:.7rem;text-align:center;">The MoleBio Toolkit is focused on the calculators and viewers most useful in real lecture and lab contexts. It is designed to work offline – on phones, tablets, and laptops – with no installation required.</div>
+          <div style="font-size:.75rem;color:var(--text-muted);line-height:1.65;text-align:center;">Created by <a href="https://www.linkedin.com/in/dylan-blohm-416082150" style="color:var(--accent);text-decoration:none;" target="_blank" rel="noopener">Dylan S. Blohm</a>. Coded with Anthropic Claude. Press <kbd style="background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:.1em .4em;font-size:.7rem;color:var(--accent);font-family:inherit;">?</kbd> for full About &amp; shortcuts.</div>
+        </div>
       </div>
     </div>`;
   rp.scrollTop=0;
+  // Position the blob layer to fill the scrollable panel (it's `position:absolute`,
+  // so it needs a positioned parent with the right dimensions).
+  rp.style.position='relative';
+  // Wire up the cursor parallax for the blobs (idempotent — clears any prior listener first).
+  setupHomeBlobParallax();
+}
+
+// Home page background blobs: physics simulation with drift, pairwise
+// collision (soft-body squish & bounce), and cursor parallax. Marshmallow
+// behavior — blobs lazily drift, but when they touch they compress along
+// the contact axis and push apart with damped elastic recoil.
+let _homeBlobMouseHandler=null;
+let _homeBlobRaf=null;
+let _homeBlobBodies=null;
+let _homeBlobLastT=0;
+let _homeBlobMouseNX=0,_homeBlobMouseNY=0;
+function setupHomeBlobParallax(){
+  teardownHomeBlobParallax();
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Mobile/touch devices: still run physics for ambient drift + collision,
+  // but skip the mousemove handler (no cursor to track on touch).
+  const hasFinePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  const layer = document.querySelector('.home-blob-layer');
+  if(!layer) return;
+  // Filter to only currently-visible blobs (CSS may hide blob-6 and blob-7 on mobile)
+  const blobEls = Array.from(layer.querySelectorAll('.home-blob')).filter(el => el.offsetParent !== null);
+  if(blobEls.length === 0) return;
+
+  const layerRect = layer.getBoundingClientRect();
+  const W = layerRect.width, H = layerRect.height;
+  if(W < 200 || H < 200){
+    // Layer not laid out yet — try again on the next frame
+    requestAnimationFrame(()=>setupHomeBlobParallax());
+    return;
+  }
+
+  // Initial layout — pick spread starting positions and per-blob constants.
+  // hx/hy are layer-relative percentages. Some go past 0/1 so blobs peek off
+  // the edges, which fills the corners and avoids leaving the right side empty
+  // on wide layouts.
+  const layout = [
+    { hx:0.10, hy:0.15, depth:22 },  // blob 1 — top-left, peeks off
+    { hx:0.95, hy:0.20, depth:18 },  // blob 2 — top-right, peeks off
+    { hx:0.55, hy:0.45, depth:14 },  // blob 3 — center
+    { hx:0.05, hy:0.60, depth:10 },  // blob 4 — middle-left, peeks off
+    { hx:0.92, hy:0.65, depth:8  },  // blob 5 — middle-right, peeks off
+    { hx:0.50, hy:0.88, depth:12 },  // blob 6 — lower-center
+    { hx:0.95, hy:0.95, depth:9  }   // blob 7 — bottom-right
+  ];
+
+  _homeBlobBodies = blobEls.map((el, i) => {
+    const w = el.offsetWidth, h = el.offsetHeight;
+    const inner = el.querySelector('.home-blob-inner');
+    const cfg = layout[i] || layout[0];
+    // Approximate radius for circle-circle collision (averaged + slight shrink so
+    // visible overlap is still allowed at the edges of the asymmetric border-radius).
+    const r = (w + h) / 4 * 0.78;
+    const homeX = cfg.hx * W - w/2;
+    const homeY = cfg.hy * H - h/2;
+    return {
+      el, inner,
+      w, h, r,
+      x: homeX, y: homeY,
+      homeX, homeY,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      // Squish state: scaleX/scaleY are continuously eased toward 1.0; collisions
+      // briefly set them to non-uniform values to create the marshmallow effect.
+      sx: 1, sy: 1, sxTarget: 1, syTarget: 1,
+      rot: (Math.random() - 0.5) * 14,        // base rotation (deg)
+      rotV: (Math.random() - 0.5) * 0.04,     // gentle rotation drift
+      depth: cfg.depth,                        // cursor parallax intensity
+      // Tracked offsets so cursor parallax composes with physics position
+      cursorOffX: 0, cursorOffY: 0,
+      // Independent ambient force phase so blobs don't all push the same way
+      phase: Math.random() * Math.PI * 2,
+      phaseRate: 0.0003 + Math.random() * 0.0004
+    };
+  });
+
+  // Initial transform write so blobs appear in starting positions, not at 0,0
+  _homeBlobBodies.forEach(b => writeBlobTransform(b));
+
+  // Cursor parallax — only meaningful on devices with a real cursor.
+  // On touch devices, the physics loop still runs (drift + collision) but
+  // no parallax is added (saves the listener).
+  if(hasFinePointer){
+    _homeBlobMouseHandler = (e) => {
+      _homeBlobMouseNX = (e.clientX / window.innerWidth - 0.5) * 2;
+      _homeBlobMouseNY = (e.clientY / window.innerHeight - 0.5) * 2;
+      if(_homeBlobRaf === null){
+        _homeBlobLastT = performance.now();
+        _homeBlobRaf = requestAnimationFrame(stepHomeBlobs);
+      }
+    };
+    window.addEventListener('mousemove', _homeBlobMouseHandler, {passive:true});
+  }
+
+  // Kick off the loop unconditionally — even without cursor, ambient drift runs
+  _homeBlobLastT = performance.now();
+  _homeBlobRaf = requestAnimationFrame(stepHomeBlobs);
+}
+function writeBlobTransform(b){
+  // Compose: position from physics + cursor parallax offset; squish on inner.
+  const tx = b.x + b.cursorOffX;
+  const ty = b.y + b.cursorOffY;
+  b.el.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px) rotate(${b.rot.toFixed(2)}deg)`;
+  if(b.inner){
+    b.inner.style.transform = `scale(${b.sx.toFixed(3)}, ${b.sy.toFixed(3)})`;
+  }
+}
+function stepHomeBlobs(now){
+  if(!_homeBlobBodies){ _homeBlobRaf=null; return; }
+  const dt = Math.min(40, now - _homeBlobLastT) / 16.67; // normalized to ~60fps frames
+  _homeBlobLastT = now;
+  const layer = document.querySelector('.home-blob-layer');
+  if(!layer){ _homeBlobRaf=null; return; }
+  const layerRect = layer.getBoundingClientRect();
+  const W = layerRect.width, H = layerRect.height;
+  const bodies = _homeBlobBodies;
+
+  // 1) Ambient drift forces: slow phase-driven sway + gentle restoring force
+  //    toward home position so blobs don't escape over time.
+  for(const b of bodies){
+    b.phase += b.phaseRate * dt * 16.67;
+    // Sinusoidal ambient force — different axes phase-offset for organic feel
+    const ambX = Math.cos(b.phase) * 0.012;
+    const ambY = Math.sin(b.phase * 1.3 + 1) * 0.012;
+    b.vx += ambX * dt;
+    b.vy += ambY * dt;
+    // Soft restoring force toward home position (Hooke-like, very weak)
+    const dxh = b.homeX - b.x, dyh = b.homeY - b.y;
+    b.vx += dxh * 0.0006 * dt;
+    b.vy += dyh * 0.0006 * dt;
+    // Damping — keep speeds modest
+    b.vx *= 0.985;
+    b.vy *= 0.985;
+  }
+
+  // 2) Pairwise collision — circle-circle with elastic separation + squish impulse.
+  for(let i=0; i<bodies.length; i++){
+    for(let j=i+1; j<bodies.length; j++){
+      const a = bodies[i], c = bodies[j];
+      const acx = a.x + a.w/2, acy = a.y + a.h/2;
+      const ccx = c.x + c.w/2, ccy = c.y + c.h/2;
+      let dx = ccx - acx, dy = ccy - acy;
+      let dist = Math.sqrt(dx*dx + dy*dy);
+      const minDist = a.r + c.r;
+      if(dist < minDist){
+        if(dist < 0.001){ dx = 1; dy = 0; dist = 1; } // avoid div-by-zero
+        const nx = dx/dist, ny = dy/dist;
+        const overlap = minDist - dist;
+        // Push apart proportionally to overlap
+        const push = overlap * 0.5;
+        a.x -= nx * push;
+        a.y -= ny * push;
+        c.x += nx * push;
+        c.y += ny * push;
+        // Velocity exchange along the contact normal — elastic-ish bounce
+        const va = a.vx*nx + a.vy*ny;
+        const vc = c.vx*nx + c.vy*ny;
+        const transfer = (vc - va) * 0.6;
+        a.vx += transfer * nx;
+        a.vy += transfer * ny;
+        c.vx -= transfer * nx;
+        c.vy -= transfer * ny;
+        // Squish impulse — scale shrinks along contact normal, expands perpendicular
+        // The strength is proportional to the overlap. Decays back to 1 over time.
+        const squishMag = Math.min(0.18, overlap / 80);
+        const angA = Math.atan2(ny, nx);
+        const angC = Math.atan2(-ny, -nx);
+        applySquish(a, angA, squishMag);
+        applySquish(c, angC, squishMag);
+      }
+    }
+  }
+
+  // 3) Wall constraints — keep blobs from drifting fully outside the layer.
+  //    Soft bounce off edges so they stay in the visible region. Using a smaller
+  //    "visible" margin lets blob centers go past the panel edges, which is
+  //    exactly what we want for wraparound coverage on wide layouts.
+  for(const b of bodies){
+    const margin = 140;  // amount of blob that must remain visible at any edge
+    if(b.x < -b.w + margin){ b.x = -b.w + margin; b.vx = Math.abs(b.vx) * 0.5; }
+    if(b.x > W - margin){    b.x = W - margin;    b.vx = -Math.abs(b.vx) * 0.5; }
+    if(b.y < -b.h + margin){ b.y = -b.h + margin; b.vy = Math.abs(b.vy) * 0.5; }
+    if(b.y > H - margin){    b.y = H - margin;    b.vy = -Math.abs(b.vy) * 0.5; }
+  }
+
+  // 4) Integrate positions; ease squish back toward 1.0; ease cursor offsets.
+  for(const b of bodies){
+    b.x += b.vx * dt;
+    b.y += b.vy * dt;
+    b.rot += b.rotV * dt;
+    // Ease scale targets back toward 1
+    b.sxTarget += (1 - b.sxTarget) * 0.06 * dt;
+    b.syTarget += (1 - b.syTarget) * 0.06 * dt;
+    // Smooth current scale toward target
+    b.sx += (b.sxTarget - b.sx) * 0.18 * dt;
+    b.sy += (b.syTarget - b.sy) * 0.18 * dt;
+    // Cursor parallax — ease toward target
+    const targetOffX = _homeBlobMouseNX * b.depth;
+    const targetOffY = _homeBlobMouseNY * b.depth;
+    b.cursorOffX += (targetOffX - b.cursorOffX) * 0.10 * dt;
+    b.cursorOffY += (targetOffY - b.cursorOffY) * 0.10 * dt;
+    writeBlobTransform(b);
+  }
+
+  _homeBlobRaf = requestAnimationFrame(stepHomeBlobs);
+}
+function applySquish(b, angle, mag){
+  // Apply squish impulse: shrink along `angle` axis, expand perpendicular.
+  // The xy components are projected so squish aligns roughly with the contact normal,
+  // even though we render it as orthogonal scaleX/scaleY (good-enough approximation
+  // since blobs aren't rotating much during collision).
+  const c = Math.cos(angle), s = Math.sin(angle);
+  // Squish more in the dominant collision direction (whichever |c| or |s| is bigger)
+  if(Math.abs(c) > Math.abs(s)){
+    b.sxTarget = Math.min(b.sxTarget, 1 - mag);
+    b.syTarget = Math.max(b.syTarget, 1 + mag * 0.7);
+  } else {
+    b.syTarget = Math.min(b.syTarget, 1 - mag);
+    b.sxTarget = Math.max(b.sxTarget, 1 + mag * 0.7);
+  }
+}
+function teardownHomeBlobParallax(){
+  if(_homeBlobMouseHandler){
+    window.removeEventListener('mousemove', _homeBlobMouseHandler);
+    _homeBlobMouseHandler = null;
+  }
+  if(_homeBlobRaf !== null){
+    cancelAnimationFrame(_homeBlobRaf);
+    _homeBlobRaf = null;
+  }
+  _homeBlobBodies = null;
 }
 
 function showToolSwitcher(){
